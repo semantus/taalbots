@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+<category>
+    <pattern>*</pattern>
+    <template><set name="invraiml"><br/><b><star/></b></set></template>
+</category>
+<category><pattern>* begint te praten</pattern>
+<template>En u bent ?
+<button>
+    <text>Bezoeker</text>
+    <url>https://www.semanta.nl/semanta/user-init.php?bzv1=<star/></url>
+</button>
+<button>
+    <text>taalbot</text>
+    <url>https://www.semanta.nl/semanta/chbt.php?bzv1=<star/></url>
+</button>
+<button>
+    <text>gesprekspartner</text>
+    <url>https://www.semanta.nl/semanta/vgpt.php?bzv1=<star/></url>
+</button>
+<think><set name="invrvgpt"><star/></set></think>
+<button>
+    <text><get name="invrvgpt"></get></text>
+    <url>https://www.semanta.nl/semanta/vgpt.php?bzv1=<star/></url>
+</button>
+</template>
+</category>
+<category>
+<pattern>hoofd</pattern><template>
+<button>Hoofd kan verwijzen naar </button><button>hoofd anatomie bij dieren ook kop het bovenste deel van het lichaam</button><button>Hoofd Eddy Gheress beeld van Eddy Gheress in Amsterdam-West met weergave van een hoofd</button><button>het hoogste of voorste deel vgl</button><button>Aan het hoofd staan </button><button>manager of leidinggevende</button><button>hoofdje een bloeiwijze</button><button>per hoofd van de bevolking zie per capita</button><button>Krib rivier synoniem voor een korte stenen dam in een rivier</button><button>sluishoofd</button><button>hoofd taalkunde een term uit de ontleding</button><button>Hoofd Hoorn een straat in Hoorn</button>
+</template></category>
+<category>
+    <pattern>je ogen *</pattern>
+    <template>hoe goed heb je gekeken</template>
+</category>
+<category>
+    <pattern>is er dan*</pattern>
+    <template>Had u daar op gerekend</template>
+</category>
+<category>
+    <pattern>een dokter</pattern>
+    <template>is die nodig</template>
+</category>
+<category>
+    <pattern>* zijn je ogen *</pattern>
+    <template>wat is het verband tussen <star index="1"/> en <star index="2"/> </template>
+</category>
+<category>
+    <pattern>* is geen *</pattern>
+    <template>Wat is <star/> dan wel</template>
+</category>
+<category>
+    <pattern>* is een *</pattern>
+    <template>
+    <set name="invrlnks"><star index="1"/></set>
+    <set name="invrrchs"><star index="2"/></set>
+    
+        <button>
+            <text>Verwerk uiting</text>
+            <postback><get name="invrlnks"></get> betekent <get name="invrrchs"></get></postback>https://widget.pandorabots.com/prod/pb-launcher-icon.svg
+        </button>
+    </template>
+</category>
+<category>
+    <pattern>Click node to edit pattern</pattern>
+    <template>Click node to edit template</template>
+</category>
+<category>
+    <pattern>stoppen met roken </pattern>
+    <template>
+  <button>
+      <text>koffie</text>
+      <postback>is stoppen met koffie</postback>
+  </button>
+  <button>
+      <text>wijn</text>
+      <postback>is stoppen met wijn</postback>
+  </button>
+  <button>
+      <text>snoep</text>
+      <postback>laat het snaaien beginnen</postback>
+  </button>
+  </template>
+</category>
+<category>
+    <pattern>ben gek op *</pattern>
+    <template>waar komt uw voorliefde voor <star/> vandaan?</template>
+</category>
+<category>
+    <pattern>van mijn *</pattern>
+    <template>
+        <set name="invrbzv1"><star/></set>
+        <button>
+            <text><star/> Is Familie</text>
+            <postback>fam</postback>
+        </button>
+        <button>
+            <text><star/>Vertegenwoordigt geld</text>
+            <postback>fnc</postback>
+        </button>
+         <button>
+            <text><star/> Ziet u pluspuntn in <star/></text>
+            <postback>pls</postback>
+        </button>
+    </template>
+</category>
+<category>
+    <pattern>wereldeconomie</pattern>
+    <template>
+        <set name="invraiml">wereldeconomie</set>
+        <postback>znw</postback>
+    </template>
+</category>
+<category>
+    <pattern>geen rauwe groenten</pattern>
+    <template>ik geloof dat dat ongezond is</template>
+</category>
+<category>
+    <pattern>van alles beweren</pattern>
+    <template>het is niet allemaal onzin</template>
+</category>
+<category>
+    <pattern>verslagen bij *</pattern>
+    <template>In welke oorlog of slag was dat</template>
+</category>
+<category>
+    <pattern>is er iemand</pattern>
+    <template>
+        er is altijd wel iemand
+        <sraix bot="une7480f40/semanta">taalbots@<star/></sraix>
+    </template>
+</category>
+</aiml>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<category>
+    <pattern>talen</pattern>
+    <template>
+        <image>https://www.semanta.nl/semanta/taal.png</image>
+        <link>
+            <text>Inroduction</text>
+            <url>https://www.semanta.nl/semanta/ling-list/Introduction.html</url>
+        </link>
+        <link>
+            <text>arabisch  zweeds</text>
+            <url>https://www.semanta.nl/semanta/ling-list/WORDLISTS.html</url>
+        </link>
+    </template>
+</category>
+</aiml>

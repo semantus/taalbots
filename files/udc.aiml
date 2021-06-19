@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<category>
+    <pattern>*</pattern>
+    <template>
+        <set name="invraiml"><star/></set>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+</category>
+<category>
+    <pattern>bent u tegen *</pattern>
+    <template>
+        <set name="invraiml"><star/></set>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+</category>
+<category>
+    <pattern>ben op zoek *</pattern>
+    <template>
+        <set name="invraiml"><star/></set>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+</category>
+<category>
+    <pattern>naar *</pattern>
+    <template>
+        <set name="invraiml"><star/></set>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+</category>
+<category>
+    <pattern>geluk</pattern>
+    <template>
+        <set name="invraiml"><star/></set>
+        </template>
+</category>
+<category><pattern>dongen</pattern><template><think><set name="invraiml">dongen</set></think><button><text>semantiek</text><postback>gps@org@gem</postback></button></template></category>
+<category><pattern>hilversum</pattern><template><think><set name="invraiml">hilversum</set></think><button><text>semantiek</text><postback>gps@org@gem</postback></button></template></category>
+<category><pattern>oss</pattern><template><think><set name="invraiml">oss</set></think><button><text>semantiek</text><postback>gps@org@gem</postback></button></template></category>
+<category><pattern>bilthoven</pattern><template><think><set name="invraiml">bilthoven</set></think><button><text>semantiek</text><postback>gps@org@gem</postback></button></template></category>
+<category><pattern>tilburg</pattern><template><think><set name="invraiml">tilburg</set></think><button><text>semantiek</text><postback>gps@org@gem</postback></button></template></category>
+<category><pattern>soest</pattern><template><think><set name="invraiml">soest</set></think><button><text>semantiek</text><postback>abs@fnc@gps@org@gem</postback></button></template></category>
+<category><pattern>almere</pattern><template><think><set name="invraiml">almere</set></think><button><text>semantiek</text><postback>gps@org@gem</postback></button></template></category>
+<category><pattern>eemnes</pattern><template><think><set name="invraiml">eemnes</set></think><button><text>semantiek</text><postback>gps@org@gem</postback></button></template></category>
+<category>
+    <pattern>ik * *</pattern>
+    <template>
+        Ik ben in gesprek met <get name="invrname"/>
+        <button>
+            <text><star index="1"/></text>
+            <postback>ik@<star index="1"/></postback>
+        </button>
+        <button>
+            <text><star index="2"/></text>
+            <postback>ik@<star index="2"/></postback>
+        </button>
+        <button>
+            <text></text>
+            <postback></postback>
+        </button>
+    </template>
+    </category>
+    
+<category>
+    <pattern>wat ik *</pattern>
+    <template>Ik was net in gesprek met <get name="invrname"/></template>
+</category>
+<category>
+    <pattern>* is mijn naam</pattern>
+    <template>
+        <think><set name="invrname"><star/></set></think>
+        Ik probeer te onthouden dat u <star/> heet
+        </template>
+</category>
+<category><pattern>* at *</pattern>
+<template>Oorsprong<star index="1"/> <br/>AIML is <star index="2"/> 
+    <think>
+    <set name="invrname"><star index="1"/></set>
+    <set name="invrhost"><star index="2"/></set>
+    </think>
+<button>
+    <text><get name="invrname"></get></text>
+    <postback><get name="invrname"></get></postback>
+</button>
+<button>
+    <text><get name="invrhost"></get></text>
+    <postback><get name="invrhost"></get></postback>
+</button>
+</template>
+</category>
+<category>
+    <pattern>personeel</pattern>
+    <template>Drie chatbots op een rijtje
+        <button>
+            <text>semanta</text>
+            <postback>xsmta</postback>
+        </button>
+        <button>
+            <text>lingvistica</text>
+            <postback>xling</postback>
+        </button>
+        <button>
+            <text>gesprekspartners</text>
+            <postback>xvgpt</postback>
+        </button>
+    </template>
+</category>
+<category>
+ <pattern>xsmta</pattern>
+  <template><sraix bot="une7480f40/semanta">taalbots@<star/></sraix></template>
+  </category>
+<category>
+    <pattern>xling</pattern>
+  <template><sraix bot="une7480f40/lingvistica">taalbots@<star/></sraix></template>
+  </category>
+<category>
+    <pattern>xvgpt</pattern>
+  <template><sraix bot="une7480f40/gesprekspartners">taalbots@<star/></sraix></template>
+   </category>
+<category>
+    <pattern>Begin</pattern>
+    <template>
+       <think><set name="invraiml">begin</set></think>
+        <br/>
+    Welkom gast. 
+    <br/><br/>Lingvistica, de firma die mij bedacht heeft, wil graag iets van u weten.
+    Het gaat om uw naam en uw e-mailadres waarmee wij een <b>gebruikerskenmerk </b>aanmaken die alleen aan u bekend zal zijn.
+    Heeft u vragen neemt u dan contact op met Ed Kool op +31-6-48078750.
+    <br/><br/>
+    Registreren uw e-mailadres en gebruikersnaam via MY EMAIL IS e-mailadres
+    </template>
+    </category> 
+    <category><pattern>* at * at *</pattern>
+    <template><b>Links <star index="1"/></b><br/><b>Midden <star index="2"/> </b><br/> Rechts <star index="3"/>
+    <think>
+    <set name="invrlnks"><star index="1"/></set>
+    <set name="invrmddn"><star index="2"/></set>
+    <set name="invrrchs"><star index="3"/></set>
+    </think>
+<button>
+    <text><get name="invrlnks"></get></text>
+    <postback><get name="invrlnks"></get></postback>
+</button>
+<button>
+    <text><get name="invrmddn"></get></text>
+    <postback><get name="invrmddn"></get></postback>
+</button>
+<button>
+    <text><get name="invrrchs"></get></text>
+    <postback><get name="invrrchs"></get></postback>
+</button>
+</template>
+</category>
+    <category><pattern>* plus * plus *</pattern>
+    <template><b>Links <star index="1"/></b><br/><b>Midden <star index="2"/> </b><br/> Rechts <star index="3"/>
+    <think>
+    <set name="invrlnks"><star index="1"/></set>
+    <set name="invrmddn"><star index="2"/></set>
+    <set name="invrrchs"><star index="3"/></set>
+    </think>
+<button>
+    <text><get name="invrlnks"></get></text>
+    <postback><get name="invrlnks"></get></postback>
+</button>
+<button>
+    <text><get name="invrmddn"></get></text>
+    <postback><get name="invrmddn"></get></postback>
+</button>
+<button>
+    <text><get name="invrrchs"></get></text>
+    <postback><get name="invrrchs"></get></postback>
+</button>
+</template>
+</category>
+<category>
+    <pattern>ja begin</pattern>
+    <template>
+
+    <category>
+        <pattern>gps</pattern>
+        <template>geografische locatie</template>
+    </category>      
+<carousel>
+  
+    <card>
+        <image></image>
+        <subtitle>1. Would you consider having a relationship with an android that looks like a human?</subtitle>
+        <set name="invrtxt1">Would you consider having a relationship with an android that looks like a human?</set>
+        <button><text>Yes</text>
+        <url>https://www.semanta.nl/semanta/user-rgst.php?func=yes&amp;bzv1=<get name="invrtxt1"></get></url></button>
+        <button><text>No</text>
+        <url>https://www.semanta.nl/semanta/user-rgst.php?func=no&amp;bzv1=<get name="invrtxt1"></get></url></button>
+        <button><text>Don't know</text>
+        <url>https://www.semanta.nl/semanta/user-rgst.php?func=dnk&amp;bzv1=<get name="invrtxt1"></get></url></button>
+    </card>
+    <card>
+        <image></image>
+        <title></title>
+        <subtitle>2. Do you think that technology could become a threat to mankind?</subtitle>
+        <set name="invrtxt2">Do you think that technology could become a threat to mankind?</set>
+        <button><text>Yes</text>
+        <url>https://www.semanta.nl/semanta/user-rgst.php?func=yes&amp;bzv1=<get name="invrtxt2"></get></url></button>
+        <button><text>No</text>
+        <url>https://www.semanta.nl/semanta/user-rgst.php?func=no&amp;bzv1=<get name="invrtxt2"></get></url></button>
+        <button><text>Don't know</text>
+        <url>https://www.semanta.nl/semanta/user-rgst.php?func=dnk&amp;bzv1=<get name="invrtxt2"></get></url></button>
+    </card>
+    <card>
+        <image></image>
+        <title>Do you consider yourself dependent on technology?</title>
+        <subtitle>Beantwoord met een eerlijk antwoord</subtitle>
+        <set name="invrtxt3">3. Do you consider yourself dependent on technology?</set>
+        <button><text>Yes</text>
+        <url>https://www.semanta.nl/semanta/user-rgst.php?func=yes&amp;bzv1=<get name="invrtxt3"></get></url></button>
+        <button><text>No</text>
+        <url>https://www.semanta.nl/semanta/user-rgst.php?func=no&amp;bzv1=<get name="invrtxt3"></get></url></button>
+        <button><text>Don't know</text>
+        <url>https://www.semanta.nl/semanta/user-rgst.php?func=dnk&amp;bzv1=<get name="invrtxt3"></get></url></button>
+    </card>
+    
+</carousel>
+ </template>
+</category>
+<category>
+    <pattern>want to build *</pattern>
+    <template>architect?</template>
+</category>
+   
+<category>
+    <pattern>wanna build *</pattern>
+    <template><srai>want to build *</srai>a</template>
+</category>
+<category>
+    <pattern>result</pattern>
+    <template>
+        <get name="invrtxt3"></get>" "<get name="invrrslt"></get>
+    </template>
+</category>
+<category>
+    <pattern>Hi</pattern>
+    <template><srai>begin</srai></template>
+</category>
+<category>
+    <pattern>Hallo</pattern>
+    <template><srai>begin</srai></template>
+</category>
+    <category>
+    <pattern>waarom</pattern>
+    <that>Soms heb ik wel een voorbehoud als het om * gaat</that>
+    <template>Vind u het nog leuk</template>
+<category>
+    <pattern>Xbots</pattern>
+    <template>
+       <reply>
+           <text>Xbot palet</text>
+           <postback>Xbot palet</postback>
+       </reply>
+       </template>
+       </category>
+  <category>
+           <pattern>Xbot palet</pattern>
+           <template>
+           Om de onafhankelijkheid van taal en type Xbot te verduidelijken hebben wij voor een zorgrobot een Xbotpalet ontworpen.
+           Hiermee kunnen cenario´s voor Xbot conversaties gevisualiseerd kunnen worden.  
+           Wij hebben onderscheid gemaakt tussen Waarnemen, Robotbeweging,Robotomgeving, Client en tijdsgebonden handelingen. 
+           De scenario´s kunnen worden omgezet in voor de Xbot verwerkbare tekstbestanden die via een dowloadfaciliteit in de eigen omgeving kan worden opgenomen.
+           </template>
+       </category>
+//////////////////////////////////////////////
+</category>
+    <category>
+	<pattern>* betekent *</pattern>
+	<template>
+	<think>
+	    
+	    <set name="invrchbt">semantus</set>
+        <set name="invrcorp">semanta</set> 
+        <set name="invrvgpt">semanta</set>
+        <set name="invrxbot">eddy</set>
+        <set name="invrlgrm">converseren</set>
+        <set name="invrname">Gast</set>
+        <set name="invrbzv2"><get name="invraiml"></get> betekent</set>
+		<learn>
+			<category>
+				<pattern><eval><star index="1"/></eval></pattern>
+				<template><eval><star index="2" /></eval></template>
+			</category>
+		</learn>
+	</think>
+	OK <get name="invrname"></get>Volgende keer zeg ik "<star index="2"/>" als u  "<star index="1" />" zegt
+	</template>
+    </category>
+<category>
+<pattern>REST *</pattern>
+<template><set name="invrtxt2"><rest><star /></rest></set></template>
+<button>
+    <text>splitsen</text>
+    <postback><get name="invrtxt2"></get></postback>
+</button>
+</category>
+<category>
+  <pattern>taalbot</pattern>
+  <template>
+      <button>
+          <text>You might also like to speak with the taalbots</text>
+          <url>https://www.semanta.nl/semanta/tlbt.php</url>
+      </button>
+  </template>
+</category>
+
+    <category>
+	<pattern>* betekent *</pattern>
+	<template>
+	<think>
+	    <set name="invrchbt">semantus</set>
+        <set name="invrcorp">semanta</set> 
+        <set name="invrvgpt">semanta</set>
+        <set name="invrxbot">eddy</set>
+        <set name="invrlgrm">converseren</set>
+        <set name="invrbzv2"><get name="invraiml"></get> betekent</set>
+		<learn>
+			<category>
+				<pattern><eval><star index="1"/></eval></pattern>
+				<template><eval><star index="2" /></eval></template>
+			</category>
+		</learn>
+	</think>
+	OK <get name="invrname"></get>Volgende keer zeg ik "<star index="2"/>" als u  "<star index="1" />" zegt
+	</template>
+    </category>
+<category>
+<pattern>REST *</pattern>
+<template><set name="invrtxt2"><rest><star /></rest></set></template>
+<button>
+    <text>splitsen</text>
+    <postback><get name="invrtxt2"></get></postback>
+</button>
+</category>
+////// TAALBOTS //////
+<category>
+    <pattern>*</pattern>
+    <template>
+        <button>
+            <text><star/></text>
+            <postback><star/></postback>
+        </button>
+        <set name="invrbzv1"><star/></set>
+        <set name="invraiml"><star/></set>
+  </template>
+</category>
+<category>
+    <pattern>Taalbots</pattern>
+    <template>
+       <image>https://www.semanta.nl/semanta/taalbots.png</image>
+       <think><set name="invrtaal">nederlands</set></think>
+       <button><text>Aanmelden</text><postback>xtlbt</postback></button>
+       <button><text>Nederlands</text><postback>Nederlands></postback></button>
+       <button><text>English</text><postback>English></postback></button>
+       <button><text>More to come</text><postback>Meer talen</postback></button>
+    </template>
+</category>
+<category>
+    <pattern>xtlbt</pattern>
+    <template>
+        u kunt verbinding maken met semanta om u mailadres en gebruikersnaam door te geven
+        <link>
+            <text>Aanmelden target=_top </text>
+            <url>https://www.semanta.nl/semanta/user-init.php</url>
+        </link>
+        <image>https://www.semanta.nl/semanta/user-init-0001.png</image>
+    </template>
+</category>
+<topic name="academia">
+<category>
+    <pattern>Academia Research Interests</pattern>
+    <template>				
+<button><text>	Anthropology	</text>
+<url>https://www.academia.edu/Documents/in/Anthropology</url>
+</button>
+</template>
+</category>
+</topic>
+<category>
+    <pattern>Meer talen</pattern>
+    <template>
+        <link>
+            <text>More languages</text>
+            <url>https://www.semanta.nl/semanta/ling-list</url>
+        </link>
+    </template>
+</category>
+
+<category>
+    <pattern>* is een *</pattern>
+    <template><star index="1"/> betekent <star index="2"/>
+    
+    <button>
+        <text><star index="1"/> gelijk aan <star index="2"/></text>
+        <postback><star index="1"/> betekent <star index="2"/></postback>
+    </button>
+    </template>
+</category>
+<category>
+    <pattern>als </pattern>
+    <template>de voorwaarde is</template>
+</category>
+<category>
+    <pattern>als getal</pattern>
+    <template>hoe is <star/> een voorwaarde</template>
+</category>
+    <category><pattern>* at * </pattern>
+<template>
+    <think>
+    <set name="invripad">url<star index="1"/>@<star index="2"/></set>
+    <set name="invrbzv2">tweevorm<star index="1"/>+<star index="2"/></set>
+    <set name="invrmail">email<star index="1"/>+<star index="2"/></set>
+    <set name="invrlnks"><star index="1"/></set>
+    <set name="invrrchs"><star index="2"/></set> 
+    </think>
+    <button>
+    <text><get name="invripad"></get></text>
+    <postback><get name="invripad"></get></postback>
+    </button>
+    <button>
+    <text><get name="invrmail"></get></text>
+    <postback><get name="invrmail"></get></postback>
+    </button>
+    <button>
+    <text><get name="invrbzv2"></get></text>
+    <postback><get name="invrbzv2"></get></postback>
+    </button>
+    <button>
+    <text><get name="invrlnks"></get></text>
+    <postback><get name="invrlnks"></get></postback>
+    </button>
+    <button>
+    <text><get name="invrrchs"></get></text>
+    <postback><get name="invrrchs"></get></postback>
+    </button>
+</template>
+</category>
+    <category><pattern>* at * dot *</pattern>
+    <template>
+    <think>
+    <set name="invrbzv1"><star index="1"/>@<star index="2"/>@<star index="3"/></set>
+    <set name="invrrqst"><star index="1"/> betekent <star index="2"/> <star index="3"/></set>
+    <set name="invrlnks"><star index="1"/></set>
+    <set name="invrmddn"><star index="2"/></set>
+    <set name="invrrchs"><star index="3"/></set>
+    </think>
+<button>
+    <text>Verwerken <get name="invrbzv1"></get></text>
+    <url>https://www.semanta.nl/semanta/smta-api-pndb.php?bzv1=<get name="invrbzv1"></get></url>
+</button>
+<reply>
+    <text>Betekenis<get name="invrrqst"></get></text>
+    <postback><get name="invrrqst"></get></postback>
+</reply>
+<button>
+    <text><get name="invrlnks"></get></text>
+    <url>https://www.semanta.nl/semanta/smta-api-pndb.php?bzv1=<get name="invrlnks"></get></url>
+</button>
+<button>
+    <text><get name="invrmddn"></get></text>
+    <url>https://www.semanta.nl/semanta/smta-api-pndb.php?bzv1=<get name="invrmddn"></get></url>
+</button>
+<button>
+    <text><get name="invrrchs"></get></text>
+    <url>https://www.semanta.nl/semanta/smta-api-pndb.php?bzv1=<get name="invrrchs"></get></url>
+</button>
+</template>
+</category>
+
+<category>
+    <pattern>Verwerking</pattern>
+    <template>
+    <button>
+    <text>Verwerken uiting</text>
+    <url>https://www.semanta.nl/semanta/smta-api-pndb.php?bzv1=<get name="invrbzv1"></get></url>
+</button>
+    </template>
+</category>
+<category>
+    <pattern>internet</pattern>
+    <template>
+       <get name="invripad"></get> 
+    <button>
+    <text>Verwerk internet</text>
+    <url>https://www.<get name="invripad"></get></url>
+</button>
+    </template>
+</category>
+//////////////////////////////////////
+<category>
+    <pattern>talen</pattern>
+    <template>
+        <button>
+            <text>Lingvistica woordlijsten</text>
+            <url>https://www.semanta.nl/semanta/ling-list</url>
+        </button>
+    </template>
+</category>
+<category>
+<pattern>taalbot</pattern>
+<template>
+    <button>Een taalbot of kortweg bot is een geautomatiseerde gesprekspartner</button>
+    <button>Het is dan ook een samenvoeging van het woord 'taal' en 'robot'</button>
+    <button>taalbots zijn te vinden op de Semanta websites </button>
+    <button>
+        <text>Semanta</text>
+        <postback>Semanta</postback>
+    </button>
+    <button>
+        <text>Taalkundige</text>
+        <postback>Taalkundige</postback>
+    </button>
+    </template>
+    </category>
+<category>
+<pattern>taalkundige</pattern><template>
+<button>Taalkunde ook wel taalwetenschap of linguïstiek is de wetenschappelijke studie van de natuurlijke talen</button><button>Het doel van de taalkunde is om talen te beschrijven zoals ze zijn; dat wil zeggen zoals mensen ze in werkelijkheid gebruiken</button><button>Ingeval het onderzoek niet een specifieke taal betreft maar natuurlijke talen in het algemeen spreken we van algemene taalkunde</button>
+</template>
+</category>
+    <category>
+        <pattern>*</pattern>
+        <template>
+          <set name="invrbzv1"><star/></set>  
+          <button>
+              <text>Vraag het aan Semantus</text>
+              <url>https://www.semanta.nl/semanta/tlbt.php?bzv1=<get name="invrbzv1"><star/></get></url>
+          </button>
+        </template>
+    </category>
+    <category>
+    <pattern>waarom</pattern>
+    <that>Soms heb ik wel een voorbehoud als het om * gaat</that>
+    <template>Vind u het nog leuk</template>
+</category>
+<category>
+    <pattern>xacnm *</pattern>
+    <template>
+        <set name="invraiml"><star/></set>
+        <button>
+            <text>Gegenereerde vraag</text>
+            <postback>* *</postback>
+        </button>
+    </template>
+</category>
+    <category>
+	<pattern>* betekent *</pattern>
+	<template>
+	<think>
+	    
+	    <set name="invrchbt">semantus</set>
+        <set name="invrcorp">semanta</set> 
+        <set name="invrvgpt">semanta</set>
+        <set name="invrxbot">eddy</set>
+        <set name="invrlgrm">converseren</set>
+        <set name="invrname">Gast</set>
+        <set name="invrbzv2"><get name="invraiml"></get> betekent</set>
+		<learn>
+			<category>
+				<pattern><eval><star index="1"/></eval></pattern>
+				<template><eval><star index="2" /></eval></template>
+			</category>
+		</learn>
+	</think>
+	OK <get name="invrname"></get>Volgende keer zeg ik "<star index="2"/>" als u  "<star index="1" />" zegt
+	</template>
+    </category>
+<category>
+<pattern>REST *</pattern>
+<template><set name="invrtxt2"><rest><star /></rest></set></template>
+<button>
+    <text>splitsen</text>
+    <postback><get name="invrtxt2"></get></postback>
+</button>
+</category>
+<category>
+  <pattern>Ik wil met u praten over *</pattern>
+  <template>
+    If you like, you might also like <srai>in alle toonaarden</srai>
+  </template>
+</category>
+<category>
+    <pattern>in alle toonaarden</pattern>
+    <template>
+        categorisch betekent met een zekere frequentie
+        <link>
+            <text>Woorden.org vertelt meer</text>
+            <url>https://www.woorden.org/woord/categorisch</url>
+        </link>
+    </template>
+</category>
+<category>
+    <pattern>in principe altijd</pattern>
+    <template>noem ik principieel</template>
+</category>
+<category>
+    <pattern>bij hoog en bij laag</pattern>
+    <template>onwrikbaar</template>
+</category>
+	///////////// XPE VORMEN ///////////
+<category>
+    <pattern>gespierde spijker</pattern>
+    <template>falco zandstra</template>
+</category>
+<category>
+    <pattern>dierenpark</pattern>
+    <template>
+        <button>
+            <text>blijdorp</text>
+            <url>https://www.diergaardeblijdorp.nl/</url>
+        </button>
+        <button>
+            <text>artis</text>
+            <url>https://www.artis.nl/nl/</url>
+        </button>
+        <button>
+            <text>burgers zoo</text>
+            <url>https://www.burgerszoo.nl/</url>
+        </button>
+    </template>
+</category>
+<category>
+    <pattern>* is een *</pattern>
+    <template><star index="1"/> betekent <star index="2"/>
+    
+    <button>
+        <text><star index="1"/> gelijk aan <star index="2"/></text>
+        <postback><star index="1"/> betekent <star index="2"/></postback>
+    </button>
+    </template>
+</category>
+<category>
+    <pattern>afgelasting</pattern>
+    <template>wie moet dat weten</template>
+</category>
+<category>
+    <pattern>eis</pattern>
+    <template>kan iedereen dat doen</template>
+</category>
+<category>
+    <pattern>voorwaarde</pattern>
+    <template>wie heeft de voorwaarde opgesteld</template>
+</category>
+<category>
+<pattern>zintuig</pattern><template>
+<button>Een zintuig of organum sensus is een gespecialiseerd orgaan dat een organisme in staat stelt</button>
+<button>bepaalde voor het zintuig specifieke stimuli prikkels waar te nemen</button>
+<button>Ieder afzonderlijk zintuig geeft mens en dier toegang tot een bepaald deel van de fysische werkelijkheid</button>
+<button>De zintuigen vormen een belangrijk studieobject van de neurowetenschap en de cognitieve psychologie </button>
+</template>
+</category>
+<category>
+    <pattern>het weer</pattern>
+    <template>
+    <button>
+    <text>het weer</text>
+    <url>https://www.weer.nl</url>
+    </button>
+    </template>
+</category>
+<category>
+    <pattern>moois of lelijk</pattern>
+    <template>bent u een mens</template>
+</category>
+<category>
+    <pattern>Praat met * </pattern>
+    <template>waar gaat het over met <star/></template>
+</category>
+<category>
+    <pattern>wat een *</pattern>https://widget.pandorabots.com/prod/pb-launcher-icon.svg
+    <template>is <star/> 
+    <button>
+        <text>gevoel</text>
+        <postback>wat is uw gevoel over <star/></postback>
+    </button>
+    <button>
+        <text>emotie</text>
+        <postback>hoe gaat u om met <star/></postback>
+    </button>
+    <button>
+        <text>mening</text>
+        <postback>hoe is uw mening over <star/> ontstaan </postback>
+    </button>
+    </template>
+    </category>
+<category>
+    <pattern>S dash *</pattern>
+    <template>
+    <button>
+        <text><star/></text>
+        <postback><star/></postback>
+    </button>
+    </template>
+</category>
+<category>
+    <pattern>ze gaan *</pattern>
+    <template>was <star/>al langer het geval</template>
+</category>
+////////////
+<category>
+    <pattern>nederlands</pattern>
+    <template>
+            <reply>
+            <text>Hoi, ik ben een chatbot</text>
+            <postback>taalbot</postback>
+        </reply>
+        <reply>
+            <text>Lingvistica heeft mij ontwikkeld om jou te helpen. </text>
+            <postback>Lingvistica</postback>
+        </reply>>
+        <reply>
+            <text>Stel hier je vraag. Veel vragen kan ik direct behandelen. 
+             Anderen verwijzen mogelijk naar websites die in een nieuw venster geopend worden.
+        
+             En zo niet, verwijs ik je door naar een digitale gesprekspartner</text>
+            <postback>Gesprekspartner</postback>
+        </reply>
+        <reply>
+            <text>Die je verder helpt en eventueel doorverbindt met een medewerker van Lingvistica.  
+            U kunt op maandag t/m vrijdag tussen 09:00 and 17:00 uur naar 06-48078750 en praat met Ed Kool</text>
+            <postback>Contact</postback>
+        </reply>
+       
+    </template>
+</category>
+<category>
+    <pattern>chatbot</pattern>
+    <template>
+   <b>What is a chatbot or interlocutor</b>
+    Lingvistica means <b>>chatbot</b> a system of computer programs, databases and procedures that allow more or less human communication via the Internet. 
+    A chatbot is provided for every language. 
+    For the languages Dutch and English, the chatbots on the Pandora platform are in development.
+    <button>
+        <text>chatbot</text>
+        <postback>chatbot</postback>
+    </button>
+    <button>
+        <text>background</text>
+        <postback>background</postback>
+    </button>
+    <button>
+        <text>Dutch</text>
+        <postback>nederlands</postback>
+    </button>
+    <button>
+        <text>Engels</text>
+        <postback>english</postback>
+    </button>
+    </template>
+    </category>
+    <category>
+        <pattern>background</pattern>
+        <template> A chatbot follows a different learning process than a human. 
+    Where a person first learns the meaning of letters, words and sentences and then the grammar rules apply to a Semanta chatbot the opposite. 
+    The language bot is only able to communicate when the rules are known and meaning can be added to it. 
+    In the past period, Lingvistica has laid the foundations for this in more than 20 languages. 
+   </template>
+    </category>
+<category>
+    <pattern>gesprekspartner</pattern>
+    <template>
+    <b>What is a chatbot or interlocutor</b>
+    Lingvistica means a script that is able to find knowledge in one or more knowledge domains.
+    Turn knowledge into a useful answer. 
+    Every profession and that is more than 1250 can be digitally represented by an interlocutor.
+ </template>
+</category>
+</aiml>
