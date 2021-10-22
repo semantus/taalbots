@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml version="2.0">
-
-<category>
-    <pattern>zoektocht</pattern>k
-    <template></template>
-</category><!-- insert your AIML categories here -->
+<!-- insert your AIML categories here -->
+<category><pattern>starmed</pattern><template><button><text>starmed</text><postback>anm</postback></button></template></category>
+<category><pattern>synchroniseren</pattern><template><button><text>synchroniseren</text><postback>wwd</postback></button></template></category>
+<category><pattern>stabiliteitrente</pattern><template><button><text>stabiliteitrente</text><postback>rente</postback></button></template></category>
+<category><pattern>swingend</pattern><template><button><text>swingend</text><postback>swingen</postback></button></template></category>
+<category><pattern>swingende</pattern><template><button><text>swingende</text><postback>swingend</postback></button></template></category>
+<category><pattern>stralend</pattern><template><button><text>stralend</text><postback>odw</postback></button></template></category>
+<category><pattern>studieschuld</pattern><template><button><text>studieschuld</text><postback>fnc</postback></button></template></category>
+<category><pattern>sardinie</pattern><template><button><text>sardinie</text><postback>gps</postback></button></template></category>
+<category><pattern>Schiermonnikoog</pattern><template><button><text>Schiermonnikoog</text><postback>gem</postback></button></template></category>
+<category><pattern>Smallingerland</pattern><template><button><text>Smallingerland</text><postback>gem</postback></button></template></category>
 </aiml>

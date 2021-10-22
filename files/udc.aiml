@@ -1,15 +1,1021 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml>
+    
 <category>
     <pattern>*</pattern>
+    <set name="invraiml"><star/></set>
     <template>
-        <set name="invraiml"><star/></set>
-        <reply>
+        <link>
             <text><star/></text>
-            <postback><star/></postback>
-        </reply>
+            <url>https://www.semanta.nl/semanta/xtrt-data.php?bzv1=<get name="invraiml"></get></url>
+        </link>
+        
+        <button>
+            <text>Heb nog geen antwoord ik ga op zoek naar relaties van <star/></text>
+            <postback><get name="invraiml"></get></postback>
+        </button>
+        <button>
+            <text>Taalbots</text>
+            <postback>xcallapi woorden<star/></postback>
+        </button>
     </template>
 </category>
+<category>
+	    <pattern>xcont *</pattern>
+	    <template>
+	        <link>
+	            <text>context</text>
+	            <url>https://www.semanta.nl/semanta/xtrt-text.php?bzv1=<star/>&amp;taal=<get name="invrtaal"></get>&amp;tabl=data</url>
+            </link>
+	    </template>
+    </category>
+
+<category>
+<pattern>
+XFALSE *
+</pattern>
+<template>FALSE</template>
+</category>
+
+<!-- TRUE-->
+<category>
+<pattern>
+XTRUE *
+</pattern>
+<template>TRUE
+</template>
+</category>
+
+<!-- NUMBER-->
+<category>
+<pattern>
+XNUMBER <set>number</set>
+</pattern>
+<template><star index="1" />
+</template>
+</category>
+
+<!-- STRING-->
+<category>
+<pattern>
+XSTRING *
+</pattern>
+<template><star index="1" />
+</template>
+</category>
+
+
+<!-- TRUE IF TRUE-->
+<category>
+<pattern>
+XISTRUE *
+</pattern>
+<template><think><set var="matched"><star index="1" /></set></think>
+<condition var="matched">
+<li value="TRUE">TRUE</li>
+<li>FALSE</li>
+</condition>
+</template>
+</category>
+
+<!-- TRUE IF FALSE    -->
+<category>
+<pattern>
+XISFALSE *
+</pattern>
+<template><think><set var="matched"><star index="1" /></set></think>
+<condition var="matched">
+<li value="FALSE">TRUE</li>
+<li>FALSE</li>
+</condition>
+</template>
+</category>
+
+<!-- TRUE IF NUMBER    -->
+<category>
+<pattern>
+XISNUMBER <set>number</set>
+</pattern>
+<template>TRUE
+</template>
+</category>
+
+<category>
+<pattern>
+XISNUMBER *
+</pattern>
+<template>FALSE
+</template>
+</category>
+
+<!-- CHECK DATA TYPE (NUMBER OR STRING)-->
+<category>
+<pattern>
+XTYPEOF <set>number</set>
+</pattern>
+<template>XNUMBER
+</template>
+</category>
+
+<category>
+<pattern>
+XTYPEOF *
+</pattern>
+<template><think><set var="matched"><star index="1" /></set></think>
+<condition var="matched">
+<li value="FALSE">XBOOL</li>
+<li value="TRUE">XBOOL</li>
+<li>XSTRING</li>
+</condition>
+</template>
+</category>
+
+
+<!-- ADDITION-->
+<category>
+<pattern>
+XADD <set>number</set> XS 0
+</pattern>
+<template><star index="1" />
+</template>
+</category>
+
+<category>
+<pattern>
+XADD <set>number</set> XS <set>number</set>
+</pattern>
+<template><srai>XADD <map name="successor"><star index="1" /></map> XS <map name="predecessor"><star index="2" /></map></srai>
+</template>
+</category>
+
+<!-- SUBTRACTION-->
+<category>
+<pattern>
+XSUB 0 XS <set>number</set>
+</pattern>
+<template>0
+</template>
+</category>
+
+<category>
+<pattern>
+XSUB <set>number</set> XS 0
+</pattern>
+<template><star index="1" />
+</template>
+</category>
+
+<category>
+<pattern>
+XSUB <set>number</set> XS <set>number</set>
+</pattern>
+<template><srai>XSUB <map name="predecessor"><star index="1" /></map> XS <map name="predecessor"><star index="2" /></map></srai>
+</template>
+</category>
+
+<!-- MULTIPLICATION-->
+<category>
+<pattern>
+XMUL <set>number</set> XS 0
+</pattern>
+<template>0
+</template>
+</category>
+
+<category>
+<pattern>
+XMUL <set>number</set> XS <set>number</set>
+</pattern>
+<template><srai>XADD <star index="1" /> XS <srai>XMUL <star index="1" /> XS <map name="predecessor"><star index="2" /></map></srai></srai>
+</template>
+</category>
+
+<!-- DIVISION-->
+<category>
+<pattern>
+XDIV 0 XS 0
+</pattern>
+<template>undefined
+</template>
+</category>
+
+<category>
+<pattern>
+XDIV <set>number</set> XS 0
+</pattern>
+<template>infinite
+</template>
+</category>
+
+<category>
+<pattern>
+XDIV <set>number</set> XS <set>number</set>
+</pattern>
+<template><think><set var="matched"><srai>XLT <star index="1" /> XS <star index="2" /></srai></set></think>
+<condition var="matched">
+<li value="TRUE">0</li>
+<li><map name="successor"><srai>XDIV <srai>XSUB <star index="1" /> XS <star index="2" /></srai> XS <star index="2" /></srai></map></li>
+</condition>
+</template>
+</category>
+
+<!-- MOD-->
+<category>
+<pattern>
+XMOD 0 XS 0
+</pattern>
+<template>undefined
+</template>
+</category>
+
+<category>
+<pattern>
+XMOD <set>number</set> XS 0
+</pattern>
+<template>infinite
+</template>
+</category>
+
+<category>
+<pattern>
+XMOD <set>number</set> XS <set>number</set>
+</pattern>
+<template><srai>XSUB <star index="1" /> XS <srai>XMUL <star index="2" /> XS <srai>XDIV <star index="1" /> XS <star index="2" /></srai></srai></srai>
+</template>
+</category>
+
+<!-- LESS THAN-->
+<category>
+<pattern>
+XLT 0 XS 0
+</pattern>
+<template>FALSE
+</template>
+</category>
+
+<category>
+<pattern>
+XLT <set>number</set> XS 0
+</pattern>
+<template>FALSE
+</template>
+</category>
+
+<category>
+<pattern>
+XLT 0 XS <set>number</set>
+</pattern>
+<template>TRUE
+</template>
+</category>
+
+<category>
+<pattern>
+XLT <set>number</set> XS <set>number</set>
+</pattern>
+<template><srai>XLT <map name="predecessor"><star index="1" /></map> XS <map name="predecessor"><star index="2" /></map></srai>
+</template>
+</category>
+
+
+<!-- GREATER THAN-->
+<category>
+<pattern>
+XGT 0 XS 0
+</pattern>
+<template>FALSE
+</template>
+</category>
+
+<category>
+<pattern>
+XGT <set>number</set> XS 0
+</pattern>
+<template>TRUE
+</template>
+</category>
+
+<category>
+<pattern>
+XGT 0 XS <set>number</set>
+</pattern>
+<template>FALSE
+</template>
+</category>
+
+<category>
+<pattern>
+XGT <set>number</set> XS <set>number</set>
+</pattern>
+<template><srai>XGT <map name="predecessor"><star index="1" /></map> XS <map name="predecessor"><star index="2" /></map></srai>
+</template>
+</category>
+
+<!-- LESS THAN OR EQUAL TO-->
+<category>
+<pattern>
+XLE <set>number</set> XS <set>number</set>
+</pattern>
+<template><think><set var="matched"><srai>XEQ <star index="1" /> XS <star index="2" /></srai></set></think>
+<condition var="matched">
+<li value="TRUE">TRUE</li>
+<li><srai>XLT <star index="1" /> XS <star index="2" /></srai></li>
+</condition>
+</template>
+</category>
+
+<!-- GREATER THAN OR EQUAL TO-->
+<category>
+<pattern>
+XGE <set>number</set> XS <set>number</set>
+</pattern>
+<template><think><set var="matched"><srai>XEQ <star index="1" /> XS <star index="2" /></srai></set></think>
+<condition var="matched">
+<li value="TRUE">TRUE</li>
+<li><srai>XGT <star index="1" /> XS <star index="2" /></srai></li>
+</condition>
+</template>
+</category>
+
+
+<!-- STRING CONCATINATION-->
+<category>
+<pattern>
+XADD * XS *
+</pattern>
+<template><star index="1" /><star index="2" />
+</template>
+</category>
+
+<!-- STRING EQUALS-->
+<category>
+<pattern>
+XEQ * XS *
+</pattern>
+<template><learn>
+<category>
+<pattern>
+<eval>
+<uppercase>XFALSE <star/></uppercase>
+</eval>
+</pattern>
+<template>TRUE</template>
+</category>
+</learn>
+<srai>XFALSE <star index="2"/></srai>
+<learn>
+<category>
+<pattern>
+<eval>
+<uppercase>XFALSE <star/></uppercase>
+</eval>
+</pattern>
+<template>FALSE</template>
+</category>
+</learn>
+</template>
+</category>
+
+<!-- STRING NOT EQUAL-->
+<category>
+<pattern>
+XNE * XS *
+</pattern>
+<template><think><set var="matched"><srai>XEQ <star index="1" /> XS <star index="2" /></srai></set></think>
+<condition var="matched">
+<li value="TRUE">FALSE</li>
+<li>TRUE</li>
+</condition>
+</template>
+</category>
+
+<!-- NOT-->
+<category>
+<pattern>
+XNOT *
+</pattern>
+<template><srai>XISFALSE <star index="1" /></srai>
+</template>
+</category>
+
+<!-- LOGICAL AND [COMING SOON] -->
+<!-- LOGICAL OR [COMING SOON] -->
+
+<!-- COUNT CHARACTERS-->
+<category>
+<pattern>
+XLENGTH
+</pattern>
+<template>0
+</template>
+</category>
+
+<category>
+<pattern>
+XLENGTH *
+</pattern>
+<template><srai>XXLENGTH <explode><star index="1" /></explode> XS 0</srai>
+</template>
+</category>
+
+<category>
+<pattern>
+XXLENGTH * XS <set>number</set>
+</pattern>
+<template><srai>XADD <star index="2" /> XS 4</srai>
+</template>
+</category>
+
+<category>
+<pattern>
+XXLENGTH * * XS <set>number</set>
+</pattern>
+<template><srai>XXLENGTH <star index="2" /> XS <srai>XADD <star index="3" /> XS 1</srai></srai>
+</template>
+</category>
+
+<!-- RANDOM NUMBER-->
+<category>
+<pattern>
+XRANDOM
+</pattern>
+<template><random>
+<li>0</li>
+<li>1</li>
+<li>2</li>
+<li>3</li>
+<li>4</li>
+<li>5</li>
+<li>6</li>
+<li>7</li>
+<li>8</li>
+<li>9</li>
+</random>
+</template>
+</category>
+
+<!-- EXTRACT SUBSTRING-->
+<category>
+<pattern>
+XSUBSTRING * XS <set>number</set>
+</pattern>
+<template><srai>XXSUBSTRINGHead <explode><star index="1" /></explode> XS <star index="2" /> XS 0</srai>
+</template>
+</category>
+
+<category>
+<pattern>
+XSUBSTRING * XS <set>number</set> XS <set>number</set>
+</pattern>
+<template><srai>XXSUBSTRINGTail <explode><srai>XXSUBSTRINGHead <explode><star index="1" /></explode> XS <star index="2" /> XS 0</srai></explode> XS <srai>XSUB <star index="3" /> XS 1</srai> XS <srai>XSUB <star index="3" /> XS 1</srai></srai>
+</template>
+</category>
+
+<category>
+<pattern>
+XXSUBSTRINGHead * XS <set>number</set> XS <set>number</set>
+</pattern>
+<template><star index="1" />
+</template>
+</category>
+
+<category>
+<pattern>
+XXSUBSTRINGHead * * XS <set>number</set> XS <set>number</set>
+</pattern>
+<template><think><set var="matched"><srai>XGE <star index="4" /> XS <star index="3" /></srai></set></think>
+<condition var="matched"><li value="TRUE"><star index="1" /></li><li></li></condition><srai>XXSUBSTRINGHead <star index="2" /> XS <star index="3" /> XS <srai>XADD <star index="4" /> XS 1</srai></srai>
+</template>
+</category>
+
+<category>
+<pattern>
+XXSUBSTRINGTail * XS <set>number</set> XS 0
+</pattern>
+<template><star index="1" />
+</template>
+</category>
+
+<category>
+<pattern>
+XXSUBSTRINGTail * * XS <set>number</set> XS 0
+</pattern>
+<template><star index="1" />
+</template>
+</category>
+
+<category>
+<pattern>
+XXSUBSTRINGTail * * XS <set>number</set> XS <set>number</set>
+</pattern>
+<template><star index="1" /><srai>XXSUBSTRINGTail <star index="2" /> XS <star index="3" /> XS <srai>XSUB <star index="4" /> XS 1</srai></srai>
+</template>
+</category>
+
+<!-- ABS [COMING SOON] -->
+
+<!-- Mth POWER OF N [COMING SOON] -->
+
+<!-- MAXIMUM NUMBER-->
+<category>
+<pattern>
+XMAX *
+</pattern>
+<template><star index="1" />
+</template>
+</category>    
+
+<category>
+<pattern>
+XMAX * *
+</pattern>
+<template><srai>XXMAX <star index="2" /> XS <star index="1" /></srai>
+</template>
+</category>
+
+<category>
+<pattern>
+XXMAX *  XS *
+</pattern>
+<template><think><set var="matched"><srai>XGE <star index="1" /> XS <star index="2" /></srai></set></think>
+<condition var="matched"><li value="TRUE"><star index="1" /></li><li><star index="2" /></li></condition>
+</template>
+</category>
+
+<category>
+<pattern>
+XXMAX * * XS *
+</pattern>
+<template><think><set var="matched"><srai>XGE <star index="1" /> XS <star index="3" /></srai></set></think>
+<condition var="matched"><li value="TRUE"><srai>XXMAX <star index="2" /> XS <star index="1" /></srai></li><li><srai>XXMAX <star index="2" /> XS <star index="3" /></srai></li></condition>
+</template>
+</category>
+
+<!-- MINIMUM NUMBER-->
+<category>
+<pattern>
+XMIN *
+</pattern>
+<template><star index="1" />
+</template>
+</category>
+
+<category>
+<pattern>
+XMIN * *
+</pattern>
+<template><srai>XXMIN <star index="1" /> <star index="2" /> XS <star index="1" /> <star index="2" /></srai>
+</template>
+</category>
+
+<category>
+<pattern>
+XXMIN * XS *
+</pattern>
+<template><think><set var="bool"><srai>XEQ <srai>XCOUNT <star index="1" /></srai> XS 2</srai></set></think>
+<think><set var="matched"><srai>XXMINiSMin <srai>XCAR <star index="1" /></srai> XS <star index="2" /></srai></set></think>
+<condition var="matched"><li value="TRUE"><condition var="bool"><li value="TRUE"><srai>XCDR <star index="1" /></srai></li><li><srai>XCAR <star index="1" /></srai></li></condition></li><li><srai>XXMIN <srai>XCDR <star index="1" /></srai> XS <star index="2" /></srai></li></condition>
+</template>
+</category>
+
+<category>
+<pattern>
+XXMINiSMin *
+</pattern>
+<template>TRUE
+</template>
+</category>
+
+<category>
+<pattern>
+XXMINiSMin * XS * *
+</pattern>
+<template><think><set var="matched"><srai>XLE <star index="1" /> XS <star index="2" /></srai></set></think>
+<condition var="matched"><li value="TRUE"><srai>XXMINiSMin <star index="1" /> XS <star index="3" /></srai></li><li>FALSE</li></condition>
+</template>
+</category>
+
+
+
+
+<!-- FIRST WORD    -->
+<category>
+<pattern>
+XCAR *
+</pattern>
+<template>
+    <button>
+        <text><star index="1" /></text>
+        <postback>cdr <star index="1" /> </postback>
+    </button>
+
+</template>
+</category>
+
+<category>
+<pattern>
+XCAR * *
+</pattern>
+<template><star index="1" />
+</template>
+</category>
+
+<!-- REMAINING WORDS AFTER FIRST-->
+<category>
+<pattern>
+XCDR *
+</pattern>
+<template></template>
+</category>
+
+<category>
+<pattern>
+cdr * *
+</pattern>
+<template>
+    <set name ="invrlnks"><star index="2" /></set>
+    <br/>
+    <set name ="invrrchs"><star index="1" /></set>
+    <button>
+        <text><get name="invrlnks"></get></text>
+        <postback>cdr <get name="invrlnks"></get></postback>
+    </button>
+    <button>
+        <text><get name="invrrchs"></get></text>
+        <postback><get name="invrrchs"></get></postback>
+    </button>
+</template>
+</category>
+
+<!-- CONCATENATE STRINGS-->
+<category>
+<pattern>
+XIMPLODE *
+</pattern>
+<template><star index="1" />
+</template>
+</category>
+
+<category>
+<pattern>
+XIMPLODE * *
+</pattern>
+<template><star index="1" /><srai>XIMPLODE <star index="2" /></srai>
+</template>
+</category>
+
+<!-- REVERSE STRING-->
+<category>
+<pattern>XREVERSE *</pattern>
+<template><star index="1" /></template>
+</category>
+
+<category>
+<pattern>
+XREVERSE * *
+</pattern>
+<template><srai>XREVERSE <star index="2" /></srai> <star index="1" /></template>
+</category>
+
+<!-- NULL-->
+<category>
+<pattern>
+XBLACKHOLE
+</pattern>
+<template></template>
+</category>
+
+<category>
+<pattern>
+XBLACKHOLE *
+</pattern>
+<template></template>
+</category>
+
+<!-- REPEAT FUNCTION N TIMES-->
+<category>
+<pattern>
+XLOOP [ * ] XS 0
+</pattern>
+<template></template>
+</category>
+
+<category>
+<pattern>
+XLOOP [ * ] XS 1
+</pattern>
+<template><srai><star index="1" /></srai>
+</template>
+</category>
+
+<category>
+<pattern>
+XLOOP [ * ] XS <set>number</set>
+</pattern>
+<template><srai><star index="1" /></srai><srai>XLOOP [ <star index="1" /> ] XS <srai>XSUB <star index="2" /> XS 1</srai></srai>
+</template>
+</category>
+
+<!-- OUTPUT STRINGS N TIMES-->
+<category>
+<pattern>
+XLOOP * XS 0
+</pattern>
+<template></template>
+</category>
+
+<category>
+<pattern>
+XLP * XS 2
+</pattern>
+<template>
+    <set name="invrlnks"><star/></set>
+    <button>
+        <text><star index="1" /></text>
+        <postback>xlp <get name="invrlnks"></get></postback>
+    </button>
+</template>
+</category>
+
+<category>
+<pattern>
+XLOOP * XS <set>number</set>
+</pattern>
+<template><star index="1" /><srai>XLOOP <star index="1" /> XS <srai>XSUB <star index="2" /> XS 1</srai></srai>
+</template>
+</category>
+
+<!-- IF THEN-->
+<category>
+<pattern>
+XIF [ * ] XS [ * ]
+</pattern>
+<template>
+    <set name="invraiml"><star index="1" /></set>
+    <set name="invrbzv1"><star index="2" /></set>
+    <think><set var="matched"><srai><star index="1" /></srai></set></think>
+<condition var="matched"><li value="TRUE"><srai><star index="2" /></srai></li><li></li></condition>
+</template>
+</category>
+
+<!-- IF THEN ELSE-->
+<category>
+<pattern>
+XIF [ * ] XS [ * ] XS [ * ]
+</pattern>
+<template><think><set var="matched"><srai><star index="1" /></srai></set></think>
+<condition var="matched"><li value="TRUE"><srai><star index="2" /></srai></li><li><srai><star index="3" /></srai></li></condition>
+</template>
+</category>
+
+<!-- WORDS COUNT-->
+<category>
+<pattern>
+XCOUNT
+</pattern>
+<template>0
+</template>
+</category>
+
+<category>
+<pattern>
+XCOUNT *
+</pattern>
+<template><srai>XXCOUNT <star index="1" /> XS 0</srai>
+</template>
+</category>
+
+<category>
+<pattern>
+XXCOUNT * XS <set>number</set>
+</pattern>
+<template><srai>XADD <star index="2" /> XS 1</srai>
+</template>
+</category>
+
+<category>
+<pattern>
+XXCOUNT * * XS <set>number</set>
+</pattern>
+<template><srai>XXCOUNT <star index="2" /> XS <srai>XADD <star index="3" /> XS 1</srai></srai>
+</template>
+</category>
+////////////////
+    <category>
+        <pattern>is eerlijk een *</pattern>
+        <template>
+            twijfels?
+            <button>
+                <text>ja</text>
+                <postback>waarom twijfels over <star/></postback>
+            </button>
+            <button>
+                <text>neen</text>
+                <postback><star/></postback>
+            </button>
+        </template>
+    </category>
+    <category>
+        <pattern>is eerlijk *</pattern>
+        <template>
+            twijfels?
+            <button>
+                <text>ja</text>
+                <postback>waarom twijfels over <star/></postback>
+            </button>
+            <button>
+                <text>neen</text>
+                <postback><star/></postback>
+            </button>
+        </template>
+    </category>
+    <category>
+        <pattern>is *</pattern>
+        <template>
+            <button>
+                <text>verder</text>
+                <postback><star/></postback>
+            </button>
+        </template>
+    </category>
+    <category><pattern>*</pattern><template>
+        <button>
+            <text>grammmatica</text>
+            <postback>bvn@org@gvl@emt@</postback>
+        </button>
+    </template></category>
+
+    <category>
+        <pattern>* gewenning</pattern>
+        <template>
+            Heeft u een voorbeeld
+            <think><set name="invrlnks"><star/></set></think>
+            <reply>
+                <text><get name="invrlnks"></get></text>
+                <postback><get name="invrlnks"></get></postback>
+            </reply>   
+        </template>
+    </category>
+    <category>
+        <pattern>* voetbal</pattern>
+        <template>
+            U houdt van voetbal?
+            <think><set name="invrlnks"><star/></set></think>
+            <reply>
+                <text><get name="invrlnks"></get></text>
+                <postback><get name="invrlnks"></get></postback>
+            </reply>   
+        </template>
+    </category>
+    <category>
+        <pattern>kun *</pattern>
+        <template>
+            is een vraag naar een mogelijkheid
+            <think><set name="invrrchs"><star/></set></think>
+            <reply>
+                <text><get name="invrrchs"></get></text>
+                <postback><get name="invrrchs"></get></postback>
+            </reply>   
+        </template>
+    </category>
+    <category>
+        <pattern>in * wonen</pattern>
+        <template>
+            u woont daar prettig
+         <think><set name="invrmidd"><star/></set></think>
+            <reply>
+                <text>Interpretatie</text>
+                <postback><star/></postback>
+            </reply>   
+        </template>
+    </category>
+    <category>
+        <pattern>* * wonen</pattern>
+        <template>
+            wat wilt u weten over wonen
+         <think>
+            <set name="invrlnks"><star index="1"/></set>
+            <set name="invrmidd"><star index="2"/></set>
+         </think>
+            <reply>
+                <text><get name="invrlnks"></get></text>
+                <postback><get name="invrlnks"></get></postback>
+            </reply>   
+            <reply>
+                <text><get name="invrmidd"></get></text>
+                <postback><get name="invrmidd"></get></postback>
+            </reply> 
+           
+        </template>
+    </category>
+    <category>
+        <pattern>ik blijf *</pattern>
+        <template>
+            u gaat niet weg
+            <think><set name="invrrchs"><star/></set></think>
+            <reply>
+                <text>Interpretatie</text>
+                <postback><star/></postback>
+            </reply>
+        </template>
+    </category>
+    <category>
+        <pattern>ik wil *</pattern>
+        <template>
+            u verwoordt een wens
+            <think><set name="invrrchs"><star/></set></think>
+            <reply>
+                <text>Interpretatie</text>
+                <postback><star/></postback>
+            </reply>
+        </template>
+    </category>
+    <template>
+            <set name="invrrchs"><star/></set>
+            <reply>
+                <text>Interpretatie</text>
+                <postback><star/></postback>
+            </reply>
+        </template>
+       <category>
+        <pattern>lijkt me leuk *</pattern>
+        <template>
+            <set name="invrrchs"><star/></set>
+            <reply>
+                <text>Interpretatie</text>
+                <postback><star/></postback>
+            </reply>
+        </template>
+    </category>
+<category>
+    <pattern>is altijd wel iemand</pattern>
+    <template>zeker als je in een leefgemeenschap woont</template>
+</category>
+
+    <category>
+        <pattern>u bent *</pattern>
+        <template>
+            duurt nog even voor ik echt <star/> ben
+            <think><set name="invrrchs"><star/></set></think>
+            <reply>
+                <text>Interpretatie</text>
+                <postback><star/></postback>
+            </reply>
+            </template>
+    </category>
+    <category>
+        <pattern>goed op de hoogte</pattern>
+        <template>dan moet veel kennis hebben</template>
+    </category>
+    <category>
+        <pattern>u bent maar *</pattern>
+        <template>
+            wat bedoelt u met <star/> ben
+            <think><set name="invrrchs"><star/></set></think>
+            <reply>
+                <text>Interpretatie</text>
+                <postback><star/></postback>
+            </reply>
+            </template>
+    </category>
+    <category>
+        <pattern>* wat denkt u</pattern>
+        <template>ik denk niet zoveel</template>
+    </category>
+<category>
+    <pattern>wil met * beginnen</pattern>
+    <template>wat gaan we met <star/> doen</template>
+</category>
+    <category>
+    <pattern>* begin</pattern>
+    <template>
+        Wat wilt u met <star/>
+    </template>
+</category>
+    <category>
+        <pattern>Conversatie</pattern>
+        <get name="invraiml"></get>
+        <template>
+            <button>
+                <text>Bezoeker <get name="invraiml"></get></text>
+                <postback>bzkr</postback>
+            </button>
+            <button>
+                <text>Gesprekspartner</text>
+                <postback>vgpt</postback>
+            </button>
+        </template>
+    </category>
+    <category>
+<pattern>bzkr</pattern>
+<template><request index="1" /></template>
+</category>
+    <category>
+<pattern>vgpt</pattern>
+<template><response index="1" /></template>
+</category>
+    ////////////////
+
 <category>
     <pattern>bent u tegen *</pattern>
     <template>
@@ -108,7 +1114,7 @@
             <postback>xsmta</postback>
         </button>
         <button>
-            <text>lingvistica</text>
+            <text>taalbots</text>
             <postback>xling</postback>
         </button>
         <button>
@@ -119,15 +1125,15 @@
 </category>
 <category>
  <pattern>xsmta</pattern>
-  <template><sraix bot="une7480f40/semanta">taalbots@<star/></sraix></template>
+  <template><sraix bot="une7480f40/semanta">smta@<star/></sraix></template>
   </category>
 <category>
     <pattern>xling</pattern>
-  <template><sraix bot="une7480f40/lingvistica">taalbots@<star/></sraix></template>
+  <template><sraix bot="une7480f40/lingvistica">tlbt@<star/></sraix></template>
   </category>
 <category>
     <pattern>xvgpt</pattern>
-  <template><sraix bot="une7480f40/gesprekspartners">taalbots@<star/></sraix></template>
+  <template><sraix bot="une7480f40/gesprekspartners">vgpt@<star/></sraix></template>
    </category>
 <category>
     <pattern>Begin</pattern>
@@ -135,7 +1141,7 @@
        <think><set name="invraiml">begin</set></think>
         <br/>
     Welkom gast. 
-    <br/><br/>Lingvistica, de firma die mij bedacht heeft, wil graag iets van u weten.
+    <br/><br/>Ed Kool, de man die mij bedacht heeft, wil graag iets van u weten.
     Het gaat om uw naam en uw e-mailadres waarmee wij een <b>gebruikerskenmerk </b>aanmaken die alleen aan u bekend zal zijn.
     Heeft u vragen neemt u dan contact op met Ed Kool op +31-6-48078750.
     <br/><br/>
@@ -273,7 +1279,7 @@
            <pattern>Xbot palet</pattern>
            <template>
            Om de onafhankelijkheid van taal en type Xbot te verduidelijken hebben wij voor een zorgrobot een Xbotpalet ontworpen.
-           Hiermee kunnen cenario´s voor Xbot conversaties gevisualiseerd kunnen worden.  
+           Hiermee kunnen scenario´s voor Xbot conversaties gevisualiseerd kunnen worden.  
            Wij hebben onderscheid gemaakt tussen Waarnemen, Robotbeweging,Robotomgeving, Client en tijdsgebonden handelingen. 
            De scenario´s kunnen worden omgezet in voor de Xbot verwerkbare tekstbestanden die via een dowloadfaciliteit in de eigen omgeving kan worden opgenomen.
            </template>
@@ -507,7 +1513,7 @@
     <pattern>talen</pattern>
     <template>
         <button>
-            <text>Lingvistica woordlijsten</text>
+            <text>Talen woordlijsten</text>
             <url>https://www.semanta.nl/semanta/ling-list</url>
         </button>
     </template>
@@ -720,8 +1726,8 @@
             <postback>taalbot</postback>
         </reply>
         <reply>
-            <text>Lingvistica heeft mij ontwikkeld om jou te helpen. </text>
-            <postback>Lingvistica</postback>
+            <text>Ed Kool heeft mij ontwikkeld om jou te helpen. </text>
+            <postback>Ed Kool</postback>
         </reply>>
         <reply>
             <text>Stel hier je vraag. Veel vragen kan ik direct behandelen. 
@@ -731,7 +1737,7 @@
             <postback>Gesprekspartner</postback>
         </reply>
         <reply>
-            <text>Die je verder helpt en eventueel doorverbindt met een medewerker van Lingvistica.  
+            <text>Die je verder helpt en eventueel doorverbindt met een medewerker.  
             U kunt op maandag t/m vrijdag tussen 09:00 and 17:00 uur naar 06-48078750 en praat met Ed Kool</text>
             <postback>Contact</postback>
         </reply>
@@ -742,7 +1748,7 @@
     <pattern>chatbot</pattern>
     <template>
    <b>What is a chatbot or interlocutor</b>
-    Lingvistica means <b>>chatbot</b> a system of computer programs, databases and procedures that allow more or less human communication via the Internet. 
+    Ed Kool defines  <b>>chatbot</b> a system of computer programs, databases and procedures that allow more or less human communication via the Internet. 
     A chatbot is provided for every language. 
     For the languages Dutch and English, the chatbots on the Pandora platform are in development.
     <button>
@@ -780,4 +1786,1461 @@
     Every profession and that is more than 1250 can be digitally represented by an interlocutor.
  </template>
 </category>
+    <category><pattern>hallo</pattern><template><srai>beginnen</srai></template></category>
+    <category><pattern>hello</pattern><template><srai>beginnen</srai></template></category>
+    <category><pattern>hey *</pattern><template><srai>beginnen</srai></template></category>
+    <category><pattern>hoi *</pattern><template><srai>beginnen</srai></template></category>
+    <category><pattern>eddy</pattern><template><srai>beginnen</srai></template></category>
+    <category><pattern>hi *</pattern><template><srai>beginnen</srai></template></category>
+    <category>
+        <pattern>beginnen</pattern>
+            <template>
+                You can call me eddy en ik spreek vooralsnog<br/>
+                <set name="invrtaal">nederlands</set>
+                <link>
+                    <text>Koolrecords</text>
+                    <url>https://www.koolrecords.nl</url>
+                </link>
+            <image>https://www.semanta.nl/semanta/koollees.png</image>
+            Welkom bezoeker mijn naam is Eddy ik ben de digitale representatie van Ed Kool.
+            De bedenker en bouwer van het Semanta College en ontwikkelaar van de Pandorabots op deze site.
+            Ed is een ICT Veteraan met meer dan 50 jaar ervaring met ICT.
+            Hiervan hebben de afgelopen 10 jaar in het teken gestaaan van de vraag:
+            <br/><b>Kan een computer leren praten?</b>
+            <br/><b>Het antwoord: HET KAN BIJNA </b>
+            En wie bent u?Antwoord aub met:<b>Ik ben ......</b>
+        </template> 
+    </category>
+    <category>
+        <pattern>Education</pattern>
+        <template>
+            <button>
+                <text>How about Semanta</text>
+                <url>https://www.semanta.nl/semanta/smta-film.php</url>
+            </button>
+            bron:
+             <image>https://www.semanta.nl/semanta/blooms-taxonomy.jpg</image>
+             Bloom's Taxonomy was created in 1956 by Benjamin Bloom and later revised by Lauren Anderson in 2000.
+            It serves as a guide for educators to classify their lesson objectives through different levels. 
+            These levels are
+            <button>
+                <text>remember</text>
+                <postback>remember</postback>
+            </button>
+            <button>
+                <text>understand</text>
+                <postback>understand</postback>
+            </button>
+            <button>
+                <text>apply</text>
+                <postback>apply</postback>
+            </button>
+            <button>
+                <text>analyze</text>
+                <postback>analyze</postback>
+            </button>
+            <button>
+                <text>evaluater</text>
+                <postback>evaluate</postback>
+            </button>
+            <button>
+                <text>create</text>
+                <postback>create</postback>
+            </button>
+            <link>
+                <text>Choice</text>
+                <url>https://tips.uark.edu/using-blooms-taxonomy</url>
+            </link>
+            <button>
+                <text>Bloom's Taxonomy></text>
+                <url>https://www.bloomstaxonomy.net/</url>
+            </button>
+             Remember, Understand, Apply, Analyze, Evaluate, and Create.
+            In summary, the use of Bloom's Taxonomy ensures that lesson objectives are developing critical thinking and higher order cognitive abilities in students.
+            </template>
+    </category>
+    
+    <category>
+        <pattern>remember</pattern>
+       
+        <template>
+            Remembering: Retrieving, recognizing, and recalling relevant knowledge from long‐term memory.
+        </template>
+        </category>
+        <category>
+        <pattern>understand</pattern>
+        <template>
+            Understanding: Constructing meaning from oral, written, and graphic messages through interpreting, exemplifying, classifying, summarizing, inferring, comparing, and explaining.
+        </template>
+        </category>
+        <category>
+            <pattern>apply</pattern>
+            <template>
+                Applying: Carrying out or using a procedure for executing, or implementing.
+               </template>
+        </category>
+        <category>
+            <pattern>analyze</pattern>
+            <template>
+                Analyzing: Breaking material into constituent parts, determining how the parts relate to one another and to an overall structure or purpose through differentiating, organizing, and attributing.
+            </template>
+        </category>
+        <category>
+            <pattern>evaluate</pattern>
+            <template>
+                 Evaluating: Making judgments based on criteria and standards through checking and critiquing.
+            </template>
+        </category>
+        <category>
+            <pattern>create</pattern>
+            <template>
+                Creating: Putting elements together to form a coherent or functional whole; reorganizing elements into a new pattern or structure through generating, planning, or producing.
+            </template>
+        </category>>
+        
+//////////////
+    <category>
+	<pattern>* betekent *</pattern>
+	<template>
+	<think>
+	    
+	    <set name="invrchbt">semantus</set>
+        <set name="invrcorp">semanta</set> 
+        <set name="invrvgpt">semanta</set>
+        <set name="invrxbot">eddy</set>
+        <set name="invrlgrm">converseren</set>
+        <set name="invrname">Gast</set>
+        <set name="invrbzv2"><get name="invraiml"></get> betekent</set>
+		<learn>
+			<category>
+				<pattern><eval><star index="1"/></eval></pattern>
+				<template><eval><star index="2" /></eval></template>
+			</category>
+		</learn>
+	</think>
+	OK <get name="invrname"></get>Volgende keer zeg ik "<star index="2"/>" als u  "<star index="1" />" zegt
+	</template>
+    </category>
+<category>
+<pattern>REST *</pattern>
+<template><set name="invrtxt2"><rest><star /></rest></set></template>
+<button>
+    <text>splitsen</text>
+    <postback><get name="invrtxt2"></get></postback>
+</button>
+</category>
+//////////////
+<category>
+    <pattern>ik kan er *</pattern>
+    <template>
+         <think>
+        <set name="invrbzv1"><star/></set>
+        <set name="invraiml"><star/></set>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+</category>
+<category>
+    <pattern>niet meer *</pattern>
+    <template>
+         <think>
+        <set name="invrbzv1"><star/></set>
+        <set name="invraiml"><star/></set>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+</category>
+//////////////
+<category>
+    <pattern>*</pattern>
+    <template>
+         <think>
+        invrbzv1 <set name="invrbzv1"><star/></set>
+        invraiml <set name="invraiml"><star/></set>
+         </think>
+          <button>
+            <text>Train VGPT Eddy met <get name="invraiml"></get> </text>
+            <url>https://www.semanta.nl/semanta/index.php?bzv1=<get name="invraiml"></get></url>
+        </button>
+         <button>
+            <text>Vraag Wikipedia naar een uitleg over <get name="invraiml"></get></text>
+            <url>https://www.semanta.nl/semanta/xtrt-wiki.php?bzv1=<get name="invraiml"></get></url>
+        </button>
+        <button>
+            <text>Vraag Semantus om hulp over <get name="invraiml"></get></text>
+            <url>https://www.semanta.nl/semanta/blib-rule-aiml.php?tabl=gw27&amp;bzv1=<get name="invraiml"></get></url>
+        </button>
+    </template>
+</category>
+ <category>
+    <pattern>ik ben *</pattern>
+       <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+</category>
+     <category>
+    <pattern>doe maar wat *</pattern>
+       <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+</category>
+    <category>
+    <pattern>ik ben op *</pattern>
+       <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+</category>
+<category>
+    <pattern>ik wil praten *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+</category>
+    <category>
+    <pattern>de fiets van *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+    </category>
+    <category>
+    <pattern>mijn *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+    </category>
+    <category>
+    <pattern>je wilt vind *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+    </category>
+     <category>
+    <pattern>* heeft een *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+    </category>
+     <category>
+    <pattern>als er een *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+    </category>
+     <category>
+    <pattern>alles goed wat *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+    </category>
+ <category>
+    <pattern>er *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+    </category>
+     <category>
+    <pattern>over *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+    </category>
+//////////
+<category>
+    <pattern>kan een computer *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+    </category>
+<category>
+    <pattern>we zien niets *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback><star/></postback>
+        </reply>
+    </template>
+    </category>
+<category>
+    <pattern>* leren *</pattern>
+    <template>
+        <think>
+        <set name="invraiml"><star/></set>
+        <srai><star/></srai>
+         </think>
+        <reply>
+            <text><star/></text>
+            <postback>ik onthoud <star/></postback>
+        </reply>
+    </template>
+    </category>
+
+<category>
+    <pattern>praten</pattern>
+    <template>is dat in het <get name="invrtaal"></get></template>
+</category>
+<category>
+    <pattern>klaas</pattern>
+    <template>jongensnaam afgeleid van nicolaas</template>
+</category>
+<category>
+    <pattern>ik onthoud *</pattern>
+    <template>
+        <get name="invrbzv1"></get>gerelateerd <star/> Gaat naar het geheugen
+        <image>https://www.semanta.nl/semanta/brains.png</image>
+    </template>
+</category>
+<category>
+    <pattern>helga</pattern>
+    <template>msj@duits@vnm</template>
+</category>
+<category>
+    <pattern>geluk</pattern>
+    <template>znw@pls@gvl</template>
+</category>
+<category>
+    <pattern>ben op zoek *</pattern>
+    <template>zoektocht</template>
+</category>
+////////////
+   <category><pattern>* at * at *</pattern>
+    <template>
+    <think>
+    <set name="invrlnks"><star index="1"/></set>
+    <set name="invrmddn"><star index="2"/></set>
+    <set name="invrrchs"><star index="3"/></set>
+    </think>
+<button>
+    <text><get name="invrlnks"></get></text>
+    <postback><get name="invrlnks"></get></postback>
+</button>
+<button>
+    <text><get name="invrmddn"></get></text>
+    <postback><get name="invrmddn"></get></postback>
+</button>
+<button>
+    <text><get name="invrrchs"></get></text>
+    <postback><get name="invrrchs"></get></postback>
+</button>
+</template>
+</category>
+/////////////////////
+<category><pattern>kantoor</pattern><template><think><set name="invraiml">kantoor</set></think><reply><text>Grammatica mijn vragen gaan over </text><postback>znw@grd@pts@org@prs</postback></reply></template></category>
+<category><pattern>hetzelfde</pattern><template><think><set name="invraiml">hetzelfde</set></think><reply><text>Grammatica</text><postback>znw@grd@pts@org@prs</postback></reply></template></category>
+<category><pattern>er weer</pattern><template><think><set name="invraiml">er weer</set></think><reply><text>Grammatica</text><postback>prc</postback></reply></template></category>
+////////////////////////
+/////////////////////
+<category><pattern>abs</pattern><template><set name="invracnm">abstract </set> waar is <get name="invraiml"></get> mee te vergelijken</template></category>
+<category><pattern>acr</pattern><template><set name="invracnm">acroniem </set><get name="invraiml"></get> is een acroniem</template></category>
+<category><pattern>adn</pattern><template><set name="invracnm">aandoening </set>symptomen van <get name="invraiml"></get></template></category>
+<category><pattern>adv</pattern><template><set name="invracnm">advocatuur</set> op welke wijze is <get name="invraiml"></get> gerelateerd aan advocatuur</template></category>
+<category><pattern>afk</pattern><template><set name="invracnm">afkorting</set> waar is <get name="invraiml"></get> de afkorting van</template></category>
+<category><pattern>akt</pattern><template>waar is de afkorting <get name="invraiml"></get> van afgeleid</template></category>
+<category><pattern>afm</pattern><template>wat draagt <get name="invraiml"></get> bij aan de toename</template></category>
+<category><pattern>opt</pattern><template>hoeveel optimisme is er bij <get name="invraiml"></get></template></category>
+<category><pattern>afs</pattern><template>wat moet er nog overbrugd worden</template></category>
+<category><pattern>afw</pattern><template>wat is de reden van uw opmerking <get name="invraiml"></get></template></category>
+<category><pattern>afz</pattern><template>van wie is <get name="invraiml"></get> afkomstig</template></category>
+<category><pattern>alg</pattern><template>hoe algemeen is <get name="invraiml"></get></template></category>
+<category><pattern>and</pattern><template>wat zijn de symptomen van <get name="invraiml"></get></template></category>
+<category><pattern>anm</pattern><template>Waarvan is de achternaam <get name="invraiml"></get> afgeleid</template></category>
+<category><pattern>ant</pattern><template>uit hoeveel bestaat het <get name="invraiml"></get></template></category>
+<category><pattern>art</pattern><template>werkte u als kunstenaar</template></category>
+<category><pattern>bdg</pattern><template>Hoe hoog is het bedrag <get name="invraiml"></get></template></category>
+<category><pattern>bdr</pattern><template>Bent u klant van dit bedrijf? ja nee</template></category>
+<category><pattern>bel</pattern><template>hoe beleefd kun je zijn</template></category>
+<category><pattern>bhr</pattern><template>Door wie wordt <get name="invraiml"></get> beheerd</template></category>
+<category><pattern>bij</pattern><template>wat is de bijdrage van <get name="invraiml"></get></template></category>
+<category><pattern>blf</pattern><template>wie gebruikt deze <get name="invraiml"></get></template></category>
+<category><pattern>bpk</pattern><template>wat zijn uw beperkingen door <get name="invraiml"></get></template></category>
+<category><pattern>brd</pattern><template>Welke grenzen betreft het hier</template></category>
+<category><pattern>brg</pattern><template>waarom is <get name="invraiml"></get> grof taalgebruik</template></category>
+<category><pattern>brp</pattern><template>wat doet een <get name="invraiml"></get></template></category>
+<category><pattern>rule</pattern><template>alles aan</template></category>
+<category><pattern>brp</pattern><template>Is dit een kantoorbaan of een buitendienstfunctie? kantoorbaan buitendienstfunctie</template></category>
+<category><pattern>brp</pattern><template>Is <get name="invraiml"></get> uw beroep? ja nee</template></category>
+<category><pattern>bsc</pattern><template>welke bescherming biedt <get name="invraiml"></get></template></category>
+<category><pattern>bsc</pattern><template>waar bestaat de bescherming door <get name="invraiml"></get> uit</template></category>
+<category><pattern>brs</pattern><template>wat is <get name="invraiml"></get> voor een brandstof</template></category>
+<category><pattern>bst</pattern><template>Is dit een tam of wild dier <get name="invraiml"></get></template></category>
+<category><pattern>bsw</pattern><template>kent u afgeleide woorden of een zin met <get name="invraiml"></get></template></category>
+<category><pattern>bsw</pattern><template>kent u afgeleide woorden van <get name="invraiml"></get></template></category>
+<category><pattern>btn</pattern><template><get name="invraiml"></get> is een buitensport waar wordt beoefend</template></category>
+<category><pattern>bvn</pattern><template>waar blijkt <get name="invraiml"></get> uit</template></category>
+<category><pattern>bwd</pattern><template>wat voegt <get name="invraiml"></get> voor u toe</template></category>
+<category><pattern>bwg</pattern><template>welke beweging wordt gemaakt bij het <get name="invraiml"></get></template></category>
+<category><pattern>bwg</pattern><template>welke beweging of handeling is verbonden met <get name="invraiml"></get></template></category>
+<category><pattern>bwg</pattern><template>welke beweging is gekoppeld aan <get name="invraiml"></get></template></category>
+<category><pattern>bwn</pattern><template>hoeveel inwoners telt <get name="invraiml"></get></template></category>
+<category><pattern>bws</pattern><template>kunt u het daarmee eens zijn</template></category>
+<category><pattern>bwt</pattern><template>Bent u bewust op bezoek bij <get name="invraiml"></get></template></category>
+<category><pattern>cio</pattern><template>wie is de<get name="invraiml"></get></template></category>
+<category><pattern>clc</pattern><template>welke conclusie wordt hier getrokken</template></category>
+<category><pattern>cls</pattern><template>wat sluit <get name="invraiml"></get> af</template></category>
+<category><pattern>cmp</pattern><template>in welke competitie worden <get name="invraiml"></get> gespeeld</template></category>
+<category><pattern>cmp</pattern><template>In hoeverre moet het anders</template></category>
+<category><pattern>cmt</pattern><template>vindt <get name="invraiml"></get>  in competitieverband plaats</template></category>
+<category><pattern>cnc</pattern><template>hoe concreet is <get name="invraiml"></get></template></category>
+<category><pattern>com</pattern><template>who are exchancing <get name="invraiml"></get></template></category>
+<category><pattern>com</pattern><template>what is the <get name="invraiml"></get> about</template></category>
+<category><pattern>com</pattern><template>Tussen welke partijen wordt  of worden <get name="invraiml"></get> uitgewisseld</template></category>
+<category><pattern>cpb</pattern><template>waar is de afkorting cpb van afgeleid</template></category>
+<category><pattern>cpt</pattern><template>what country</template></category>
+<category><pattern>cre</pattern><template>bedoelt u produceren als <get name="invraiml"></get></template></category>
+<category><pattern>crm</pattern><template>wat is er crimineel aan <get name="invraiml"></get></template></category>
+<category><pattern>crt</pattern><template>is <get name="invraiml"></get> een credit post</template></category>
+<category><pattern>crt</pattern><template>wat is het creatieve resultaat van <get name="invraiml"></get></template></category>
+<category><pattern>csq</pattern><template>wat is het gevolg van <get name="invraiml"></get></template></category>
+<category><pattern>csq</pattern><template>wat zijn de consequenties</template></category>
+<category><pattern>cyn</pattern><template>Hoe cynisch is <get name="invraiml"></get> bedoeld</template></category>
+<category><pattern>cyn</pattern><template>cynisme kan geen kwaad als het om <get name="invraiml"></get> gaat</template></category>
+<category><pattern>dbt</pattern><template>is <get name="invraiml"></get> een debet post</template></category>
+<category><pattern>dng</pattern><template>wat is er denigrerend aan <get name="invraiml"></get></template></category>
+<category><pattern>dnk</pattern><template>bevat <get name="invraiml"></get> alcohol en wat is het percentage</template></category>
+<category><pattern>doc</pattern><template>waar vindt u <get name="invraiml"></get></template></category>
+<category><pattern>doc</pattern><template>wat is in <get name="invraiml"></get> gepubliceerd</template></category>
+<category><pattern>dom</pattern><template>waar ligt <get name="invraiml"></get></template></category>
+<category><pattern>drk</pattern><template>bevat <get name="invraiml"></get> wel of geen alcohol</template></category>
+<category><pattern>drk</pattern><template>wordt <get name="invraiml"></get> warm of gekoeld gedronken</template></category>
+<category><pattern>drk</pattern><template>wat is het type drank</template></category>
+<category><pattern>drv</pattern><template>Hoe gedreven ben je dan</template></category>
+<category><pattern>dst</pattern><template>welke diersoort is <get name="invraiml"></get></template></category>
+<category><pattern>dtm</pattern><template>hoe is schrijfwijze</template></category>
+<category><pattern>dus</pattern><template>vrwz</template></category>
+<category><pattern>dwg</pattern><template>waarmee ging <get name="invraiml"></get> Gepaard(dwangbevel(aanmaning(aanmoediging(aansproring</template></category>
+<category><pattern>dwg</pattern><template>door wie werd er door <get name="invraiml"></get> dwang uitgeoefend</template></category>
+<category><pattern>edc</pattern><template>wat is de relatie tussen <get name="invraiml"></get> en onderwijs</template></category>
+<category><pattern>eml</pattern><template>kies uw e-mail programma</template></category>
+<category><pattern>emt</pattern><template>what emotion is relevant for <get name="invraiml"></get></template></category>
+<category><pattern>emt</pattern><template>welke emotie voelt u bij <get name="invraiml"></get></template></category>
+<category><pattern>emt</pattern><template>wat is uw gevoel bij <get name="invraiml"></get></template></category>
+<category><pattern>epe</pattern><template>wat bent u verder aan het doen</template></category>
+<category><pattern>epi</pattern><template>is dit een afsluitng</template></category>
+<category><pattern>ert</pattern><template>wat zou er erotische aan <get name="invraiml"></get> kunnen zijn</template></category>
+<category><pattern>ext</pattern><template>wat is de ip-extentie van <get name="invraiml"></get></template></category>
+<category><pattern>fcs</pattern><template>Van wie is <get name="invraiml"></get> afkomstig</template></category>
+<category><pattern>fig</pattern><template>bedoelt u <get name="invraiml"></get> figuurlijk als in de aex heeft de bodem geraakt</template></category>
+<category><pattern>fig</pattern><template>bestaat <get name="invraiml"></get> voor u</template></category>
+<category><pattern>flm</pattern><template>waar gaat <get name="invraiml"></get> over</template></category>
+<category><pattern>fmt</pattern><template>Welke formaten bestaan er</template></category>
+<category><pattern>fnc</pattern><template>wat is relatie met geld of kapitaal</template></category>
+<category><pattern>fnc</pattern><template>wat is de relatie tuseen <get name="invraiml"></get> en geld of kapitaal</template></category>
+<category><pattern>frq</pattern><template>met welk frequentie komt <get name="invraiml"></get> voor</template></category>
+<category><pattern>frq</pattern><template>Hoe vaak komt dat voor</template></category>
+<category><pattern>fst</pattern><template>waarom wordt <get name="invraiml"></get> gevierd</template></category>
+<category><pattern>fst</pattern><template>hoe lang duurt dit feest</template></category>
+<category><pattern>ftl</pattern><template>Hoe lang is dat</template></category>
+<category><pattern>fun</pattern><template>wat is de bijdrage van <get name="invraiml"></get> aan semanta</template></category>
+<category><pattern>geb</pattern><template>door wie wordt de gebiedende wijs toegepast</template></category>
+<category><pattern>gem</pattern><template>is <get name="invraiml"></get> een hoofdgemeente</template></category>
+<category><pattern>geo</pattern><template>wat is de geografisch vorm van <get name="invraiml"></get></template></category>
+<category><pattern>geo</pattern><template>wat is de relatie tussen <get name="invraiml"></get> en geografie</template></category>
+<category><pattern>glf</pattern><template>tot welk geloof behoort een <get name="invraiml"></get></template></category>
+<category><pattern>gnd</pattern><template>wat is het geslacht van <get name="invraiml"></get></template></category>
+<category><pattern>gps</pattern><template>postadres en bezoekadres van <get name="invraiml"></get></template></category>
+<category><pattern>gps</pattern><template>wat is de locatie van <get name="invraiml"></get></template></category>
+<category><pattern>grd</pattern><template>waar wordt <get name="invraiml"></get> Voor gebruikt</template></category>
+<category><pattern>gtf</pattern><template>hoe wordt de genitief <get name="invraiml"></get> gebruikt</template></category>
+<category><pattern>fut</pattern><template>hoever in de toekomst is <get name="invraiml"></get></template></category>
+<category><pattern>grd</pattern><template>waar gebruikt u <get name="invraiml"></get> voor</template></category>
+<category><pattern>grp</pattern><template>tot welke groep hoort <get name="invraiml"></get> volgens u</template></category>
+<category><pattern>grs</pattern><template>wat is het type <get name="invraiml"></get></template></category>
+<category><pattern>grw</pattern><template>wat is de gruwelijkheid van <get name="invraiml"></get></template></category>
+<category><pattern>grw</pattern><template>wat is er gruwelijk van <get name="invraiml"></get></template></category>
+<category><pattern>gsc</pattern><template>wat gebeurde er in <get name="invraiml"></get> en wat betekent dat voor de geschiedenis</template></category>
+<category><pattern>gst</pattern><template>zijn er nog andere geestelijken vergelijkbaar met <get name="invraiml"></get></template></category>
+<category><pattern>gtl</pattern><template>is <get name="invraiml"></get> een echt getal</template></category>
+<category><pattern>gvg</pattern><template>wat zijn de gevolgen van <get name="invraiml"></get></template></category>
+<category><pattern>glg</pattern><template>geeft <get name="invraiml"></get> een gevolg aan</template></category>
+<category><pattern>gvn</pattern><template>hoe wordt omgegaan met de gevolgen van <get name="invraiml"></get></template></category>
+<category><pattern>gvl</pattern><template>welk gevoelt heeft u hierbij</template></category>
+<category><pattern>gvl</pattern><template>met welk gevoel gaat u met <get name="invraiml"></get> aan de gang</template></category>
+<category><pattern>gvr</pattern><template>wat is het gevaar</template></category>
+<category><pattern>gwd</pattern><template>welke vorm van geweld is gerelateerd aan <get name="invraiml"></get></template></category>
+<category><pattern>gws</pattern><template>tot welk gewas behoort <get name="invraiml"></get></template></category>
+<category><pattern>gzg</pattern><template>over welk gezag gaat het hier</template></category>
+<category><pattern>gzn</pattern><template>uit hoeveel mensen bestaat <get name="invraiml"></get></template></category>
+<category><pattern>hbo</pattern><template>Waar heeft u deze opleiding gevolgd</template></category>
+<category><pattern>hbo</pattern><template>Heeft u een diploma</template></category>
+<category><pattern>hdr</pattern><template>was ist die Behinderung von <get name="invraiml"></get></template></category>
+<category><pattern>hdr</pattern><template>welke hinder ondervindt u</template></category>
+<category><pattern>hij</pattern><template>wie wordt er bedoeld</template></category>
+<category><pattern>hij</pattern><template>wie wordt hier bedoeld</template></category>
+<category><pattern>hmr</pattern><template>wat is de humor van <get name="invraiml"></get></template></category>
+<category><pattern>hmr</pattern><template>wat vindt u humoristisch aan <get name="invraiml"></get></template></category>
+<category><pattern>hng</pattern><template>heeft u honger</template></category>
+<category><pattern>hpe</pattern><template>welke hoop heeft u van <get name="invraiml"></get></template></category>
+<category><pattern>hrh</pattern><template>hoe vaak wordt <get name="invraiml"></get> herhaald</template></category>
+<category><pattern>hvl</pattern><template>Om hoeveel <get name="invraiml"></get> gaat het hier</template></category>
+<category><pattern>hwd</pattern><template>hoe wordt het hulpwerkwoord gebruikt</template></category>
+<category><pattern>hwd</pattern><template>wat is het gebruik van <get name="invraiml"></get> als hulpwerkwoord</template></category>
+<category><pattern>ibm</pattern><template>wat is de relatie tussen <get name="invraiml"></get> en ibm</template></category>
+<category><pattern>ict</pattern><template>welke relatie heeft <get name="invraiml"></get> met ict</template></category>
+<category><pattern>inh</pattern><template>wat is de strekking van <get name="invraiml"></get></template></category>
+<category><pattern>ins</pattern><template>welke <get name="invraiml"></get> was dat</template></category>
+<category><pattern>ins</pattern><template>wat is het type insect</template></category>
+<category><pattern>ist</pattern><template>wat is er beledigend aan het woord <get name="invraiml"></get></template></category>
+<category><pattern>ist</pattern><template>aan wie is <get name="invraiml"></get> gericht</template></category>
+<category><pattern>jgt</pattern><template>in welk jaargetijde hebben we te maken met <get name="invraiml"></get></template></category>
+<category><pattern>joh</pattern><template>verzwakking</template></category>
+<category><pattern>jtl</pattern><template>In welke jaartelling.  Joods Islamitisch Christelijk Russisch Chinees</template></category>
+<category><pattern>jur</pattern><template>wat is de relatie tussen <get name="invraiml"></get> en juridisch</template></category>
+<category><pattern>kgt</pattern><template>van welke plaats is <get name="invraiml"></get> het kengetal</template></category>
+<category><pattern>kld</pattern><template>dames heren</template></category>
+<category><pattern>kld</pattern><template>waarom ga je gekleed met <get name="invraiml"></get></template></category>
+<category><pattern>kmp</pattern><template>voor welk kampioenschap wordt gestreden</template></category>
+<category><pattern>knd</pattern><template>hoe is <get name="invraiml"></get> betrokken bij</template></category>
+<category><pattern>knd</pattern><template>met wie is <get name="invraiml"></get> te verbinden</template></category>
+<category><pattern>knm</pattern><template>welk geloof speelt hier een rol</template></category>
+<category><pattern>krk</pattern><template>welk geloof hoort bij <get name="invraiml"></get></template></category>
+<category><pattern>ktr</pattern><template>wat is de relatie tussen <get name="invraiml"></get> en kantoor</template></category>
+<category><pattern>kvk</pattern><template>in welke plaats</template></category>
+<category><pattern>kwl</pattern><template>welke kwaliteiten spelen bij <get name="invraiml"></get> een rol</template></category>
+<category><pattern>kwt</pattern><template>hoe kwetsbaar ben je door <get name="invraiml"></get></template></category>
+<category><pattern>kwt</pattern><template>is <get name="invraiml"></get> meer dan duizend(minder dan duizend(specifiek aantal</template></category>
+<category><pattern>lch</pattern><template>what part of the body is related to <get name="invraiml"></get></template></category>
+<category><pattern>lch</pattern><template>welk deel van het lichaam</template></category>
+<category><pattern>lch</pattern><template>wat is functie van <get name="invraiml"></get> voor het lichaam</template></category>
+<category><pattern>les</pattern><template>Welke les heeft u geleerd</template></category>
+<category><pattern>lnm</pattern><template>wat is de latijnse naam voor <get name="invraiml"></get></template></category>
+<category><pattern>ltr</pattern><template>bedoelt u <get name="invraiml"></get> letterlijk als de <get name="invraiml"></get> van de zee</template></category>
+<category><pattern>lul</pattern><template>bedoelt u het orgaan of een mannelijk persoon</template></category>
+<category><pattern>lvn</pattern><template>wat is de betekenis van <get name="invraiml"></get> voor het leven</template></category>
+<category><pattern>lvr</pattern><template>Door wie wordt <get name="invraiml"></get> geleverd</template></category>
+<category><pattern>lvr</pattern><template>wie maakt gebruik van <get name="invraiml"></get></template></category>
+<category><pattern>man</pattern><template>echtgenoot mannelijk persoon krachtig persoon kerel</template></category>
+<category><pattern>mdc</pattern><template>waar wordt <get name="invraiml"></get> als medicijn voor gebruikt</template></category>
+<category><pattern>mdl</pattern><template>Welke modaliteit geldt voor <get name="invraiml"></get></template></category>
+<category><pattern>mgl</pattern><template>welke mogelijkheden worden gevraagd</template></category>
+<category><pattern>mil</pattern><template>wat is de relatie tussen het milieu en <get name="invraiml"></get></template></category>
+<category><pattern>mnd</pattern><template>tijd</template></category>
+<category><pattern>mng</pattern><template>geef uw mening over <get name="invraiml"></get></template></category>
+<category><pattern>mng</pattern><template>wat is uw mening hierover</template></category>
+<category><pattern>mnm</pattern><template>wat is de medisch benaming voor <get name="invraiml"></get></template></category>
+<category><pattern>mnm</pattern><template>jip en janneke taal voor <get name="invraiml"></get></template></category>
+<category><pattern>mnm</pattern><template>is er ook een eenvodige naam voor <get name="invraiml"></get></template></category>
+<category><pattern>mnt</pattern><template>hoe bekend is <get name="invraiml"></get> als monument</template></category>
+<category><pattern>mos</pattern><template>kent u naast <get name="invraiml"></get> meer mossoorten</template></category>
+<category><pattern>mrf</pattern><template><get name="invraiml"></get> is een morfeem</template></category>
+<category><pattern>msd</pattern><template>wat is het karakter van <get name="invraiml"></get></template></category>
+<category><pattern>mst</pattern><template>hebben het recht</template></category>
+<category><pattern>mst</pattern><template>wat maakt <get name="invraiml"></get> tot een mysterie</template></category>
+<category><pattern>mtv</pattern><template>Hoe motiveert <get name="invraiml"></get> U</template></category>
+<category><pattern>mvd</pattern><template>how many <get name="invraiml"></get> are there involved</template></category>
+<category><pattern>mvd</pattern><template>hoeveel <get name="invraiml"></get> zijn dat dan</template></category>
+<category><pattern>mzk</pattern><template>wat is relatie tussen muziek en <get name="invraiml"></get></template></category>
+<category><pattern>nat</pattern><template>kent meer mensen met de nationaliteit <get name="invraiml"></get></template></category>
+<category><pattern>ndr</pattern><template>wat is de nadruk</template></category>
+<category><pattern>ndz</pattern><template>wie bepaalt de noodzaak van iets</template></category>
+<category><pattern>nee</pattern><template>iets anders dan</template></category>
+<category><pattern>ngt</pattern><template>wat is het negatieve aan <get name="invraiml"></get></template></category>
+<category><pattern>nle</pattern><template>waar is de afkorting nle van afgeleid</template></category>
+<category><pattern>ntk</pattern><template>welk deel van de natuurkunde houdt zich bezig met <get name="invraiml"></get></template></category>
+<category><pattern>num</pattern><template>wat is het nummer van <get name="invraiml"></get></template></category>
+<category><pattern>nvo</pattern><template>welke niveaus van <get name="invraiml"></get> kent u</template></category>
+<category><pattern>abs</pattern><template>with what can <get name="invraiml"></get> be compared</template></category>
+<category><pattern>nws</pattern><template>waarom is <get name="invraiml"></get> in het nieuws</template></category>
+<category><pattern>odw</pattern><template>Wanneer was dit</template></category>
+<category><pattern>off</pattern><template>wat is het officiele karakter van <get name="invraiml"></get></template></category>
+<category><pattern>ond</pattern><template>wat is het onderwerp van <get name="invraiml"></get></template></category>
+<category><pattern>ond</pattern><template>wat is er ondeugend aan een <get name="invraiml"></get></template></category>
+<category><pattern>onn</pattern><template>wat is er onnatuurlijk aan <get name="invraiml"></get></template></category>
+<category><pattern>opa</pattern><template>van moeders kant van vaderskant</template></category>
+<category><pattern>opl</pattern><template>welke opleiding volgt een <get name="invraiml"></get></template></category>
+<category><pattern>opn</pattern><template>heeft u nog andere opinies over <get name="invraiml"></get></template></category>
+<category><pattern>opp</pattern><template>hoe is het oppervlak  van <get name="invraiml"></get> bepaald</template></category>
+<category><pattern>org</pattern><template>wie of wat maakt er deel uit van <get name="invraiml"></get></template></category>
+<category><pattern>ori</pattern><template>waar bent u vandaan ge<get name="invraiml"></get></template></category>
+<category><pattern>orz</pattern><template>geeft <get name="invraiml"></get> een oorzaak aan</template></category>
+<category><pattern>ovg</pattern><template>wat is het lijdend voorwerp voor <get name="invraiml"></get></template></category>
+<category><pattern>ozd</pattern><template>wat is er onzedelijk aan <get name="invraiml"></get></template></category>
+<category><pattern>ozk</pattern><template>waarover bent u onzeker</template></category>
+<category><pattern>pbl</pattern><template>wie publiceert <get name="invraiml"></get></template></category>
+<category><pattern>pcp</pattern><template>door wie wordt <get name="invraiml"></get> als principe gehanteerd</template></category>
+<category><pattern>pdg</pattern><template>welke pedagogisch aspecten zijn aan de orde bij <get name="invraiml"></get></template></category>
+<category><pattern>pds</pattern><template>wat is het type paddenstoel of zwam</template></category>
+<category><pattern>php</pattern><template>wat is de rol van <get name="invraiml"></get> in semanta</template></category>
+<category><pattern>pln</pattern><template>welke type <get name="invraiml"></get> zis of zijn er</template></category>
+<category><pattern>pls</pattern><template>hoe positief is dit</template></category>
+<category><pattern>plt</pattern><template>wat is de relatie tussen <get name="invraiml"></get> en politiek</template></category>
+<category><pattern>png</pattern><template>positief met negatieve aspecten</template></category>
+<category><pattern>png</pattern><template>wilt u iets vertellen over --.<get name="invraiml"></get></template></category>
+<category><pattern>prc</pattern><template>wat is uw betrokkenheid bij <get name="invraiml"></get></template></category>
+<category><pattern>prc</pattern><template>Wat of wie maken deel uit van dit proces</template></category>
+<category><pattern>prc</pattern><template>wat is het resultaat van het process <get name="invraiml"></get></template></category>
+<category><pattern>prc</pattern><template>Wat is het resultaat van dit proces</template></category>
+<category><pattern>prd</pattern><template>Over welke periode gaat <get name="invraiml"></get></template></category>
+<category><pattern>prp</pattern><template>waar is de eigen naam <get name="invraiml"></get> van afgeleid</template></category>
+<category><pattern>prs</pattern><template>waar woont <get name="invraiml"></get></template></category>
+<category><pattern>prs</pattern><template>waar bevindt zich <get name="invraiml"></get></template></category>
+<category><pattern>prs</pattern><template>Kent u de persoon of personen in kwestie als het over <get name="invraiml"></get> gaat</template></category>
+<category><pattern>prt</pattern><template>wat is de ernst van uw vraag</template></category>
+<category><pattern>prv</pattern><template>in welk deel van invrland ligt <get name="invraiml"></get></template></category>
+<category><pattern>prv</pattern><template>wat is de hoodstad van <get name="invraiml"></get></template></category>
+<category><pattern>pst</pattern><template>welk type parasiet is  <get name="invraiml"></get></template></category>
+<category><pattern>pts</pattern><template>is <get name="invraiml"></get> locatie plaats</template></category>
+<category><pattern>pvc</pattern><template>wat is de hoofdstad van de provincie <get name="invraiml"></get></template></category>
+<category><pattern>rcp</pattern><template>wat is het recept van <get name="invraiml"></get></template></category>
+<category><pattern>rep</pattern><template>bedoelt u repareren als <get name="invraiml"></get></template></category>
+<category><pattern>rit</pattern><template>begin en einde <get name="invraiml"></get></template></category>
+<category><pattern>rlg</pattern><template>bij welke religie vind ik <get name="invraiml"></get></template></category>
+<category><pattern>rlx</pattern><template>welke vorm van relaxatie of ontspanning veroorzaakt <get name="invraiml"></get></template></category>
+<category><pattern>rlx</pattern><template>moet er ook betaald worden voor <get name="invraiml"></get></template></category>
+<category><pattern>rmt</pattern><template>Welk deel van de ruimte</template></category>
+<category><pattern>rsc</pattern><template>welk risico doet zich hierbij voor</template></category>
+<category><pattern>rst</pattern><template>Geeft het u rust</template></category>
+<category><pattern>rvr</pattern><template>van waar naar waar loopt de <get name="invraiml"></get></template></category>
+<category><pattern>rvr</pattern><template>waar stroomt de rivier <get name="invraiml"></get></template></category>
+<category><pattern>sat</pattern><template>Hoe satirisch is <get name="invraiml"></get> bedoeld</template></category>
+<category><pattern>scl</pattern><template>wat is het sociale karakter van <get name="invraiml"></get></template></category>
+<category><pattern>skr</pattern><template>hoeveel suiker zit er in <get name="invraiml"></get></template></category>
+<category><pattern>smk</pattern><template>wat is de smaak van <get name="invraiml"></get></template></category>
+<category><pattern>smk</pattern><template>welke smaak heeft <get name="invraiml"></get></template></category>
+<category><pattern>soc</pattern><template>wat zijn de sociale aspecten van <get name="invraiml"></get></template></category>
+<category><pattern>spc</pattern><template>wat is er speciaal aan <get name="invraiml"></get></template></category>
+<category><pattern>spl</pattern><template>welk spel speelt <get name="invraiml"></get></template></category>
+<category><pattern>spr</pattern><template>kan het nog beter</template></category>
+<category><pattern>spt</pattern><template>tot welke sport hoort <get name="invraiml"></get></template></category>
+<category><pattern>stm</pattern><template>welke stimulans wordt bedoeld</template></category>
+<category><pattern>sts</pattern><template>wat is de situatie als <get name="invraiml"></get> afgesloten is</template></category>
+<category><pattern>sts</pattern><template>wat is de status na <get name="invraiml"></get></template></category>
+<category><pattern>stv</pattern><template>wat is de staatsvorm van <get name="invraiml"></get></template></category>
+<category><pattern>svb</pattern><template>sociale verzekeringsbank</template></category>
+<category><pattern>sww</pattern><template>tweede wereldoorlog wat vond er plaats</template></category>
+<category><pattern>tbd</pattern><template>moet nog verder bewerkt worden</template></category>
+<category><pattern>tbs</pattern><template>wanneer wordt tbs opgelegd</template></category>
+<category><pattern>tgn</pattern><template>wat is de tegenstelling van <get name="invraiml"></get></template></category>
+<category><pattern>tgn</pattern><template>waar kan de tegenstelling door veroorzaakt zijn</template></category>
+<category><pattern>tlc</pattern><template>kunt u <get name="invraiml"></get> toelichten</template></category>
+<category><pattern>tlf</pattern><template>wat is het kengetal van <get name="invraiml"></get></template></category>
+<category><pattern>tlf</pattern><template>Wie kunt u via <get name="invraiml"></get> Bellen</template></category>
+<category><pattern>tlk</pattern><template>welk onderdeel van de taalkunde is aan de orde</template></category>
+<category><pattern>tme</pattern><template>Wanneer is dat dan</template></category>
+<category><pattern>tpe</pattern><template>om welke type <get name="invraiml"></get> gaat het hier</template></category>
+<category><pattern>tpe</pattern><template>waarom spreekt u mij aan</template></category>
+<category><pattern>tpm</pattern><template>wie bedoelt u daarmee</template></category>
+<category><pattern>trg</pattern><template>welk doel is er bereikt</template></category>
+<category><pattern>trj</pattern><template>welke weg volgt <get name="invraiml"></get></template></category>
+<category><pattern>tvl</pattern><template>welk toeval speelt bij <get name="invraiml"></get> een rol</template></category>
+<category><pattern>tvl</pattern><template>Bent u toevallig op bezoek bij <get name="invraiml"></get></template></category>
+<category><pattern>twl</pattern><template>waar heeft u twijfel over</template></category>
+<category><pattern>twp</pattern><template>wat wordt bedoeld</template></category>
+<category><pattern>twz</pattern><template>waar verwijst <get name="invraiml"></get> naar terug</template></category>
+<category><pattern>ugv</pattern><template>gaat dit om geld() media() dagblad() boeken() muziek()</template></category>
+<category><pattern>uit</pattern><template>kan het ook weer aan</template></category>
+<category><pattern>unv</pattern><template>met welke universiteit is <get name="invraiml"></get> verbonden</template></category>
+<category><pattern>url</pattern><template>Wilt u op bezoek bij http://www.<get name="invraiml"></get></template></category>
+<category><pattern>urp</pattern><template>wat is het doel van de uitroep <get name="invraiml"></get></template></category>
+<category><pattern>val</pattern><template>wat ging er mis</template></category>
+<category><pattern>vat</pattern><template>wat bevat het vat</template></category>
+<category><pattern>vbd</pattern><template>wat wordt er door <get name="invraiml"></get> met elkaar verbonden</template></category>
+<category><pattern>vdl</pattern><template>welk voordeel is gerelateerd aan <get name="invraiml"></get></template></category>
+<category><pattern>vds</pattern><template>wat is <get name="invraiml"></get> voor voedsel</template></category>
+<category><pattern>vds</pattern><template>kan of kunnen <get name="invraiml"></get> rauw gegeten worden</template></category>
+<category><pattern>vds</pattern><template>hoe kun je <get name="invraiml"></get> in een recept gebruiken</template></category>
+<category><pattern>vdt</pattern><template>welk verdriet is aan <get name="invraiml"></get> gekoppeld</template></category>
+<category><pattern>vdw</pattern><template>wanneer was dat</template></category>
+<category><pattern>ver</pattern><template>wat gaat u met vergelijking doen</template></category>
+<category><pattern>vgl</pattern><template>waarmee wordt <get name="invraiml"></get> vergeleken</template></category>
+<category><pattern>vgl</pattern><template>is <get name="invrlnks"></get> een voorwaarde voor <get name="invrrchs"></get></template></category>
+<category><pattern>vgp</pattern><template>welke gesprekspartner is gerelateerd aan <get name="invraiml"></get></template></category>
+<category><pattern>vgw</pattern><template>welke verbinding geldt hier</template></category>
+<category><pattern>vlk</pattern><template>waar bestaat de vergelijking uit</template></category>
+<category><pattern>vls</pattern><template>welke vloeistof kun je bewaren met <get name="invraiml"></get></template></category>
+<category><pattern>vls</pattern><template>welke vloeistof kun je koppelen aan <get name="invraiml"></get></template></category>
+<category><pattern>vnm</pattern><template>waar is voornaam naam <get name="invraiml"></get> van afgeleid</template></category>
+<category><pattern>vol</pattern><template>wat is het volume van <get name="invraiml"></get></template></category>
+<category><pattern>vpr</pattern><template>is <get name="invraiml"></get> een virtueel persoon</template></category>
+<category><pattern>vra</pattern><template>wie heeft de verantwoordelijkheid voor <get name="invraiml"></get></template></category>
+<category><pattern>vrg</pattern><template>heeft u antwoord voor de vraag</template></category>
+<category><pattern>vrm</pattern><template>welke vorm heeft <get name="invraiml"></get></template></category>
+<category><pattern>vrv</pattern><template>welk vervoermiddel wordt gebruikt</template></category>
+<category><pattern>vrw</pattern><template>waar verwijst <get name="invraiml"></get> naar</template></category>
+<category><pattern>vrw</pattern><template>wat verwacht u van <get name="invraiml"></get></template></category>
+<category><pattern>vwd</pattern><template>wat gebeurt er dan</template></category>
+<category><pattern>vwd</pattern><template>is er een voorwaarde verbonden aan <get name="invraiml"></get></template></category>
+<category><pattern>vwd</pattern><template>is dit een veronderstelling</template></category>
+<category><pattern>vwp</pattern><template>is dit een gebruiksvoorwerp</template></category>
+<category><pattern>vzg</pattern><template>waarom maakt u een voorbehoud</template></category>
+<category><pattern>weg</pattern><template>u bent er vandoor</template></category>
+<category><pattern>wet</pattern><template>aan welke wet is <get name="invraiml"></get> gerelateerd</template></category>
+<category><pattern>wnm</pattern><template>wat neem je waar bij een <get name="invraiml"></get></template></category>
+<category><pattern>wpn</pattern><template>waar wordt <get name="invraiml"></get> ingezet en voor wie</template></category>
+<category><pattern>wrd</pattern><template>hoe wreed kan het worden door <get name="invraiml"></get></template></category>
+<category><pattern>wsc</pattern><template>tot welke wetenschap hoort <get name="invraiml"></get></template></category>
+<category><pattern>wwd</pattern><template>meaning of <get name="invraiml"></get> for you</template></category>
+<category><pattern>wwd</pattern><template><get name="invraiml"></get> houdt voor mij in</template></category>
+<category><pattern>wwd</pattern><template>werkwoord</template></category>
+<category><pattern>xpe</pattern><template>wat is het resultaat van <get name="invraiml"></get> volgens u</template></category>
+<category><pattern>xpm</pattern><template>wat is het resultaat van <get name="invraiml"></get> volgens u</template></category>
+<category><pattern>xpv</pattern><template>wanneer was <get name="invraiml"></get> aan de orde</template></category>
+<category><pattern>xpv</pattern><template>Hoe is dat nu</template></category>
+<category><pattern>xxx</pattern><template><get name="invraiml"></get> is een volwassen woord</template></category>
+<category><pattern>zal</pattern><template>wanneer gaat dit gebeuren</template></category>
+<category><pattern>zee</pattern><template>bij welke zee ligt <get name="invraiml"></get></template></category>
+<category><pattern>zee</pattern><template>Wat is de relatie tussen de zee en of oceaan met <get name="invraiml"></get></template></category>
+<category><pattern>zee</pattern><template>Wat is de reactie tussen de zee en of oceaan met <get name="invraiml"></get></template></category>
+<category><pattern>zkh</pattern><template>welke zekerheid biedt <get name="invraiml"></get></template></category>
+<category><pattern>znt</pattern><template>welke zintuigen zijn hierbij betrokken</template></category>
+<category><pattern>znw</pattern><template>wat is voor u de betekenis van <get name="invraiml"></get></template></category>
+<category><pattern>zrg</pattern><template>welke type(n) zorg wordt verleend door <get name="invraiml"></get></template></category>
+<category><pattern>ztg</pattern><template>welk zintuig is hier aan de orde</template></category>
+<category><pattern>zzp</pattern><template>is <get name="invraiml"></get> een zzp</template></category>
+<category>
+    <pattern>ben op zoek *</pattern>
+    <template>zoektocht</template>
+</category>
+
+    /////////////////////////
+    <category><pattern>lnd</pattern><template><get name="invraiml"></get> soevereine staat</template></category>
+<category>
+    <pattern>subvocalisatie</pattern><template><button>
+        <text>gebruikt subvocalisatie</text><url>https://www.semanta.nl/semanta/xtrt-data-line.php?bzv1=van+het+mit+gebruikt+subvocalisatie&amp;vgpt=semantus&amp;file=./data/ai/lnk00011.dat</url>
+</button></template></category>
+<category><pattern>* lacherig</pattern><template>S-als ik gespannen ben </template></category>
+<category><pattern>* lacherig *</pattern><template>S- als ik gespannen ben </template></category>
+<category><pattern>lacherig *</pattern><template>S- als ik gespannen ben </template></category>
+<category><pattern> melig </pattern><template>S- als ik wat gedronken heb</template></category>
+<category><pattern>* melig </pattern><template>S- als ik wat gedronken heb</template></category>
+<category><pattern>* melig *</pattern><template>S- als ik wat gedronken heb</template></category>
+<category><pattern>melig *</pattern><template>S- als ik wat gedronken heb</template></category>
+<category><pattern> onaardig </pattern><template>S- beledig mensen</template></category>
+<category><pattern>* onaardig </pattern><template>S- beledig mensen</template></category>
+<category><pattern>onaardig *</pattern><template>S- beledig mensen</template></category>
+<category><pattern> ongeinteresseerd </pattern><template>S- ben niet echt ge</template></category>
+<category><pattern>* ongeinteresseerd </pattern><template>S- ben niet echt ge</template></category>
+<category><pattern>ongeinteresseerd *</pattern><template>S- ben niet echt ge</template></category>
+<category><pattern> concreet </pattern><template>S- ben niet ge</template></category>
+<category><pattern>* concreet </pattern><template>S- ben niet ge</template></category>
+<category><pattern>* concreet *</pattern><template>S- ben niet ge</template></category>
+<category><pattern>concreet *</pattern><template>S- ben niet ge</template></category>
+<category><pattern> lichtgeraakt </pattern><template>S- ben snel van slag</template></category>
+<category><pattern>* lichtgeraakt </pattern><template>S- ben snel van slag</template></category>
+<category><pattern>* lichtgeraakt *</pattern><template>S- ben snel van slag</template></category>
+<category><pattern>lichtgeraakt *</pattern><template>S- ben snel van slag</template></category>
+<category><pattern> timide </pattern><template>S- ben stil in aanwezigheid van vreemden</template></category>
+<category><pattern>* timide </pattern><template>S- ben stil in aanwezigheid van vreemden</template></category>
+<category><pattern>* timide *</pattern><template>S- ben stil in aanwezigheid van vreemden</template></category>
+<category><pattern>timide *</pattern><template>S- ben stil in aanwezigheid van vreemden</template></category>
+<category><pattern> hulpvaardig </pattern><template>S- denk eerst aan anderen</template></category>
+<category><pattern>* hulpvaardig </pattern><template>S- denk eerst aan anderen</template></category>
+<category><pattern>hulpvaardig *</pattern><template>S- denk eerst aan anderen</template></category>
+<category><pattern> direct </pattern><template>S- doe taken meteen</template></category>
+<category><pattern>* direct </pattern><template>S- doe taken meteen</template></category>
+<category><pattern>* direct *</pattern><template>S- doe taken meteen</template></category>
+<category><pattern>direct *</pattern><template>S- doe taken meteen</template></category>
+<category><pattern> sociaal </pattern><template>S- handel vaardig in sociale situaties</template></category>
+<category><pattern>* sociaal </pattern><template>S- handel vaardig in sociale situaties</template></category>
+<category><pattern>sociaal *</pattern><template>S- handel vaardig in sociale situaties</template></category>
+<category><pattern>* zekerheid *</pattern><template>S- heb ik van nature</template></category>
+<category><pattern>zekerheid *</pattern><template>S- heb ik van nature</template></category>
+<category><pattern> fanatasieloos </pattern><template>S- heb moeite me dingen voor te stellen</template></category>
+<category><pattern>* fanatasieloos </pattern><template>S- heb moeite me dingen voor te stellen</template></category>
+<category><pattern> teruggetrokken </pattern><template>S- hou er niet van om de aandacht op me te richten</template></category>
+<category><pattern>* teruggetrokken </pattern><template>S- hou er niet van om de aandacht op me te richten</template></category>
+<category><pattern>teruggetrokken *</pattern><template>S- hou er niet van om de aandacht op me te richten</template></category>
+<category><pattern>zekerheid</pattern><template>S- is een geloof</template></category>
+<category><pattern> sociaal </pattern><template>S- kan het met bijna iedereen goed vinden</template></category>
+<category><pattern>* sociaal </pattern><template>S- kan het met bijna iedereen goed vinden</template></category>
+<category><pattern>sociaal *</pattern><template>S- kan het met bijna iedereen goed vinden</template></category>
+<category><pattern> onbescheiden </pattern><template>S- kan veel dingen goed</template></category>
+<category><pattern>* onbescheiden </pattern><template>S- kan veel dingen goed</template></category>
+<category><pattern>onbescheiden *</pattern><template>S- kan veel dingen goed</template></category>
+<category><pattern> multitasking </pattern><template>S- kan veel informatie tegelijkertijd verwerken</template></category>
+<category><pattern>* multitasking </pattern><template>S- kan veel informatie tegelijkertijd verwerken</template></category>
+<category><pattern>* multitasking *</pattern><template>S- kan veel informatie tegelijkertijd verwerken</template></category>
+<category><pattern>multitasking *</pattern><template>S- kan veel informatie tegelijkertijd verwerken</template></category>
+<category><pattern> timide </pattern><template>S- laat anderen het voortouw nemen</template></category>
+<category><pattern>* timide </pattern><template>S- laat anderen het voortouw nemen</template></category>
+<category><pattern>timide *</pattern><template>S- laat anderen het voortouw nemen</template></category>
+<category><pattern> slordig </pattern><template>S- laat mijn bezittingen rondslingeren</template></category>
+<category><pattern>* slordig </pattern><template>S- laat mijn bezittingen rondslingeren</template></category>
+<category><pattern>slordig *</pattern><template>S- laat mijn bezittingen rondslingeren</template></category>
+<category><pattern> empatisch </pattern><template>S- leef mee met andermans gevoelens</template></category>
+<category><pattern>* empatisch </pattern><template>S- leef mee met andermans gevoelens</template></category>
+<category><pattern>* empatisch *</pattern><template>S- leef mee met andermans gevoelens</template></category>
+<category><pattern>empatisch *</pattern><template>S- leef mee met andermans gevoelens</template></category>
+<category><pattern> ambitieus </pattern><template>S- lees graag uitdagende teksten</template></category>
+<category><pattern>* ambitieus </pattern><template>S- lees graag uitdagende teksten</template></category>
+<category><pattern>ambitieus *</pattern><template>S- lees graag uitdagende teksten</template></category>
+<category><pattern> slordig </pattern><template>S- maak er een rommeltje van</template></category>
+<category><pattern>* slordig </pattern><template>S- maak er een rommeltje van</template></category>
+<category><pattern>* slordig *</pattern><template>S- maak er een rommeltje van</template></category>
+<category><pattern>slordig *</pattern><template>S- maak er een rommeltje van</template></category>
+<category><pattern> zorgelijk </pattern><template>S- maak me zorgen over dingen</template></category>
+<category><pattern>* zorgelijk </pattern><template>S- maak me zorgen over dingen</template></category>
+<category><pattern>* zeurderig </pattern><template>S- mopper over dingen</template></category>
+<category><pattern>* zeurderig *</pattern><template>S- mopper over dingen</template></category>
+<category><pattern>zeurderig *</pattern><template>S- mopper over dingen</template></category>
+<category><pattern> vluchtend </pattern><template>S- onttrek me aan mijn werkzaamheden</template></category>
+<category><pattern>* vluchtend </pattern><template>S- onttrek me aan mijn werkzaamheden</template></category>
+<category><pattern>vluchtend *</pattern><template>S- onttrek me aan mijn werkzaamheden</template></category>
+<category><pattern> stil </pattern><template>S- praat niet veel</template></category>
+<category><pattern>* stil </pattern><template>S- praat niet veel</template></category>
+<category><pattern>* stil *</pattern><template>S- praat niet veel</template></category>
+<category><pattern>stil *</pattern><template>S- praat niet veel</template></category>
+<category><pattern> kortaf </pattern><template>S- raak snel ge</template></category>
+<category><pattern>* kortaf </pattern><template>S- raak snel ge</template></category>
+<category><pattern>kortaf *</pattern><template>S- raak snel ge</template></category>
+<category><pattern> paniekerig </pattern><template>S- raak snel verontrust</template></category>
+<category><pattern>* paniekerig </pattern><template>S- raak snel verontrust</template></category>
+<category><pattern>* paniekerig *</pattern><template>S- raak snel verontrust</template></category>
+<category><pattern>paniekerig *</pattern><template>S- raak snel verontrust</template></category>
+<category><pattern> beperkt </pattern><template>S- raak verstrengeld in mijn problemen</template></category>
+<category><pattern>* beperkt </pattern><template>S- raak verstrengeld in mijn problemen</template></category>
+<category><pattern>beperkt *</pattern><template>S- raak verstrengeld in mijn problemen</template></category>
+<category><pattern> netjes </pattern><template>S- ruim graag op</template></category>
+<category><pattern>* netjes </pattern><template>S- ruim graag op</template></category>
+<category><pattern>* netjes *</pattern><template>S- ruim graag op</template></category>
+<category><pattern>netjes *</pattern><template>S- ruim graag op</template></category>
+<category><pattern>* overtuigd *</pattern><template>S- sta open voor andere meningen</template></category>
+<category><pattern> dankbaar </pattern><template>S- toon mijn dankbaarheid</template></category>
+<category><pattern>* dankbaar </pattern><template>S- toon mijn dankbaarheid</template></category>
+<category><pattern>dankbaar *</pattern><template>S- toon mijn dankbaarheid</template></category>
+<category><pattern> verward </pattern><template>S- vergeet vaak spullen terug te leggen waar ze horen</template></category>
+<category><pattern>* verward </pattern><template>S- vergeet vaak spullen terug te leggen waar ze horen</template></category>
+<category><pattern>* verward *</pattern><template>S- vergeet vaak spullen terug te leggen waar ze horen</template></category>
+<category><pattern>verward *</pattern><template>S- vergeet vaak spullen terug te leggen waar ze horen</template></category>
+<category><pattern> verlegen </pattern><template>S- vind het lastig om anderen te benaderen</template></category>
+<category><pattern>* verlegen </pattern><template>S- vind het lastig om anderen te benaderen</template></category>
+<category><pattern>* verlegen *</pattern><template>S- vind het lastig om anderen te benaderen</template></category>
+<category><pattern>verlegen *</pattern><template>S- vind het lastig om anderen te benaderen</template></category>
+<category><pattern> nerveus </pattern><template>S- voel me niet zo op mijn gemak </template></category>
+<category><pattern> ontspannen </pattern><template>S- voel me op mijn gemak samen met anderen</template></category>
+<category><pattern>* ontspannen </pattern><template>S- voel me op mijn gemak samen met anderen</template></category>
+<category><pattern>ontspannen *</pattern><template>S- voel me op mijn gemak samen met anderen</template></category>
+<category><pattern> angstig </pattern><template>S- voel me snel bedreigd</template></category>
+<category><pattern>* angstig </pattern><template>S- voel me snel bedreigd</template></category>
+<category><pattern>* angstig *</pattern><template>S- voel me snel bedreigd</template></category>
+<category><pattern>angstig *</pattern><template>S- voel me snel bedreigd</template></category>
+<category><pattern> ongelukkig </pattern><template>S- voel me vaak weemoedig</template></category>
+<category><pattern>* ongelukkig </pattern><template>S- voel me vaak weemoedig</template></category>
+<category><pattern>ongelukkig *</pattern><template>S- voel me vaak weemoedig</template></category>
+<category><pattern> opgewekt </pattern><template>S- voel me zelden down</template></category>
+<category><pattern>* opgewekt </pattern><template>S- voel me zelden down</template></category>
+<category><pattern>opgewekt *</pattern><template>S- voel me zelden down</template></category>
+<category><pattern>met plezier</pattern><template>S_plezier </template></category>
+<category><pattern>landkreis regen </pattern><template>S_provincie</template></category>
+<category><pattern> dagelijks nieuws</pattern><template>S-<srai>EEN KRANT LEZEN VOOR HET NIEUWS</srai></template></category>
+<category><pattern> krantenberichten</pattern><template>S-<srai>EEN KRANT LEZEN VOOR HET NIEUWS</srai></template></category>
+<category><pattern> tv programma's</pattern><template>S-<srai>EEN KRANT LEZEN VOOR HET NIEUWS</srai></template></category>
+<category><pattern>* dagelijks nieuws</pattern><template>S-<srai>EEN KRANT LEZEN VOOR HET NIEUWS</srai></template></category>
+<category><pattern>* krantenberichten</pattern><template>S-<srai>EEN KRANT LEZEN VOOR HET NIEUWS</srai></template></category>
+<category><pattern>zal ik wat zeggen</pattern><template>S-aandacht</template></category>
+<category><pattern>aan het </pattern><template>S-aanknopingspunt</template></category>
+<category><pattern>nu eens</pattern><template>S-aanpak</template></category>
+<category><pattern>een of meer</pattern><template>S-aantal</template></category>
+<category><pattern>en veel</pattern><template>S-aantal</template></category>
+<category><pattern>heel veel</pattern><template>S-aantal</template></category>
+<category><pattern>ook nog</pattern><template>S-aanvulling</template></category>
+<category><pattern>ook nog eens</pattern><template>S-aanvulling</template></category>
+<category><pattern>* er is *</pattern><template>S-aanwezigheid</template></category>
+<category><pattern>sabel</pattern><template>sabel wapen een slag- en steekwapen onder meer gebruikt in de schermsport</template></category>
+<category><pattern>doe maar een</pattern><template>S-acceptatie</template></category>
+<category><pattern>doe maar iets</pattern><template>S-acceptatie</template></category>
+<category><pattern>mijn tips </pattern><template>S-advies </template></category>
+<category><pattern>ik haat</pattern><template>S-afkeer</template></category>
+<category><pattern>steeds minder brieven</pattern><template>S-afnamen</template></category>
+<category><pattern>ik ben er</pattern><template>S-afronding</template></category>
+<category><pattern>dit was het</pattern><template>S-afsluiting</template></category>
+<category><pattern>namelijk</pattern><template>S-afsluiting</template></category>
+<category><pattern>niet langer</pattern><template>S-afsluiting</template></category>
+<category><pattern>nog niet</pattern><template>S-afwachting</template></category>
+<category><pattern>niet echt mee</pattern><template>S-afwijzing</template></category>
+<category><pattern>is ook</pattern><template>S-alternatief</template></category>
+<category><pattern>kan ook</pattern><template>S-alternatief</template></category>
+<category><pattern>maar wat</pattern><template>S-alternatief</template></category>
+<category><pattern>samsung</pattern><template>Samsung Group â€” moederbedrijf van onder andere Samsung Electronics</template></category>
+<category><pattern>de chinese overheid</pattern><template>Sars-epidemie </template></category>
+<category><pattern>geleerd van de</pattern><template>Sars-epidemie </template></category>
+<category><pattern>lijkt te hebben</pattern><template>Sars-epidemie </template></category>
+<category><pattern>Sars-epidemie </pattern><template>Sars-epidemie </template></category>
+<category><pattern>geholpen met</pattern><template>S-assistentie</template></category>
+<category><pattern>met vlees gevuld broodje</pattern><template>sauzijzenbroodje</template></category>
+<category><pattern>Savelbos </pattern><template>Savelbos </template></category>
+<category><pattern>weet wel iets</pattern><template>S-beetje</template></category>
+<category><pattern>ik open </pattern><template>S-begin</template></category>
+<category><pattern>gaat het</pattern><template>S-belangstelling</template></category>
+<category><pattern>er is nauwelijk </pattern><template>S-beperktheid</template></category>
+<category><pattern>even ngt</pattern><template>S-beslisiing</template></category>
+<category><pattern>het voor het</pattern><template>S-beslissing</template></category>
+<category><pattern>definitief geen</pattern><template>S-besluit</template></category>
+<category><pattern>voor de</pattern><template>S-bestemming</template></category>
+<category><pattern>wiskunde meetkunde </pattern><template>S-beta</template></category>
+<category><pattern>bezig met</pattern><template>S-betrokkenheid</template></category>
+<category><pattern>hoeven niet</pattern><template>S-betrokkenheid</template></category>
+<category><pattern>ben_ik *</pattern><template>S-bevestiging</template></category>
+<category><pattern>dat wel</pattern><template>S-bevestiging</template></category>
+<category><pattern>ik kan het</pattern><template>S-bevestiging</template></category>
+<category><pattern>ik wil wel</pattern><template>S-bevestiging</template></category>
+<category><pattern>maar eens</pattern><template>S-bevestiging</template></category>
+<category><pattern>ja *</pattern><template>S-bevestiging-van-parameter</template></category>
+<category><pattern>over de</pattern><template>S-beweging</template></category>
+<category><pattern>gaande </pattern><template>S-beweging </template></category>
+<category><pattern>dit prachtige</pattern><template>S-bewondering</template></category>
+<category><pattern>op mijn</pattern><template>S-bezit</template></category>
+<category><pattern>van zijn</pattern><template>S-bezit</template></category>
+<category><pattern>niet mee</pattern><template>S-blijven</template></category>
+<category><pattern>helemaal klaar mee</pattern><template>S-boosheid</template></category>
+<category><pattern>niet meer</pattern><template>S-bovengrens</template></category>
+<category><pattern>een beschriving van het leerproces van de chatbot</pattern><template>scenario</template></category>
+<category><pattern>waarom dacht u dat</pattern><template>schijnbaar niet</template></category>
+<category><pattern>begrijpend lezen en</pattern><template>schrijven </template></category>
+<category><pattern>schrijven </pattern><template>schrijven </template></category>
+<category><pattern>te ingewikkeld</pattern><template>S-complexiteit</template></category>
+<category><pattern>er </pattern><template>S-conclusie</template></category>
+<category><pattern>er zijn</pattern><template>S-conclusie</template></category>
+<category><pattern>ik kan dus</pattern><template>S-conclusie</template></category>
+<category><pattern>moeten zeggen</pattern><template>S-conclusie</template></category>
+<category><pattern>wel dat er</pattern><template>S-conclusie</template></category>
+<category><pattern>van de *</pattern><template>S-consequentie </template></category>
+<category><pattern>* is uw *</pattern><template>S-conslusie</template></category>
+<category><pattern>er is</pattern><template>S-constatering</template></category>
+<category><pattern>doorgaan </pattern><template>S-continuiteit </template></category>
+<category><pattern>wel wat</pattern><template>S-conversatie</template></category>
+<category><pattern>* is een *</pattern><template>S-definitie</template></category>
+<category><pattern>in heel</pattern><template>S-dekking</template></category>
+<category><pattern>disco geslacht </pattern><template>S-dinastie</template></category>
+<category><pattern>van alles</pattern><template>S-diversiteit</template></category>
+<category><pattern> je het nog</pattern><template>S-doorgang</template></category>
+<category><pattern>gaat het toch</pattern><template>S-doorgang</template></category>
+<category><pattern>effe bezig</pattern><template>S-drukte</template></category>
+<category><pattern>op welk risico</pattern><template>S-durf</template></category>
+<category><pattern>* tv programma's</pattern><template>S-EEN KRANT LEZEN VOOR HET NIEUWS</template></category>
+<category><pattern>heel lang </pattern><template>S-eeuwigheid</template></category>
+<category><pattern>het is mijn</pattern><template>S-eigendom </template></category>
+<category><pattern>niet meer</pattern><template>S-einde</template></category>
+<category><pattern>tot het</pattern><template>S-einde</template></category>
+<category><pattern>het einde</pattern><template>S-eindstreep</template></category>
+<category><pattern>* zijn bijna *</pattern><template>S-benadering</template></category>
+<category><pattern>* bijna aan *</pattern><template>S-voltooiing</template></category>
+<category><pattern>* aan het* </pattern><template>S-bereik</template></category>
+<category><pattern>* we zijn *</pattern><template>S-bestemming</template></category>
+////////////////  ACNM ///////////
+
+<category><pattern>* abs</pattern><template>waar is <star index="1"/> mee te vergelijken  </template></category>
+<category><pattern>* acr</pattern><template><star index="1"/> is een acroniem </template></category>
+<category><pattern>* adn</pattern><template>symptomen van <star index="1"/> </template></category>
+<category><pattern>* adv</pattern><template>op welke wijze is <star index="1"/> gerelateerd aan advocatuur </template></category>
+<category><pattern>* afk</pattern><template>waar is <star index="1"/> de afkorting van </template></category>
+<category><pattern>* afk</pattern><template>waar is de afkorting <star index="1"/> van afgeleid </template></category>
+<category><pattern>* afm</pattern><template>wat draagt <star index="1"/> bij aan de toename </template></category>
+<category><pattern>* afs</pattern><template>wat moet er nog overbrugd worden </template></category>
+<category><pattern>* afw</pattern><template>wat is de reden van uw opmerking <star index="1"/> </template></category>
+<category><pattern>* afz</pattern><template>van wie is <star index="1"/> afkomstig </template></category>
+<category><pattern>* alg</pattern><template>hoe algemeen is <star index="1"/> </template></category>
+<category><pattern>* and</pattern><template>wat zijn de symptomen van <star index="1"/> </template></category>
+<category><pattern>* anm</pattern><template>Waarvan is de achternaam <star index="1"/> afgeleid </template></category>
+<category><pattern>* ant</pattern><template>uit hoeveel bestaat het <star index="1"/> </template></category>
+<category><pattern>* art</pattern><template>werkte u als kunstenaar </template></category>
+<category><pattern>* bdr</pattern><template>Hoe hoog is het bedrag <star index="1"/> </template></category>
+<category><pattern>* bdr</pattern><template>Bent u klant van dit bedrijf? ja nee </template></category>
+<category><pattern>* bel</pattern><template>hoe beleefd kun je zijn </template></category>
+<category><pattern>* bhr</pattern><template>Door wie wordt <star index="1"/> beheerd </template></category>
+<category><pattern>* bij</pattern><template>wat is de bijdrage van <star index="1"/> </template></category>
+<category><pattern>* blf</pattern><template>wie gebruikt deze <star index="1"/> </template></category>
+<category><pattern>* bpk</pattern><template>wat zijn uw beperkingen door <star index="1"/> </template></category>
+<category><pattern>* brd</pattern><template>Welke grenzen betreft het hier </template></category>
+<category><pattern>* brg</pattern><template>waarom is <star index="1"/> grof taalgebruik </template></category>
+<category><pattern>* brp</pattern><template>wat doet een <star index="1"/> </template></category>
+<category><pattern>* brp</pattern><template>Is dit een kantoorbaan of een buitendienstfunctie? kantoorbaan buitendienstfunctie </template></category>
+<category><pattern>* brp</pattern><template>Is <star index="1"/> uw beroep? ja nee </template></category>
+<category><pattern>* bsc</pattern><template>welke bescherming biedt <star index="1"/> </template></category>
+<category><pattern>* bsc</pattern><template>waar bestaat de bescherming door <star index="1"/> uit </template></category>
+<category><pattern>* brs</pattern><template>wat is <star index="1"/> voor een brandstof </template></category>
+<category><pattern>* bst</pattern><template>Is dit een tam of wild dier <star index="1"/> </template></category>
+<category><pattern>* bsw</pattern><template>kent u afgeleide woorden of een zin met <star index="1"/> </template></category>
+<category><pattern>* bsw</pattern><template>kent u afgeleide woorden van <star index="1"/> </template></category>
+<category><pattern>* btn</pattern><template><star index="1"/> is een buitensport waar wordt beoefend </template></category>
+<category><pattern>* bvn</pattern><template>waar blijkt <star index="1"/> uit </template></category>
+<category><pattern>* bwd</pattern><template>wat voegt <star index="1"/> voor u toe </template></category>
+<category><pattern>* bwg</pattern><template>welke beweging wordt gemaakt bij het <star index="1"/> </template></category>
+<category><pattern>* bwg</pattern><template>welke beweging of handeling is verbonden met <star index="1"/> </template></category>
+<category><pattern>* bwg</pattern><template>welke beweging is gekoppeld aan <star index="1"/> </template></category>
+<category><pattern>* bwn</pattern><template>hoeveel inwoners telt <star index="1"/> </template></category>
+<category><pattern>* bws</pattern><template>kunt u het daarmee eens zijn </template></category>
+<category><pattern>* bwt</pattern><template>Bent u bewust op bezoek bij <star index="1"/> </template></category>
+<category><pattern>* cio</pattern><template>wie is de<star index="1"/> </template></category>
+<category><pattern>* clc</pattern><template>welke conclusie wordt hier getrokken </template></category>
+<category><pattern>* cls</pattern><template>wat sluit <star index="1"/> af </template></category>
+<category><pattern>* cmp</pattern><template>in welke competitie worden <star index="1"/> gespeeld </template></category>
+<category><pattern>* cmp</pattern><template>In hoeverre moet het anders </template></category>
+<category><pattern>* cmt</pattern><template>vindt <star index="1"/>  in competitieverband plaats </template></category>
+<category><pattern>* cnc</pattern><template>hoe concreet is <star index="1"/> </template></category>
+<category><pattern>* com</pattern><template>who are exchancing <star index="1"/> </template></category>
+<category><pattern>* com</pattern><template>what is the <star index="1"/> about </template></category>
+<category><pattern>* com</pattern><template>Tussen welke partijen wordt  of worden <star index="1"/> uitgewisseld </template></category>
+<category><pattern>* cpb</pattern><template>waar is de afkorting cpb van afgeleid </template></category>
+<category><pattern>* cpt</pattern><template>what country </template></category>
+<category><pattern>* cre</pattern><template>bedoelt u produceren als <star index="1"/> </template></category>
+<category><pattern>* crm</pattern><template>wat is er crimineel aan <star index="1"/> </template></category>
+<category><pattern>* crt</pattern><template>is <star index="1"/> een credit post </template></category>
+<category><pattern>* crt</pattern><template>wat is het creatieve resultaat van <star index="1"/> </template></category>
+<category><pattern>* csq</pattern><template>wat is het gevolg van <star index="1"/> </template></category>
+<category><pattern>* csq</pattern><template>wat zijn de consequenties </template></category>
+<category><pattern>* cyn</pattern><template>Hoe cynisch is <star index="1"/> bedoeld </template></category>
+<category><pattern>* cyn</pattern><template>cynisme kan geen kwaad als het om <star index="1"/> gaat </template></category>
+<category><pattern>* dbt</pattern><template>is <star index="1"/> een debet post </template></category>
+<category><pattern>* dng</pattern><template>wat is er denigrerend aan <star index="1"/> </template></category>
+<category><pattern>* dnk</pattern><template>bevat <star index="1"/> alcohol en wat is het percentage </template></category>
+<category><pattern>* doc</pattern><template>waar vindt u <star index="1"/> </template></category>
+<category><pattern>* doc</pattern><template>wat is in <star index="1"/> gepubliceerd </template></category>
+<category><pattern>* dom</pattern><template>waar ligt <star index="1"/> </template></category>
+<category><pattern>* drk</pattern><template>bevat <star index="1"/> wel of geen alcohol </template></category>
+<category><pattern>* drk</pattern><template>wordt <star index="1"/> warm of gekoeld gedronken </template></category>
+<category><pattern>* drk</pattern><template>wat is het type drank </template></category>
+<category><pattern>* drv</pattern><template>Hoe gedreven ben je dan </template></category>
+<category><pattern>* dst</pattern><template>welke diersoort is <star index="1"/> </template></category>
+<category><pattern>* dtm</pattern><template>hoe is schrijfwijze </template></category>
+<category><pattern>* dus</pattern><template>vrwz </template></category>
+<category><pattern>* dwg</pattern><template>waarmee ging <star index="1"/> Gepaard(dwangbevel(aanmaning(aanmoediging(aansproring </template></category>
+<category><pattern>* dwg</pattern><template>door wie werd er door <star index="1"/> dwang uitgeoefend </template></category>
+<category><pattern>* edc</pattern><template>wat is de relatie tussen <star index="1"/> en onderwijs </template></category>
+<category><pattern>* eml</pattern><template>kies uw e-mail programma </template></category>
+<category><pattern>* emt</pattern><template>what emotion is relevant for <star index="1"/> </template></category>
+<category><pattern>* emt</pattern><template>welke emotie voelt u bij <star index="1"/> </template></category>
+<category><pattern>* emt</pattern><template>wat is uw gevoel bij <star index="1"/> </template></category>
+<category><pattern>* epe</pattern><template>wat bent u verder aan het doen </template></category>
+<category><pattern>* epi</pattern><template>is dit een afsluitng </template></category>
+<category><pattern>* ert</pattern><template>wat zou er erotische aan <star index="1"/> kunnen zijn </template></category>
+<category><pattern>* ext</pattern><template>wat is de ip-extentie van <star index="1"/> </template></category>
+<category><pattern>* fcs</pattern><template>Van wie is <star index="1"/> afkomstig </template></category>
+<category><pattern>* fig</pattern><template>bedoelt u <star index="1"/> figuurlijk als in de aex heeft de bodem geraakt </template></category>
+<category><pattern>* fgr</pattern><template>bestaat <star index="1"/> voor u </template></category>
+<category><pattern>* flm</pattern><template>waar gaat <star index="1"/> over </template></category>
+<category><pattern>* fmt</pattern><template>Welke formaten bestaan er </template></category>
+<category><pattern>* fin</pattern><template>wat is relatie met geld of kapitaal </template></category>
+<category><pattern>* fnc</pattern><template>wat is de relatie tussen <star index="1"/> en geld of kapitaal </template></category>
+<category><pattern>* frq</pattern><template>met welk frequentie komt <star index="1"/> voor </template></category>
+<category><pattern>* frq</pattern><template>Hoe vaak komt dat voor </template></category>
+<category><pattern>* fst</pattern><template>waarom wordt <star index="1"/> gevierd </template></category>
+<category><pattern>* fst</pattern><template>hoe lang duurt dit feest </template></category>
+<category><pattern>* ftl</pattern><template>Hoe lang is dat </template></category>
+<category><pattern>* fun</pattern><template>wat is de bijdrage van <star index="1"/> aan semanta </template></category>
+<category><pattern>* geb</pattern><template>door wie wordt de gebiedende wijs toegepast </template></category>
+<category><pattern>* geo</pattern><template>wat is de geografisch vorm van <star index="1"/> </template></category>
+<category><pattern>* geo</pattern><template>wat is de realtie tussen <star index="1"/> en geografie </template></category>
+<category><pattern>* glf</pattern><template>tot welk geloof behoort een <star index="1"/> </template></category>
+<category><pattern>* gnd</pattern><template>wat is het geslacht van <star index="1"/> </template></category>
+<category><pattern>* gps</pattern><template>postadres en bezoekadres van <star index="1"/> </template></category>
+<category><pattern>* gps</pattern><template>wat is de locatie van <star index="1"/> </template></category>
+<category><pattern>* grd</pattern><template>waar wordt <star index="1"/> Voor gebruikt </template></category>
+<category><pattern>* grd</pattern><template>waar gebruikt u <star index="1"/> voor </template></category>
+<category><pattern>* grp</pattern><template>tot welke groep hoort <star index="1"/> volgens u </template></category>
+<category><pattern>* grs</pattern><template>wat is het type <star index="1"/> </template></category>
+<category><pattern>* grw</pattern><template>wat is de gruwelijkheid van <star index="1"/> </template></category>
+<category><pattern>* grw</pattern><template>wat is er gruwelijk aan <star index="1"/> </template></category>
+<category><pattern>* gsc</pattern><template>wat gebeurde er in <star index="1"/> en wat betekent dat voor de geschiedenis </template></category>
+<category><pattern>* gst</pattern><template>zijn er nog andere geestelijken vergelijkbaar met <star index="1"/> </template></category>
+<category><pattern>* get</pattern><template>als cijfer meer dan vijf en half </template></category>
+<category><pattern>* gtl</pattern><template>is <star index="1"/> een echt getal </template></category>
+<category><pattern>* gvg</pattern><template>wat zijn de gevolgen van <star index="1"/> </template></category>
+<category><pattern>* gvg</pattern><template>geeft <star index="1"/> een gevolg aan </template></category>
+<category><pattern>* gvg</pattern><template>hoe wordt omgegaan met de gevolgen van <star index="1"/> </template></category>
+<category><pattern>* gvl</pattern><template>welk gevoelt heeft u hierbij </template></category>
+<category><pattern>* gvl</pattern><template>met welk gevoel gaat u met <star index="1"/> aan de gang </template></category>
+<category><pattern>* gvr</pattern><template>wat is het gevaar </template></category>
+<category><pattern>* gwd</pattern><template>welke vorm van geweld is gerelateerd aan <star index="1"/> </template></category>
+<category><pattern>* gws</pattern><template>tot welk gewas behoort <star index="1"/> </template></category>
+<category><pattern>* gzg</pattern><template>over welk gezag gaat het hier </template></category>
+<category><pattern>* gzn</pattern><template>uit hoeveel mensen bestaat <star index="1"/> </template></category>
+<category><pattern>* hbo</pattern><template>Waar heeft u deze opleiding gevolgd </template></category>
+<category><pattern>* hbo</pattern><template>Heeft u een diploma </template></category>
+<category><pattern>* hdr</pattern><template>was ist die Behinderung von <star index="1"/> </template></category>
+<category><pattern>* hdr</pattern><template>welke hinder ondervindt u </template></category>
+<category><pattern>* hij</pattern><template>wie wordt er bedoeld </template></category>
+<category><pattern>* hij</pattern><template>wie wordt hier bedoeld </template></category>
+<category><pattern>* hmr</pattern><template>wat is de humor van <star index="1"/> </template></category>
+<category><pattern>* hmr</pattern><template>wat vindt u humoristisch aan <star index="1"/> </template></category>
+<category><pattern>* hng</pattern><template>heeft u honger </template></category>
+<category><pattern>* hpe</pattern><template>welke hoop heeft u van <star index="1"/> </template></category>
+<category><pattern>* hrh</pattern><template>hoe vaak wordt <star index="1"/> herhaald </template></category>
+<category><pattern>* hvl</pattern><template>Om hoeveel <star index="1"/> gaat het hier </template></category>
+<category><pattern>* aux</pattern><template>hoe wordt het hulpwerkwoord gebruikt </template></category>
+<category><pattern>* hwd</pattern><template>wat is het gebruik van <star index="1"/> als hulpwerkwoord </template></category>
+<category><pattern>* ibm</pattern><template>wat is de relatie tussen <star index="1"/> en ibm </template></category>
+<category><pattern>* ict</pattern><template>welke relatie heeft <star index="1"/> met ict </template></category>
+<category><pattern>* inh</pattern><template>wat is de strekking van <star index="1"/> </template></category>
+<category><pattern>* isc</pattern><template>welke <star index="1"/> was dat </template></category>
+<category><pattern>* ins</pattern><template>wat is het type insect </template></category>
+<category><pattern>* ist</pattern><template>wat is er beledigend aan het woord <star index="1"/> </template></category>
+<category><pattern>* ist</pattern><template>aan wie is <star index="1"/> gericht </template></category>
+<category><pattern>* jgt</pattern><template>in welk jaargetijde hebben we te maken met <star index="1"/> </template></category>
+<category><pattern>* joh</pattern><template>verzwakking </template></category>
+<category><pattern>* jtl</pattern><template>In welke jaartelling.  Joods Islamitisch Christelijk Russisch Chinees </template></category>
+<category><pattern>* jur</pattern><template>wat is de relatie tussen <star index="1"/> en juridisch </template></category>
+<category><pattern>* kgt</pattern><template>van welke plaats is <star index="1"/> het kengetal </template></category>
+<category><pattern>* kdy</pattern><template>dames heren </template></category>
+<category><pattern>* kld</pattern><template>waarom ga je gekleed met <star index="1"/> </template></category>
+<category><pattern>* kmp</pattern><template>voor welk kampioenschap wordt gestreden </template></category>
+<category><pattern>* knb</pattern><template>hoe is <star index="1"/> betrokken bij </template></category>
+<category><pattern>* knd</pattern><template>met wie is <star index="1"/> te verbinden </template></category>
+<category><pattern>* knm</pattern><template>welk geloof speelt hier een rol </template></category>
+<category><pattern>* krk</pattern><template>welk geloof hoort bij <star index="1"/> </template></category>
+<category><pattern>* ktr</pattern><template>wat is de relatie tussen <star index="1"/> en kantoor </template></category>
+<category><pattern>* kvk</pattern><template>in welke plaats </template></category>
+<category><pattern>* kwl</pattern><template>welke kwaliteiten spelen bij <star index="1"/> een rol </template></category>
+<category><pattern>* kwt</pattern><template>hoe kwetsbaar ben je door <star index="1"/> </template></category>
+<category><pattern>* kwt</pattern><template>is <star index="1"/> meer dan duizend(minder dan duizend(specifiek aantal </template></category>
+<category><pattern>* lch</pattern><template>what part of the body is related to <star index="1"/> </template></category>
+<category><pattern>* lcd</pattern><template>welk deel van het lichaam </template></category>
+<category><pattern>* lcf</pattern><template>wat is functie van <star index="1"/> voor het lichaam </template></category>
+<category><pattern>* les</pattern><template>Welke les heeft u geleerd </template></category>
+<category><pattern>* lnm</pattern><template>wat is de latijnse naam voor <star index="1"/> </template></category>
+<category><pattern>* ltr</pattern><template>bedoelt u <star index="1"/> letterlijk als de <star index="1"/> van de zee </template></category>
+<category><pattern>* lul</pattern><template>bedoelt u het orgaan of een mannelijk persoon </template></category>
+<category><pattern>* lvn</pattern><template>wat is de betekenis van <star index="1"/> voor het leven </template></category>
+<category><pattern>* lvr</pattern><template>Door wie wordt <star index="1"/> geleverd </template></category>
+<category><pattern>* lvg</pattern><template>wie maakt gebruik van <star index="1"/> </template></category>
+<category><pattern>* man</pattern><template>echtgenoot mannelijk persoon krachtig persoon kerel </template></category>
+<category><pattern>* mdc</pattern><template>waar wordt <star index="1"/> als medicijn voor gebruikt </template></category>
+<category><pattern>* mdl</pattern><template>Welke modaliteit geldt voor <star index="1"/> </template></category>
+<category><pattern>* mgl</pattern><template>welke mogelijkheden worden gevraagd </template></category>
+<category><pattern>* mil</pattern><template>wat is de relatie tussen het milieu en <star index="1"/> </template></category>
+<category><pattern>* mnd</pattern><template>tijd </template></category>
+<category><pattern>* mng</pattern><template>geef uw mening over <star index="1"/> </template></category>
+<category><pattern>* mng</pattern><template>wat is uw mening hierover </template></category>
+<category><pattern>* mnm</pattern><template>wat is de medisch benaming voor <star index="1"/> </template></category>
+<category><pattern>* jnm</pattern><template>jip en janneke taal voor <star index="1"/> </template></category>
+<category><pattern>* snm</pattern><template>is er ook een eenvodige naam voor <star index="1"/> </template></category>
+<category><pattern>* mnt</pattern><template>hoe bekend is <star index="1"/> als monument </template></category>
+<category><pattern>* mos</pattern><template>kent u naast <star index="1"/> meer mossoorten </template></category>
+<category><pattern>* mrf</pattern><template><star index="1"/> is een morfeem </template></category>
+<category><pattern>* msd</pattern><template>wat is het karakter van <star index="1"/> </template></category>
+<category><pattern>* msr</pattern><template>hebben het recht </template></category>
+<category><pattern>* mst</pattern><template>wat maakt <star index="1"/> tot een mysterie </template></category>
+<category><pattern>* mtv</pattern><template>Hoe motiveert <star index="1"/> U </template></category>
+<category><pattern>* mvd</pattern><template>how many <star index="1"/> are there involved </template></category>
+<category><pattern>* mvd</pattern><template>hoeveel <star index="1"/> zijn dat dan </template></category>
+<category><pattern>* mzk</pattern><template>wat is relatie tussen muziek en <star index="1"/> </template></category>
+<category><pattern>* nat</pattern><template>kent meer mensen met de nationaliteit <star index="1"/> </template></category>
+<category><pattern>* ndr</pattern><template>wat is de nadruk </template></category>
+<category><pattern>* ndz</pattern><template>wie bepaalt de noodzaak van iets </template></category>
+<category><pattern>* nee</pattern><template>iets anders dan </template></category>
+<category><pattern>* ngt</pattern><template>wat is het negatieve aan <star index="1"/> </template></category>
+<category><pattern>* nle</pattern><template>waar is de afkorting nle van afgeleid </template></category>
+<category><pattern>* ntk</pattern><template>welk deel van de natuurkunde houdt zich bezig met <star index="1"/> </template></category>
+<category><pattern>* num</pattern><template>wat is het nummer van <star index="1"/> </template></category>
+<category><pattern>* nvo</pattern><template>welke niveaus van <star index="1"/> kent u </template></category>
+<category><pattern>* nws</pattern><template>waarom is <star index="1"/> in het nieuws </template></category>
+<category><pattern>* odw</pattern><template>Wanneer was dit </template></category>
+<category><pattern>* off</pattern><template>wat is het officiele karakter van <star index="1"/> </template></category>
+<category><pattern>* ond</pattern><template>wat is het onderwerp van <star index="1"/> </template></category>
+<category><pattern>* ond</pattern><template>wat is er ondeugend aan een <star index="1"/> </template></category>
+<category><pattern>* onn</pattern><template>wat is er onnatuurlijk aan <star index="1"/> </template></category>
+<category><pattern>* opa</pattern><template>van moeders kant van vaderskant </template></category>
+<category><pattern>* opl</pattern><template>welke opleiding volgt een <star index="1"/> </template></category>
+<category><pattern>* opn</pattern><template>heeft u nog andere opinies over <star index="1"/> </template></category>
+<category><pattern>* opp</pattern><template>hoe is het oppervlak  van <star index="1"/> bepaald </template></category>
+<category><pattern>* org</pattern><template>wie of wat maakt er deel uit van <star index="1"/> </template></category>
+<category><pattern>* ori</pattern><template>waar bent u vandaan ge<star index="1"/> </template></category>
+<category><pattern>* orz</pattern><template>geeft <star index="1"/> een oorzaak aan </template></category>
+<category><pattern>* ovg</pattern><template>wat is het lijdend voorwerp voor <star index="1"/> </template></category>
+<category><pattern>* ozd</pattern><template>wat is er onzedelijk aan <star index="1"/> </template></category>
+<category><pattern>* ozk</pattern><template>waarover bent u onzeker </template></category>
+<category><pattern>* pbl</pattern><template>wie publiceert <star index="1"/> </template></category>
+<category><pattern>* pcp</pattern><template>door wie wordt <star index="1"/> als principe gehanteerd </template></category>
+<category><pattern>* pdg</pattern><template>welke pedagogisch aspecten zijn aan de orde bij <star index="1"/> </template></category>
+<category><pattern>* pds</pattern><template>wat is het type paddenstoel of zwam </template></category>
+<category><pattern>* php</pattern><template>wat is de rol van <star index="1"/> in semanta </template></category>
+<category><pattern>* pln</pattern><template>welke type <star index="1"/> zis of zijn er </template></category>
+<category><pattern>* pls</pattern><template>hoe positief is dit </template></category>
+<category><pattern>* plt</pattern><template>wat is de relatie tussen <star index="1"/> en politiek </template></category>
+<category><pattern>* png</pattern><template>positief met negatieve aspecten </template></category>
+<category><pattern>* png</pattern><template>wilt u iets vertellen over --.<star index="1"/> </template></category>
+<category><pattern>* prc</pattern><template>wat is uw betrokkenheid bij <star index="1"/> </template></category>
+<category><pattern>* prc</pattern><template>Wat of wie maken deel uit van dit proces </template></category>
+<category><pattern>* prc</pattern><template>wat is het resultaat van het process <star index="1"/> </template></category>
+<category><pattern>* prc</pattern><template>Wat is het resultaat van dit proces </template></category>
+<category><pattern>* prd</pattern><template>Over welke periode gaat <star index="1"/> </template></category>
+<category><pattern>* prp</pattern><template>waar is de eigen naam <star index="1"/> van afgeleid </template></category>
+<category><pattern>* prs</pattern><template>waar woont <star index="1"/> </template></category>
+<category><pattern>* prs</pattern><template>waar bevindt zich <star index="1"/> </template></category>
+<category><pattern>* prs</pattern><template>Kent u de persoon of personen in kwestie als het over <star index="1"/> gaat </template></category>
+<category><pattern>* prt</pattern><template>wat is de ernst van uw vraag </template></category>
+<category><pattern>* prv</pattern><template>in welk deel van invrland ligt <star index="1"/> </template></category>
+<category><pattern>* prv</pattern><template>wat is de hoodstad van <star index="1"/> </template></category>
+<category><pattern>* pst</pattern><template>welk type parasiet is  <star index="1"/> </template></category>
+<category><pattern>* pts</pattern><template>is <star index="1"/> locatie plaats </template></category>
+<category><pattern>* pvc</pattern><template>wat is de hoofdstad van de provincie <star index="1"/> </template></category>
+<category><pattern>* rcp</pattern><template>wat is het recept van <star index="1"/> </template></category>
+<category><pattern>* rep</pattern><template>bedoelt u repareren als <star index="1"/> </template></category>
+<category><pattern>* rit</pattern><template>begin en einde <star index="1"/> </template></category>
+<category><pattern>* rlg</pattern><template>bij welke religie vind ik <star index="1"/> </template></category>
+<category><pattern>* rlx</pattern><template>welke vorm van relaxatie of ontspanning veroorzaakt <star index="1"/> </template></category>
+<category><pattern>* rlx</pattern><template>moet er ook betaald worden voor <star index="1"/> </template></category>
+<category><pattern>* rmt</pattern><template>Welk deel van de ruimte </template></category>
+<category><pattern>* rsc</pattern><template>welk risico doet zich hierbij voor </template></category>
+<category><pattern>* rst</pattern><template>Geeft het u rust </template></category>
+<category><pattern>* rvr</pattern><template>van waar naar waar loopt de <star index="1"/> </template></category>
+<category><pattern>* rvr</pattern><template>waar stroomt de rivier <star index="1"/> </template></category>
+<category><pattern>* sat</pattern><template>Hoe satirisch is <star index="1"/> bedoeld </template></category>
+<category><pattern>* scl</pattern><template>wat is het sociale karakter van <star index="1"/> </template></category>
+<category><pattern>* skr</pattern><template>hoeveel suiker zit er in <star index="1"/> </template></category>
+<category><pattern>* smk</pattern><template>wat is de smaak van <star index="1"/> </template></category>
+<category><pattern>* smk</pattern><template>welke smaak heeft <star index="1"/> </template></category>
+<category><pattern>* soc</pattern><template>wat zijn de sociale aspecten van <star index="1"/> </template></category>
+<category><pattern>* spc</pattern><template>wat is er speciaal aan <star index="1"/> </template></category>
+<category><pattern>* spl</pattern><template>welk spel speelt <star index="1"/> </template></category>
+<category><pattern>* spr</pattern><template>kan het nog beter </template></category>
+<category><pattern>* spt</pattern><template>tot welke sport hoort <star index="1"/> </template></category>
+<category><pattern>* stm</pattern><template>welke stimulans wordt bedoeld </template></category>
+<category><pattern>* sts</pattern><template>wat is de situatie als <star index="1"/> afgesloten is </template></category>
+<category><pattern>* sts</pattern><template>wat is de status na <star index="1"/> </template></category>
+<category><pattern>* stv</pattern><template>wat is de staatsvorm van <star index="1"/> </template></category>
+<category><pattern>* svb</pattern><template>sociale verzekeringsbank </template></category>
+<category><pattern>* sww</pattern><template>tweede wereldoorlog wat vond er plaats </template></category>
+<category><pattern>* tbd</pattern><template>moet nog verder bewerkt worden </template></category>
+<category><pattern>* tbs</pattern><template>wanneer wordt tbs opgelegd </template></category>
+<category><pattern>* tgn</pattern><template>wat is de tegenstelling van <star index="1"/> </template></category>
+<category><pattern>* tgn</pattern><template>waar kan de tegenstelling door veroorzaakt zijn </template></category>
+<category><pattern>* tlc</pattern><template>kunt u <star index="1"/> toelichten </template></category>
+<category><pattern>* tlf</pattern><template>wat is het kengetal van <star index="1"/> </template></category>
+<category><pattern>* tlf</pattern><template>Wie kunt u via <star index="1"/> Bellen </template></category>
+<category><pattern>* tlk</pattern><template>welk onderdeel van de taalkunde is aan de orde </template></category>
+<category><pattern>* tme</pattern><template>Wanneer is dat dan </template></category>
+<category><pattern>* tpe</pattern><template>om welke type <star index="1"/> gaat het hier </template></category>
+<category><pattern>* tpe</pattern><template>waarom spreekt u mij aan </template></category>
+<category><pattern>* tpm</pattern><template>wie bedoelt u daarmee </template></category>
+<category><pattern>* trg</pattern><template>welk doel is er bereikt </template></category>
+<category><pattern>* trj</pattern><template>welke weg volgt <star index="1"/> </template></category>
+<category><pattern>* tvl</pattern><template>welk toeval speelt bij <star index="1"/> een rol </template></category>
+<category><pattern>* tvl</pattern><template>Bent u toevallig op bezoek bij <star index="1"/> </template></category>
+<category><pattern>* twl</pattern><template>waar heeft u twijfel over </template></category>
+<category><pattern>* twp</pattern><template>wat wordt bedoeld </template></category>
+<category><pattern>* twz</pattern><template>waar verwijst <star index="1"/> naar terug </template></category>
+<category><pattern>* ugv</pattern><template>gaat dit om geld() media() dagblad() boeken() muziek() </template></category>
+<category><pattern>* uit</pattern><template>kan het ook weer aan </template></category>
+<category><pattern>* unv</pattern><template>met welke universiteit is <star index="1"/> verbonden </template></category>
+<category><pattern>* url</pattern><template>Wilt u op bezoek bij http://www.<star index="1"/> </template></category>
+<category><pattern>* urp</pattern><template>wat is het doel van de uitroep <star index="1"/> </template></category>
+<category><pattern>* val</pattern><template>wat ging er mis </template></category>
+<category><pattern>* vat</pattern><template>wat bevat het vat </template></category>
+<category><pattern>* vbd</pattern><template>wat wordt er door <star index="1"/> met elkaar verbonden </template></category>
+<category><pattern>* vdl</pattern><template>welk voordeel is gerelateerd aan <star index="1"/> </template></category>
+<category><pattern>* vds</pattern><template>wat is <star index="1"/> voor voedsel </template></category>
+<category><pattern>* vds</pattern><template>kan of kunnen <star index="1"/> rauw gegeten worden </template></category>
+<category><pattern>* vds</pattern><template>hoe kun je <star index="1"/> in een recept gebruiken </template></category>
+<category><pattern>* vdt</pattern><template>welk verdriet is aan <star index="1"/> gekoppeld </template></category>
+<category><pattern>* vdw</pattern><template>wanneer was dat </template></category>
+<category><pattern>* ver</pattern><template>wat gaat u met vergelijking doen </template></category>
+<category><pattern>* vgl</pattern><template>waarmee wordt <star index="1"/> vergeleken </template></category>
+<category><pattern>* vgl</pattern><template>is <get name="invrlnks"></get> een voorwaarde voor <get name="invrrchs"></get> </template></category>
+<category><pattern>* vgp</pattern><template>welke gesprekspartner is gerelateerd aan <star index="1"/> </template></category>
+<category><pattern>* vgw</pattern><template>welke verbinding geldt hier </template></category>
+<category><pattern>* vlk</pattern><template>waar bestaat de vergelijking uit </template></category>
+<category><pattern>* vls</pattern><template>welke vloeistof kun je bewaren met <star index="1"/> </template></category>
+<category><pattern>* vls</pattern><template>welke vloeistof kun je koppelen aan <star index="1"/> </template></category>
+<category><pattern>* vnm</pattern><template>waar is voornaam naam <star index="1"/> van afgeleid </template></category>
+<category><pattern>* vol</pattern><template>wat is het volume van <star index="1"/> </template></category>
+<category><pattern>* vpr</pattern><template>is <star index="1"/> een virtueel persoon </template></category>
+<category><pattern>* vra</pattern><template>wie heeft de verantwoordelijkheid voor <star index="1"/> </template></category>
+<category><pattern>* vrg</pattern><template>heeft u antwoord voor de vraag </template></category>
+<category><pattern>* vrm</pattern><template>welke vorm heeft <star index="1"/> </template></category>
+<category><pattern>* vrv</pattern><template>welk vervoermiddel wordt gebruikt </template></category>
+<category><pattern>* vrw</pattern><template>waar verwijst <star index="1"/> naar </template></category>
+<category><pattern>* vrw</pattern><template>wat verwacht u van <star index="1"/> </template></category>
+<category><pattern>* vwd</pattern><template>wat gebeurt er dan </template></category>
+<category><pattern>* vwd</pattern><template>is er een voorwaarde verbonden aan <star index="1"/> </template></category>
+<category><pattern>* vwd</pattern><template>is dit een veronderstelling </template></category>
+<category><pattern>* vzg</pattern><template>waarom maakt u een voorbehoud </template></category>
+<category><pattern>* weg</pattern><template>u bent er vandoor </template></category>
+<category><pattern>* wet</pattern><template>aan welke wet is <star index="1"/> gerelateerd </template></category>
+<category><pattern>* wnm</pattern><template>wat neem je waar bij een <star index="1"/> </template></category>
+<category><pattern>* wpn</pattern><template>waar wordt <star index="1"/> ingezet en voor wie </template></category>
+<category><pattern>* wrd</pattern><template>hoe wreed kan het worden door <star index="1"/> </template></category>
+<category><pattern>* wsc</pattern><template>tot welke wetenschap hoort <star index="1"/> </template></category>
+<category><pattern>* wwd</pattern><template><star index="1"/> houdt voor mij in </template></category>
+<category><pattern>* wwd</pattern><template>werkwoord </template></category>
+<category><pattern>* xpe</pattern><template>wat is het resultaat van <star index="1"/> volgens u </template></category>
+<category><pattern>* xpm</pattern><template>wat is het resultaat van <star index="1"/> volgens u </template></category>
+<category><pattern>* xpv</pattern><template>wanneer was <star index="1"/> aan de orde </template></category>
+<category><pattern>* xpv</pattern><template>Hoe is dat nu </template></category>
+<category><pattern>* xxx</pattern><template><star index="1"/> is een volwassen woord </template></category>
+<category><pattern>* zal</pattern><template>wanneer gaat dit gebeuren </template></category>
+<category><pattern>* zee</pattern><template>bij welke zee ligt <star index="1"/> </template></category>
+<category><pattern>* zee</pattern><template>Wat is de relatie tussen de zee en of oceaan met <star index="1"/> </template></category>
+<category><pattern>* zkh</pattern><template>welke zekerheid biedt <star index="1"/> </template></category>
+<category><pattern>* znt</pattern><template>welke zintuigen zijn hierbij betrokken </template></category>
+<category><pattern>* znw</pattern><template>wat is voor u de betekenis van <star index="1"/> </template></category>
+<category><pattern>* zrg</pattern><template>welke type(n) zorg wordt verleend door <star index="1"/> </template></category>
+<category><pattern>* ztg</pattern><template>welk zintuig is hier aan de orde </template></category>
+<category><pattern>* zzp</pattern><template>is <star index="1"/> een zzp </template></category>
+<category><pattern>* vlt</pattern><template>wat is het voltage van <star index="1"/>  </template></category>
+<category><pattern>* twf</pattern><template>Waarom twijfelt u over <star index="1"/> </template></category>	<!-- insert your AIML categories here -->
+
+<category>
+    <pattern>xgram</pattern>
+    <template>
+        <button>
+            <text>go</text>
+            <postback><get name="invraiml"></get> <get name="invracnm"></get></postback>
+</button>
+    </template>
+</category>
+<category>
+<pattern>proloog</pattern><template>
+<button><text>Semanta toelichting</text><url>https://www.semanta.nl/semanta/smta-prlg.pdf</url></button>
+<button>proloog vorm - inleiding van onder andere verhaal tekst muziek toneel</button>
+<button>proloog wielrennen - inleidende ronde voordat een eigenlijke uit meer ronden bestaande wedstrijd begint</button>
+<button>Proloog tijdschrift - tijdschrift</button>
+<button>Toneelwerkgroep Proloog - voormalige toneelgroep</button>
+<button><text>Semanta toelichting</text><url>https://www.semanta.nl/semanta/smta-prlg.pdf</url>
+</button>
+</template></category>
+<category>
+    <pattern>sprookje</pattern>
+    <template>een verhaal met een boodschap</template>
+</category>
+<category>
+    <pattern>* sprookje</pattern>
+    <template>een verhaal met een boodschap</template>
+</category>
+
+<category>
+    <pattern>geloof *</pattern>
+    <template>er is altijd hoop</template>
+</category>
+
+<category>
+<pattern>nieuwsgierigheid</pattern><template>
+<button>Nieuwsgierigheid is een natuurlijk onderzoekend gedrag dat voorkomt bij de mens en vele andere diersoorten en is het emotionele</button><button>Met de term nieuwsgierigheid kan zowel het gedrag als ook de onderliggende emotie worden bedoeld </button><button>Tegenovergesteld aan nieuwsgierigheid is neofobie ofwel angst voor alles wat nieuw of onbekend is </button><button></button>
+</template></category>
+<category>
+    <pattern>web</pattern>
+    <template>
+        gaat u de website bezoeken?
+    </template>
+</category>
+<category>
+    <pattern>brp</pattern>
+    <template>
+        welk beroep is aan de orde
+    </template>
+</category>
+<category><pattern>duofiets</pattern><template>
+    <button><text>duofiets</text>
+    <url>https://www.semanta.nl/semanta/xtrt-data-line.php?bzv1=2@aangepaste+duofiets&amp;vgpt=semantus&amp;file=./data/sheerenloo/lnk03028.dat</url></button></template></category>
+<category>
+    <pattern>* prima tijdrit *</pattern>
+    <template>welke ronde is aan de orde</template>
+</category>
+<category>
+	<pattern>XCALLAPI WOORDEN </pattern>
+	<template>
+		<think>
+			<set var="response">
+				<callapi response_code_var="response_code">
+					<url>https://api.pandorabots.com/bot/une7480f40?user_key=918b10c5ae651a44ae5f6a50aeab8196</url>
+					<method>GET</method>
+					<query name="ed@semanta.nl"><secret name="woorden_secret_ed@semanta.nl"/></query>
+					<query name="eddy"><user name="woorden_user_eddy"/></query>
+				</callapi>
+			</set>
+		</think>
+	</template>
+</category>
+    <category><pattern>gediagnosticeerd</pattern><template><set name="invraiml">gediagnosticeerd</set>	<button><text>De heersende publieke opinie over ADHD is dat de stoornis te vaak wordt gediagnosticeerd over gediagnosticeerd</text><postback>De heersende publieke opinie over ADHD is dat de stoornis te vaak wordt gediagnosticeerd</postback></button>	</template></category>
+<category><pattern>verder</pattern><template><set name="invraiml">verder</set>	<button><text>Ik heb altijd gehoord dat je op den duur door de kromming van de aarde niet verder kunt kijken. Maar is dit wel echt zo? En zo ja over verder</text><postback>Ik heb altijd gehoord dat je op den duur door de kromming van de aarde niet verder kunt kijken. Maar is dit wel echt zo? En zo ja</postback></button>	</template></category>
+
 </aiml>

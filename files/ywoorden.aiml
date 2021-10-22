@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+<category><pattern>Yahoo</pattern><template><set name="invraiml">Yahoo</set>	<button><text>anm over Yahoo</text><postback>anm</postback></button>	</template></category>
+<category><pattern>yards</pattern><template><set name="invraiml">yards</set>	<button><text>mvd over yards</text><postback>mvd</postback></button>	</template></category>
+<category><pattern>yasemin</pattern><template><set name="invraiml">yasemin</set>	<button><text>vnm over yasemin</text><postback>vnm</postback></button>	</template></category>
+<category><pattern>yassin</pattern><template><set name="invraiml">yassin</set>	<button><text>vnm over yassin</text><postback>vnm</postback></button>	</template></category>
+<category><pattern>yellowstone</pattern><template><set name="invraiml">yellowstone</set>	<button><text>vnm over yellowstone</text><postback>vnm</postback></button>	</template></category>
+<category><pattern>yerli</pattern><template><set name="invraiml">yerli</set>	<button><text>anm over yerli</text><postback>anm</postback></button>	</template></category>
+<category><pattern>yevgeny</pattern><template><set name="invraiml">yevgeny</set>	<button><text>prp over yevgeny</text><postback>prp</postback></button>	</template></category>
+<category><pattern>yezidi</pattern><template><set name="invraiml">yezidi</set>	<button><text>prs over yezidi</text><postback>prs</postback></button>	</template></category>
+<category><pattern>yezidis</pattern><template><set name="invraiml">yezidis</set>	<button><text>mvd over yezidis</text><postback>mvd</postback></button>	</template></category>
+<category><pattern>yoast</pattern><template><set name="invraiml">yoast</set>	<button><text>bvn over yoast</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>yoeri</pattern><template><set name="invraiml">yoeri</set>	<button><text>vnm over yoeri</text><postback>vnm</postback></button>	</template></category>
+<category><pattern>yogaleraar</pattern><template><set name="invraiml">yogaleraar</set>	<button><text>brp over yogaleraar</text><postback>brp</postback></button>	</template></category>
+<category><pattern>yolande</pattern><template><set name="invraiml">yolande</set>	<button><text>vnm over yolande</text><postback>vnm</postback></button>	</template></category>
+<category><pattern>yolanthe</pattern><template><set name="invraiml">yolanthe</set>	<button><text>vnm over yolanthe</text><postback>vnm</postback></button>	</template></category>
+<category><pattern>yordi</pattern><template><set name="invraiml">yordi</set>	<button><text>prp over yordi</text><postback>prp</postback></button>	</template></category>
+<category><pattern>yorkse</pattern><template><set name="invraiml">yorkse</set>	<button><text>bvn over yorkse</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>young</pattern><template><set name="invraiml">young</set>	<button><text>anm over young</text><postback>anm</postback></button>	</template></category>
+<category><pattern>youri</pattern><template><set name="invraiml">youri</set>	<button><text>prp over youri</text><postback>prp</postback></button>	</template></category>
+<category><pattern>youssef</pattern><template><set name="invraiml">youssef</set>	<button><text>vnm over youssef</text><postback>vnm</postback></button>	</template></category>
+<category><pattern>youtube</pattern><template><set name="invraiml">youtube</set>	<button><text>anm over youtube</text><postback>anm</postback></button>	</template></category>
+<category><pattern>yuppie</pattern><template><set name="invraiml">yuppie</set>	<button><text>org over yuppie</text><postback>org</postback></button>	</template></category>
+</aiml>

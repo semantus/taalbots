@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml version="2.0">
+    <category>
+</category>
 /////////////////////
 <category><pattern>abs</pattern><template><set name="invracnm">abstract </set> waar is <get name="invraiml"></get> mee te vergelijken</template></category>
 <category><pattern>acr</pattern><template><set name="invracnm">acroniem </set><get name="invraiml"></get> is een acroniem</template></category>
@@ -1976,6 +1978,8 @@
 <category>
     <pattern>xgram</pattern>
     <template>
+        <image>https://www.semanta.nl/semanta/grammatica.png</image>
+
         <button>
             <text>go</text>
             <postback><get name="invraiml"></get> <get name="invracnm"></get></postback>
@@ -1984,6 +1988,7 @@
 </category>
 <category>
 <pattern>proloog</pattern><template>
+<image>https://www.semanta.nl/semanta/smta-prlg.png</image>
 <button><text>Semanta toelichting</text><url>https://www.semanta.nl/semanta/smta-prlg.pdf</url></button>
 <button>proloog vorm - inleiding van onder andere verhaal tekst muziek toneel</button>
 <button>proloog wielrennen - inleidende ronde voordat een eigenlijke uit meer ronden bestaande wedstrijd begint</button>
@@ -1999,6 +2004,13 @@
 <category>
     <pattern>web</pattern>
     <template>
+        <image>https://www.semanta.nl/semanta/taalbots.png</image>
+        <link>
+            <text>Grammatica</text>
+            <url>https://www.taalbots.ai</url>
+        </link>
+        
+
         gaat u de website bezoeken?
     </template>
 </category>
@@ -2011,5 +2023,12 @@
 <category><pattern>duofiets</pattern><template>
     <button><text>duofiets</text>
     <url>https://www.semanta.nl/semanta/xtrt-data-line.php?bzv1=2@aangepaste+duofiets&amp;vgpt=semantus&amp;file=./data/sheerenloo/lnk03028.dat</url></button></template></category>
-
+<category><pattern>betekenis van turkije</pattern>
+<template>groot euro-aziatisch land</template></category>
+<category><pattern>per land een</pattern>
+<template>Zou het asielvraagstuk beter te hanteren zijn als er per land een vast quotum wordt ingesteld?</template></category>
+<category><pattern>een europees bewijs</pattern>
+<template>1 mar 2021 — de europese commissie komt al over twee weken met een plan voor een europees bewijs waarmee de drager kan aantonen dat hij is ingeent</template></category>
+<category><pattern>ons land? </pattern>
+<template>Hoe ervaren burgers en bedrijven de inspanning van de overheid gericht op bereikbaarheid leefbaarheid veiligheid en duurzaamheid van ons land?</template></category>
 </aiml>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+<category><pattern>q_geschakeld</pattern><template><set name="invraiml">q_geschakeld</set>	<button><text>bvn over q_geschakeld</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>qanda</pattern><template><set name="invraiml">qanda</set>	<button><text>anm over qanda</text><postback>anm</postback></button>	</template></category>
+<category><pattern>qatar</pattern><template><set name="invraiml">qatar</set>	<button><text>anm over qatar</text><postback>anm</postback></button>	</template></category>
+<category><pattern>quadrangulair</pattern><template><set name="invraiml">quadrangulair</set>	<button><text>bvn over quadrangulair</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quaker</pattern><template><set name="invraiml">quaker</set>	<button><text>vds over quaker</text><postback>vds</postback></button>	</template></category>
+<category><pattern>qualia</pattern><template><set name="invraiml">qualia</set>	<button><text>qualia over qualia</text><postback>qualia</postback></button>	</template></category>
+<category><pattern>qualifying</pattern><template><set name="invraiml">qualifying</set>	<button><text>bvn over qualifying</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quand</pattern><template><set name="invraiml">quand</set>	<button><text>bwd over quand</text><postback>bwd</postback></button>	</template></category>
+<category><pattern>quantas</pattern><template><set name="invraiml">quantas</set>	<button><text>anm over quantas</text><postback>anm</postback></button>	</template></category>
+<category><pattern>quantiel</pattern><template><set name="invraiml">quantiel</set>	<button><text>bvn over quantiel</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quantity_surveyor</pattern><template><set name="invraiml">quantity_surveyor</set>	<button><text>brp over quantity_surveyor</text><postback>brp</postback></button>	</template></category>
+<category><pattern>quarantaine-beambte</pattern><template><set name="invraiml">quarantaine-beambte</set>	<button><text>brp over quarantaine-beambte</text><postback>brp</postback></button>	</template></category>
+<category><pattern>quasi</pattern><template><set name="invraiml">quasi</set>	<button><text>bvn over quasi</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quasi_bistabiel</pattern><template><set name="invraiml">quasi_bistabiel</set>	<button><text>bvn over quasi_bistabiel</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quasi_eenparig</pattern><template><set name="invraiml">quasi_eenparig</set>	<button><text>bvn over quasi_eenparig</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quasi_stabiel</pattern><template><set name="invraiml">quasi_stabiel</set>	<button><text>bvn over quasi_stabiel</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quasi_stationair</pattern><template><set name="invraiml">quasi_stationair</set>	<button><text>bvn over quasi_stationair</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quasi_vrij</pattern><template><set name="invraiml">quasi_vrij</set>	<button><text>bvn over quasi_vrij</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quaternair</pattern><template><set name="invraiml">quaternair</set>	<button><text>bvn over quaternair</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quatsch</pattern><template><set name="invraiml">quatsch</set>	<button><text>bwd over quatsch</text><postback>bwd</postback></button>	</template></category>
+<category><pattern>quebert</pattern><template><set name="invraiml">quebert</set>	<button><text>vnm over quebert</text><postback>vnm</postback></button>	</template></category>
+<category><pattern>queercore</pattern><template><set name="invraiml">queercore</set>	<button><text>anm over queercore</text><postback>anm</postback></button>	</template></category>
+<category><pattern>questions</pattern><template><set name="invraiml">questions</set>	<button><text>mvd over questions</text><postback>mvd</postback></button>	</template></category>
+<category><pattern>qui_vive</pattern><template><set name="invraiml">qui_vive</set>	<button><text>bwd over qui_vive</text><postback>bwd</postback></button>	</template></category>
+<category><pattern>quichot</pattern><template><set name="invraiml">quichot</set>	<button><text>anm over quichot</text><postback>anm</postback></button>	</template></category>
+<category><pattern>quickchek</pattern><template><set name="invraiml">quickchek</set>	<button><text>anm over quickchek</text><postback>anm</postback></button>	</template></category>
+<category><pattern>quiere</pattern><template><set name="invraiml">quiere</set>	<button><text>xpe over quiere</text><postback>xpe</postback></button>	</template></category>
+<category><pattern>quitte</pattern><template><set name="invraiml">quitte</set>	<button><text>bvn over quitte</text><postback>bvn</postback></button>	</template></category>
+<category><pattern>quizmaster</pattern><template><set name="invraiml">quizmaster</set>	<button><text>brp over quizmaster</text><postback>brp</postback></button>	</template></category>
+<category><pattern>quizprogramma</pattern><template><set name="invraiml">quizprogramma</set>	<button><text>com over quizprogramma</text><postback>com</postback></button>	</template></category>
+<category><pattern>quoteren</pattern><template><set name="invraiml">quoteren</set>	<button><text>org over quoteren</text><postback>org</postback></button>	</template></category>
+<category><pattern>quotes</pattern><template><set name="invraiml">quotes</set>	<button><text>mvd over quotes</text><postback>mvd</postback></button>	</template></category>
+</aiml>

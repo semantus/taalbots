@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	<category>
+<pattern>handelingen</pattern><template>
+<button>Handelingen kan verwijzen naar </button><button>Handelingen van de Eerste en Tweede Kamer der Staten-Generaal verslag van de vergaderingen in de Eerste en Tweede Kamer</button><button>Handelingen van de apostelen Bijbelboek uit het Nieuwe Testament</button><button>Handelingen van Pilatus ofwel het Evangelie van Nikodemus</button><button>Handelingen genre</button>
+</template></category>
+<category>
+<pattern>gedrag</pattern><template>
+<button>Waarom zijn mannen altijd eerder klaar op de wc</button>
+<button>Altijd als ik tegelijk met een vrouw naar de wc ga sta ik als ik klaar ben te wachten op de vrouw. Hoe kan dat? Plassen wij sneller? Hoeven wij minder handelingen handelingen te verrichten?</button>
+</template></category>
+<category>
+<pattern> biologie</pattern><template>
+<button>Waarom zijn mannen altijd eerder klaar op de wc</button>
+<button>Altijd als ik tegelijk met een vrouw naar de wc ga sta ik als ik klaar ben te wachten op de vrouw. Hoe kan dat? Plassen wij sneller? Hoeven wij minder handelingen handelingen te verrichten?</button>
+</template></category>
+<category>
+<pattern>links of rechtshandig</pattern><template>
+<button>Wat bepaalt of iemand links of rechtshandig is ?</button>
+<button>Ik doe zelf al mijn handelingen bijna met rechts</button>
+</template></category>
+</aiml>

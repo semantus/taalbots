@@ -1,8 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml version="2.0">
+<category><pattern>club met de</pattern><template>welkom bij pvc voetbal! de utrechtse club met de gevleugelde voet in het logo</template></category>
+<category><pattern>vraag over de</pattern><template>selecteer een veelgestelde vraag over de postnl webshop of collect club</template></category>
+<category><pattern>voetbal! de utrechtse</pattern><template>welkom bij pvc voetbal! de utrechtse club met de gevleugelde voet in het logo</template></category>
+<category><pattern>selecteer een veelgestelde</pattern><template>selecteer een veelgestelde vraag over de postnl webshop of collect club</template></category>
+<category><pattern>vragen over postnl</pattern><template>vragen over postnl webshop en collect club | postnl</template></category>
+<category><pattern>club met de</pattern><template>welkom bij pvc voetbal! de utrechtse club met de gevleugelde voet in het logo</template></category>
+<category><pattern>aan kwam was</pattern><template>toen ik hoorde dat er operatie aan kwam was ik</template></category>
+<category><pattern>kwam te staan</pattern><template>we hebben tot 1969 moeten wachten voordat de ruimte via de maanlanding in juli van dat jaar opnieuw in de belangstelling kwam te staan</template></category>
+<category><pattern>larsen kwam viel</pattern><template>larsen kwam viel mij de oprechte aandacht op en het goede contact</template></category>
+<category><pattern>welkom bij pvc</pattern><template>welkom bij pvc voetbal! de utrechtse club met de gevleugelde voet in het logo</template></category>
+<category><pattern>vraag over de</pattern><template>selecteer een veelgestelde vraag over de postnl webshop of collect club</template></category>
+<category><pattern>voetbal! de utrechtse</pattern><template>welkom bij pvc voetbal! de utrechtse club met de gevleugelde voet in het logo</template></category>
+<category><pattern>selecteer een veelgestelde</pattern><template>selecteer een veelgestelde vraag over de postnl webshop of collect club</template></category>
+<category><pattern>de club kwam</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>club met de</pattern><template>welkom bij pvc voetbal! de utrechtse club met de gevleugelde voet in het logo</template></category>
+<category><pattern>aan kwam was</pattern><template>toen ik hoorde dat er operatie aan kwam was ik</template></category>
+<category><pattern>kwam te staan</pattern><template>we hebben tot 1969 moeten wachten voordat de ruimte via de maanlanding in juli van dat jaar opnieuw in de belangstelling kwam te staan</template></category>
+<category><pattern>larsen kwam viel</pattern><template>larsen kwam viel mij de oprechte aandacht op en het goede contact</template></category>
+<category><pattern>zelf hun kennis</pattern><template>Hoe krijg je brandweermensen zo ver dat ze bij iedere uitruk niet alleen het incident zelf oplossen, maar ook de kennis van hun collega’s serieus meenemen in hun oordeel én zelf hun kennis weer delen met hun collega’s?</template></category>
+<category><pattern>ze het zelf</pattern><template>Waardoor komt het dat mensen de realiteit uit het oog verliezen, zodra ze het zelf voor het zeggen hebben?</template></category>
+<category><pattern>de algoritmes zelf</pattern><template>om die reden zetten veel banken in op uitlegbaarheid en transparantie vanuit de algoritmes zelf</template></category>
+<category><pattern>zelf hun kennis</pattern><template>Hoe krijg je brandweermensen zo ver dat ze bij iedere uitruk niet alleen het incident zelf oplossen, maar ook de kennis van hun collega’s serieus meenemen in hun oordeel én zelf hun kennis weer delen met hun collega’s?</template></category>
+<category><pattern>ze het zelf</pattern><template>Waardoor komt het dat mensen de realiteit uit het oog verliezen, zodra ze het zelf voor het zeggen hebben?</template></category>
+<category><pattern>de algoritmes zelf</pattern><template>om die reden zetten veel banken in op uitlegbaarheid en transparantie vanuit de algoritmes zelf</template></category>
+<category><pattern>zelf bepalen hoe</pattern><template>zelf bepalen hoe updates worden geinstalleerd - microsoft</template></category>
+<category><pattern>voor zorg zelf</pattern><template>het principe van een restitutiepolis is dan ook dat je de rekening voor zorg zelf betaalt en doorstuurt naar de</template></category>
+<category><pattern>van zelf opgewerkte</pattern><template>Is lokale energieopslag van zelf opgewerkte energie in je eigen huis mogelijk?</template></category>
+<category><pattern>je duim zelf</pattern><template>hij heeft mij laten zien waardoor dat komt en het is niet je duim zelf maar de pees die aan het begin bij je duim zit daar zit dan een knobbel en die past niet meer door de peeshuls</template></category>
+<category><pattern>voet zelf narekenen?</pattern><template>wilt u de beslagvrije voet zelf narekenen? dat kan met de rekentool op uwbeslagvrijevoet</template></category>
+<category><pattern>de club kwam</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>na enkele weken</pattern><template>na enkele weken inwerken slinkt het opgezette weefsel en beweegt de duim weer soepel</template></category>
+<category><pattern>een enkele bevruchte</pattern><template>intentie+</template></category>
+<category><pattern>zelf hun kennis</pattern><template>Hoe krijg je brandweermensen zo ver dat ze bij iedere uitruk niet alleen het incident zelf oplossen, maar ook de kennis van hun collega’s serieus meenemen in hun oordeel én zelf hun kennis weer delen met hun collega’s?</template></category>
+<category><pattern>enkele resultaten zijn</pattern><template>enkele resultaten zijn verwijderd</template></category>
+<category><pattern>zelf oplossen maar</pattern><template>Hoe krijg je brandweermensen zo ver dat ze bij iedere uitruk niet alleen het incident zelf oplossen, maar ook de kennis van hun collega’s serieus meenemen in hun oordeel én zelf hun kennis weer delen met hun collega’s?</template></category>
+<category><pattern>ze het zelf</pattern><template>Waardoor komt het dat mensen de realiteit uit het oog verliezen, zodra ze het zelf voor het zeggen hebben?</template></category>
+<category><pattern>de algoritmes zelf</pattern><template>om die reden zetten veel banken in op uitlegbaarheid en transparantie vanuit de algoritmes zelf</template></category>
+<category><pattern>de club kwam</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>na enkele weken</pattern><template>na enkele weken inwerken slinkt het opgezette weefsel en beweegt de duim weer soepel</template></category>
+<category><pattern>maanden verschillende lengtes</pattern><template>Waarom hebben de maanden verschillende lengtes, de een 30 de ander 31?</template></category>
+<category><pattern>een enkele bevruchte</pattern><template>intentie+</template></category>
+<category><pattern>481 weergaven2 maanden</pattern><template>481 weergaven2 maanden geleden</template></category>
+<category><pattern>832 weergaven9 maanden</pattern><template>832 weergaven9 maanden geleden</template></category>
+<category><pattern>79 weergaven2 maanden</pattern><template>79 weergaven2 maanden geleden</template></category>
+<category><pattern>256 weergaven11 maanden</pattern><template>256 weergaven11 maanden geleden</template></category>
+<category><pattern>zelf enkele maanden</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>481 weergaven2 maanden</pattern><template>481 weergaven2 maanden geleden</template></category>
+<category><pattern>832 weergaven9 maanden</pattern><template>832 weergaven9 maanden geleden</template></category>
+<category><pattern>79 weergaven2 maanden</pattern><template>79 weergaven2 maanden geleden</template></category>
+<category><pattern>256 weergaven11 maanden</pattern><template>256 weergaven11 maanden geleden</template></category>
+<category><pattern>260 weergaven5 maanden</pattern><template>260 weergaven5 maanden geleden</template></category>
+<category><pattern>590 weergaven3 maanden</pattern><template>590 weergaven3 maanden geleden</template></category>
+<category><pattern>96 weergaven4 maanden</pattern><template>96 weergaven4 maanden geleden</template></category>
+<category><pattern>uur geleden ·</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>geleden vandaag nog</pattern><template>Waarom zijn incidenten van soms eeuwen geleden, vandaag nog steeds bron van conflict</template></category>
+<category><pattern>dag nog gebukt</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>die een tijdje</pattern><template>die een tijdje geleden in een interview de responsieve rol van het publiek bij het living theatre in twijfel trok door erop te wijzen dat een restaurantbezoeker zijn neus toch ook niet in de potten en p</template></category>
+<category><pattern>gaat onder een</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>de club kwam</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>conflict </pattern><template>Waarom zijn incidenten van soms eeuwen geleden, vandaag nog steeds bron van conflict</template></category>
+<category><pattern>theatre in twijfel</pattern><template>die een tijdje geleden in een interview de responsieve rol van het publiek bij het living theatre in twijfel trok door erop te wijzen dat een restaurantbezoeker zijn neus toch ook niet in de potten en p</template></category>
+<category><pattern>uur geleden ·</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>geleden vandaag nog</pattern><template>Waarom zijn incidenten van soms eeuwen geleden, vandaag nog steeds bron van conflict</template></category>
+<category><pattern>dag nog gebukt</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>die een tijdje</pattern><template>die een tijdje geleden in een interview de responsieve rol van het publiek bij het living theatre in twijfel trok door erop te wijzen dat een restaurantbezoeker zijn neus toch ook niet in de potten en p</template></category>
+<category><pattern>gaat onder een</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>de club kwam</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>conflict </pattern><template>Waarom zijn incidenten van soms eeuwen geleden, vandaag nog steeds bron van conflict</template></category>
+<category><pattern>theatre in twijfel</pattern><template>die een tijdje geleden in een interview de responsieve rol van het publiek bij het living theatre in twijfel trok door erop te wijzen dat een restaurantbezoeker zijn neus toch ook niet in de potten en p</template></category>
+<category><pattern>uur geleden ·</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>geleden vandaag nog</pattern><template>Waarom zijn incidenten van soms eeuwen geleden, vandaag nog steeds bron van conflict</template></category>
+<category><pattern>dag nog gebukt</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>die een tijdje</pattern><template>die een tijdje geleden in een interview de responsieve rol van het publiek bij het living theatre in twijfel trok door erop te wijzen dat een restaurantbezoeker zijn neus toch ook niet in de potten en p</template></category>
+<category><pattern>gaat onder een</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>de club kwam</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>conflict </pattern><template>Waarom zijn incidenten van soms eeuwen geleden, vandaag nog steeds bron van conflict</template></category>
+<category><pattern>theatre in twijfel</pattern><template>die een tijdje geleden in een interview de responsieve rol van het publiek bij het living theatre in twijfel trok door erop te wijzen dat een restaurantbezoeker zijn neus toch ook niet in de potten en p</template></category>
+<category><pattern>geleden met het</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>uur geleden ·</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>geleden vandaag nog</pattern><template>Waarom zijn incidenten van soms eeuwen geleden, vandaag nog steeds bron van conflict</template></category>
+<category><pattern>dag nog gebukt</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>die een tijdje</pattern><template>die een tijdje geleden in een interview de responsieve rol van het publiek bij het living theatre in twijfel trok door erop te wijzen dat een restaurantbezoeker zijn neus toch ook niet in de potten en p</template></category>
+<category><pattern>gaat onder een</pattern><template>4 uur geleden · terwijl india elke dag nog gebukt gaat onder een grote hoeveelheid coronabesmettingen</template></category>
+<category><pattern>conflict </pattern><template>Waarom zijn incidenten van soms eeuwen geleden, vandaag nog steeds bron van conflict</template></category>
+<category><pattern>theatre in twijfel</pattern><template>die een tijdje geleden in een interview de responsieve rol van het publiek bij het living theatre in twijfel trok door erop te wijzen dat een restaurantbezoeker zijn neus toch ook niet in de potten en p</template></category>
+<category><pattern>geleden met het</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>verzoek mee te</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>te mogen dragen? </pattern><template>Is er vandaag de dag een regeringsleider of een geestelijke leider die voldoende ratio heeft om het leiderschap te mogen dragen?</template></category>
+<category><pattern>met een vaccin</pattern><template>12 mar 2021 — mogen mensen met een vaccin straks reizen</template></category>
+<category><pattern>de dag een</pattern><template>Is er vandaag de dag een regeringsleider of een geestelijke leider die voldoende ratio heeft om het leiderschap te mogen dragen?</template></category>
+<category><pattern>te mogen dragen? </pattern><template>Is er vandaag de dag een regeringsleider of een geestelijke leider die voldoende ratio heeft om het leiderschap te mogen dragen?</template></category>
+<category><pattern>met een vaccin</pattern><template>12 mar 2021 — mogen mensen met een vaccin straks reizen</template></category>
+<category><pattern>verzoek mee te</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>de dag een</pattern><template>Is er vandaag de dag een regeringsleider of een geestelijke leider die voldoende ratio heeft om het leiderschap te mogen dragen?</template></category>
+<category><pattern>de club kwam</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>regeringsleider of een</pattern><template>Is er vandaag de dag een regeringsleider of een geestelijke leider die voldoende ratio heeft om het leiderschap te mogen dragen?</template></category>
+<category><pattern>zelf enkele maanden</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>voldoende ratio heeft</pattern><template>Is er vandaag de dag een regeringsleider of een geestelijke leider die voldoende ratio heeft om het leiderschap te mogen dragen?</template></category>
+<category><pattern>verzoek mee te</pattern><template>de club kwam zelf enkele maanden geleden met het verzoek mee te mogen doen</template></category>
+<category><pattern>te mogen dragen? </pattern><template>Is er vandaag de dag een regeringsleider of een geestelijke leider die voldoende ratio heeft om het leiderschap te mogen dragen?</template></category>
+<category><pattern>doen aan het</pattern><template>Wat kun je doen aan het electrisch opladen van jezelf</template></category>
+<category><pattern>wat doen nieuwe</pattern><template>Wat doen nieuwe media met de samenleving?</template></category>
+<category><pattern>doen als je</pattern><template>dat moet je doen als je de bal naar de eerste doelpaal wilt spelen of een van je medespelers de bal wilt geven</template></category>
+<category><pattern>dat doen we</pattern><template>dat doen we via workshops</template></category>
+<category><pattern>het beste doen</pattern><template>Wat kunnen we het beste doen aan het einde van de verwachte levensduur van een windpark op zee?</template></category>
+<category><pattern>waarom doen mensen</pattern><template>Waarom doen mensen met Anorexia Nervosa hun best om zo mager mogelijk te worden?</template></category>
+<category><pattern>doen aan het</pattern><template>Wat kun je doen aan het electrisch opladen van jezelf</template></category>
+<category><pattern>wat doen nieuwe</pattern><template>Wat doen nieuwe media met de samenleving?</template></category>
+<category><pattern>doen als je</pattern><template>dat moet je doen als je de bal naar de eerste doelpaal wilt spelen of een van je medespelers de bal wilt geven</template></category>
+<category><pattern>dat doen we</pattern><template>dat doen we via workshops</template></category>
+<category><pattern>het beste doen</pattern><template>Wat kunnen we het beste doen aan het einde van de verwachte levensduur van een windpark op zee?</template></category>
+<category><pattern>waarom doen mensen</pattern><template>Waarom doen mensen met Anorexia Nervosa hun best om zo mager mogelijk te worden?</template></category>
+<category><pattern>te doen alsof</pattern><template>Hoe komt het dat iemand zoals de burgemeester van Amsterdam anderen openbaar mag schenden door te doen alsof die anderen geen zelfvertrouwen hebben?</template></category>
+<category><pattern>doen? mijn antwoord</pattern><template>de volgende vraag was. wat ben je aan het doen? mijn antwoord. weet ik eigenlijk niet</template></category>
+    <category>
+<pattern>stop het geloof</pattern>
+<template>
+<reply>
+    <text>vrg <star/></text>
+    <postback>conversatie</postback>
+</reply>
+<reply>
+    <text>gps <star/></text>
+    <postback>locatie</postback>
+</reply>
+<reply>
+    <text>ngt <star/></text>
+    <postback>gevoel</postback>
+</reply>
+</template></category>
 <category>
-    <pattern>*</pattern>
-    <template><set name="invraiml"><br/><b><star/></b></set></template>
+    <pattern>wat leuk van</pattern>
+    <template>@vnm@dat hij een @vwp @xpe</template>
+</category>
+<category>
+    <pattern>Ieder *</pattern>
+    <template>
+        <think><set name="invrlnks"><star/></set></think>
+        Zijn er nog al wat. 
+        <br/>Wat is de bedoeling van <b><star/></b>
+        </template>
+</category>
+<category>
+    <pattern>* Ieder </pattern>
+    <template>
+        <set name="invrrchs"><star/></set>
+        Dat is nog al wat. Wat is de bedoeling van <star/>
+        </template>
+</category>
+<category>
+    <pattern>* Ieder *</pattern>
+    <set name="invrlgrm"><star/></set>
+    <template>
+        Dat is nog al wat. 
+        <br/>Hoe zijn <b><get name="invrlnks" ></get></b>en <b><get name="invrrchs"></get></b>  met elkaar verbonden
+    </template>
+</category>
+<category>
+    <pattern>elk</pattern>
+    <template><srai>ieder</srai></template>
+</category>
+<category>
+    <pattern>elk *</pattern>
+    <template><srai>ieder *</srai></template>
+</category>
+<category>
+    <pattern>* elk *</pattern>
+    <template><srai>* ieder *</srai></template>
+</category>
+<category>
+    <pattern>* alle *</pattern>
+    <template><srai>* ieder *</srai></template>
+</category>
+<category>
+    <pattern>* iedere *</pattern>
+    <template><srai>* ieder *</srai></template>
+</category>
+<category>
+    <pattern>*vraag *</pattern>
+    <template>wat is de relatie tussen <star index="1"/> en <star index="2"/></template>
 </category>
 <category><pattern>* begint te praten</pattern>
 <template>En u bent ?
@@ -130,4 +307,10 @@
         <sraix bot="une7480f40/semanta">taalbots@<star/></sraix>
     </template>
 </category>
+<category>
+    <pattern>Click node to edit pattern</pattern>
+    <template>Click node to edit template</template>
+</category>
+
+
 </aiml>

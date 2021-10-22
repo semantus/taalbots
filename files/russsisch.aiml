@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	<category><pattern>что это все-таки</pattern>
+<template>что это все-таки Челюскин</template></category>
+
+<category><pattern>★ vakantiegolf ★</pattern>
+<template>speel het spelletje ★ vakantiegolf ★ helemaal gratis! vakantiegolf en nog 1001 andere gratis online golf spelletjes speel je op 1001 spelletjes!</template></category>
+<category><pattern>↑ wikipedia ↑</pattern>
+<template>↑ wikipedia ↑ weblink bron gearchiveerde versie word prevalence values op ugent</template></category>
+<category><pattern>…deze pagina vertalen</pattern>
+<template>medium pools - mid-sized fibreglass pools | local …deze pagina vertalen</template></category>
+<category><pattern>• way to</pattern>
+<template>• a way to accelerate deep learning inference</template></category>
+<category><pattern>• see mckinsey</pattern>
+<template>• see mckinsey and co</template></category>
+<category><pattern>• rich peripheral</pattern>
+<template>• a rich peripheral set for interfacing to various</template></category>
+<category><pattern>• read our</pattern>
+<template>• read our machine learning at the edge powers</template></category>
+<category><pattern>• learn more</pattern>
+<template>• learn more about bringing deep learning to</template></category>
+<category><pattern>• high-performance processing</pattern>
+<template>• high-performance processing capability to run</template></category>
+<category><pattern>„ik heb tandpasta</pattern>
+<template>„ik heb tandpasta nodig</template></category>
+<category><pattern>“made in holland”</pattern>
+<template> “Made in Holland” in deze eeuw bij Nederlanders nog maar zo weinig over is</template></category>
+<category><pattern>’ metzijn *</pattern>
+<template></template></category>
+<category><pattern>‘historische’ steden broedplaatsen</pattern>
+<template>Waarom zijn vooral ‘historische’ steden broedplaatsen van innovatie?</template></category>
+<category><pattern>‎inloggen · ‎kennisbank</pattern>
+<template>‎ik wil beginnen met bridge · ‎bridge ladderpuzzels · ‎inloggen · ‎kennisbank</template></category>
+<category><pattern>‎bridge als sport</pattern>
+<template>‎bridge als sport · ‎het spel in het kort · ‎het spelen · ‎scores en wedstrijdvormen</template></category>
+<category><pattern>Яковом Самойловичем без</pattern>
+<template>так и остается Яковом Самойловичем без фамилии - человеком невысоким</template></category>
+<category><pattern>Явная неувязка связана</pattern>
+<template>Явная неувязка связана с названием корабля</template></category>
+<category><pattern>явлений в Свердловском</pattern>
+<template>возглавлявший лабораторию электрических явлений в Свердловском институте физики металлов</template></category>
+<category><pattern>Я также предпринял</pattern>
+<template>Я также предпринял настойчивые попытки найти возможность выяснить соотношение литературного вымысла и факта непосредственно у автора (см</template></category>
+<category><pattern>Я сейчас нахожусь</pattern>
+<template>Я сейчас нахожусь в Ташкенте</template></category>
+<category><pattern>Я очень надеюсь</pattern>
+<template>Я очень надеюсь</template></category>
+<category><pattern>Я надеюсь на</pattern>
+<template>Я надеюсь на Вашу помощь</template></category>
+<category><pattern>Я мог бы</pattern>
+<template>Я мог бы запросто слетать к нему и разговорить</template></category>
+<category><pattern>Я имел в</pattern>
+<template>Я имел в виду страницу Вашего сайта</template></category>
+<category><pattern>я был большим</pattern>
+<template>У меня со всеми на корабле был тесный контакт. я был большим приятелем капитана и начальника экспедиции</template></category>
+<category><pattern>Эхо локация тоже</pattern>
+<template>Эхо локация тоже говорит об этом - объект имеет 102 метра длины и 11 метров в высоту</template></category>
+<category><pattern>этом деле (в</pattern>
+<template>Ваше предложение считаю очень интересным и постараюсь поучаствовать в этом деле (в библиотеках Сан-Диего или Лос-Анджелеса)</template></category>
+<category><pattern>это позволяет на</pattern>
+<template>это позволяет на сегодняшний день поставить точку в расследовании «тайн» экспедиции «Челюскина»</template></category>
+<category><pattern>Эти данные были</pattern>
+<template>Эти данные были основой для поиска и спасения людей</template></category>
+<category><pattern>Экспедиция Шмидта 23</pattern>
+<template>Экспедиция Шмидта - 23 человека</template></category>
+<category><pattern>экспедиции с «Челюскиным»</pattern>
+<template>шедшего в составе одной экспедиции с «Челюскиным»</template></category>
+<category><pattern>экспедиции на Севере</pattern>
+<template>Мы так же пытаемся найти любые упоминания о спасательной экспедиции на Севере в американских газетах и журналах за 1934 год</template></category>
+<category><pattern>экспедиции и капитана</pattern>
+<template>Все участники лагеря Шмидта . от руководителя экспедиции и капитана затонувшего корабля до плотников и уборщиков . были награждены одинаково . орденом Красной Звезды</template></category>
+<category><pattern>экспедиции за выполнение</pattern>
+<template>Наградили не участников экспедиции за выполнение каких-то заданий и научных исследований</template></category>
+<category><pattern>Шмидта от руководителя</pattern>
+<template>Все участники лагеря Шмидта . от руководителя экспедиции и капитана затонувшего корабля до плотников и уборщиков . были награждены одинаково . орденом Красной Звезды</template></category>
+<category><pattern>Шмидта и зимовщиков</pattern>
+<template>Шмидта и зимовщиков на о</template></category>
+<category><pattern>Шмидта «за исключительное</pattern>
+<template>а участников лагеря Шмидта - «за исключительное мужество</template></category>
+<category><pattern>шедшего в составе</pattern>
+<template>шедшего в составе одной экспедиции с «Челюскиным»</template></category>
+<category><pattern>чуть-чуть наклонен на</pattern>
+<template>чуть-чуть наклонен на левый борт</template></category>
+<category><pattern>чтобы сопоставить их</pattern>
+<template>чтобы сопоставить их с численностью и составом спасенных (и награжденных)</template></category>
+<category><pattern>чтобы раскрыть инкогнито</pattern>
+<template>чтобы раскрыть инкогнито</template></category>
+<category><pattern>чтобы не позволить</pattern>
+<template>чтобы не позволить американскому механику Клайду Армстеду увидеть корабль с заключенными</template></category>
+<category><pattern>что-либо знающим об</pattern>
+<template>что-либо знающим об этом</template></category>
+<category><pattern>что это Челюскин</pattern>
+<template>что это Челюскин</template></category>
+<category><pattern>что это все-таки</pattern>
+<template>что это все-таки Челюскин</template></category>
+<category><pattern>что это был</pattern>
+<template>что это был Челюскин</template></category>
+</aiml>

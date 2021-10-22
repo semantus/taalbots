@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	<category>
+<pattern>rookverslaving</pattern><template>
+<button>Roken kan verwijzen naar </button><button>roken tabak het inhaleren van tabaksrook</button><button>roken voedsel het conserveren van voedsel door middel van rook</button><button>het afgeven van rook van een stof die smeult of brandt </button>
+<button>Hoe zou een stoppen-met-roken interventie die beter werkt in rokers uit lage sociaaleconomische groepen dan hoge sociaaleconomische groepen eruitzien?</button>
+<button>Het gevaar van roken is sterk onderbouwd. Eén op de twee rokers overlijdt als resultaat van hun gebruik van sigaretten. In Nederland bestaat er een sociaaleconomische gradiënt in roken en stoppen met roken</button>
+<button>In hoeverre is door roken geīnduceerde longkanker gerelateerd aan het type rookgerei?</button>
+<button>Het is algemeen bekend dat roken het ontstaan van longkanker kan bevorderen. M.i. zijn er geen onderzoeken die aangeven of tussen bijvoorbeeld het roken van shag of filtersigaretten (grote) verschillen in ontstaan en genezing voorkomen.</button>
+</template></category>
+<category>
+<pattern> gezondheidsverschillen</pattern><template>
+<button>Hoe zou een stoppen-met-roken interventie die beter werkt in rokers uit lage sociaaleconomische groepen dan hoge sociaaleconomische groepen eruitzien?</button>
+<button>Het gevaar van roken is sterk onderbouwd. Eén op de twee rokers overlijdt als resultaat van hun gebruik van sigaretten. In Nederland bestaat er een sociaaleconomische gradiënt in roken en stoppen met roken</button>
+</template></category>
+<category>
+<pattern> stoppen-met-roken</pattern><template>
+<button>Hoe zou een stoppen-met-roken interventie die beter werkt in rokers uit lage sociaaleconomische groepen dan hoge sociaaleconomische groepen eruitzien?</button>
+<button>Het gevaar van roken is sterk onderbouwd. Eén op de twee rokers overlijdt als resultaat van hun gebruik van sigaretten. In Nederland bestaat er een sociaaleconomische gradiënt in roken en stoppen met roken</button>
+</template></category>
+<category>
+<pattern> interventie</pattern><template>
+<button>Hoe zou een stoppen-met-roken interventie die beter werkt in rokers uit lage sociaaleconomische groepen dan hoge sociaaleconomische groepen eruitzien?</button>
+<button>Het gevaar van roken is sterk onderbouwd. Eén op de twee rokers overlijdt als resultaat van hun gebruik van sigaretten. In Nederland bestaat er een sociaaleconomische gradiënt in roken en stoppen met roken</button>
+</template></category>
+<category>
+<pattern>longkanker</pattern><template>
+<button>In hoeverre is door roken geīnduceerde longkanker gerelateerd aan het type rookgerei?</button>
+<button>Het is algemeen bekend dat roken het ontstaan van longkanker kan bevorderen. M.i. zijn er geen onderzoeken die aangeven of tussen bijvoorbeeld het roken van shag of filtersigaretten (grote) verschillen in ontstaan en genezing voorkomen.</button>
+</template></category>
+<category>
+<pattern> shag</pattern><template>
+<button>In hoeverre is door roken geīnduceerde longkanker gerelateerd aan het type rookgerei?</button>
+<button>Het is algemeen bekend dat roken het ontstaan van longkanker kan bevorderen. M.i. zijn er geen onderzoeken die aangeven of tussen bijvoorbeeld het roken van shag of filtersigaretten (grote) verschillen in ontstaan en genezing voorkomen.</button>
+</template></category>
+<category>
+<pattern> filtersigaret</pattern><template>
+<button>In hoeverre is door roken geīnduceerde longkanker gerelateerd aan het type rookgerei?</button>
+<button>Het is algemeen bekend dat roken het ontstaan van longkanker kan bevorderen. M.i. zijn er geen onderzoeken die aangeven of tussen bijvoorbeeld het roken van shag of filtersigaretten (grote) verschillen in ontstaan en genezing voorkomen.</button>
+</template></category>
+
+</aiml>
